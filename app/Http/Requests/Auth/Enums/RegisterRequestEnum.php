@@ -6,5 +6,6 @@ use App\Http\Requests\Contracts\RequestParamEnumInterface;
 
 enum RegisterRequestEnum: string implements RequestParamEnumInterface
 {
-    case Phone = 'phone';
+    case Name = 'name';
+    case Surname = 'surname';
 }

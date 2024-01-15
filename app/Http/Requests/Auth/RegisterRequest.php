@@ -2,9 +2,11 @@
 
 namespace App\Http\Requests\Auth;
 
+use App\DTO\Auth\LoginRequestDTO;
 use App\DTO\Auth\RegisterRequestDTO;
 use App\Helpers\Contracts\RequestFilterHelperInterface;
 use App\Http\Requests\Auth\Contracts\RegisterRequestInterface;
+use App\Http\Requests\Auth\Enums\LoginRequestEnum;
 use App\Http\Requests\Auth\Enums\RegisterRequestEnum;
 use App\Providers\Bindings\HelperServiceProvider;
 use Illuminate\Foundation\Http\FormRequest;
@@ -14,7 +16,8 @@ class RegisterRequest extends FormRequest implements RegisterRequestInterface
     public function rules(): array
     {
         return [
-            RegisterRequestEnum::Phone->value => 'required|string|max:32'
+            RegisterRequestEnum::Name->value => 'required|string|max:32',
+            RegisterRequestEnum::Surname->value => 'required|string|max:32'
         ];
     }
 
@@ -27,7 +30,8 @@ class RegisterRequest extends FormRequest implements RegisterRequestInterface
         ]);
 
         return new RegisterRequestDTO(
-            $filter->checkRequestParam(RegisterRequestEnum::Phone)
+            $filter->checkRequestParam(RegisterRequestEnum::Name),
+            $filter->checkRequestParam(RegisterRequestEnum::Surname),
         );
     }
 }

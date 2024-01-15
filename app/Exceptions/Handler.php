@@ -27,4 +27,15 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+    public function render($request, Throwable $e)
+    {
+        if(env('APP_ENV') == 'production') {
+            return response()->json([
+                'error' => $e->getMessage()
+            ], $e->getCode() ?? 200);
+        } else {
+            return parent::render($request, $e);
+        }
+    }
 }

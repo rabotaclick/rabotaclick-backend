@@ -3,21 +3,21 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\Contracts\RegisterRequestInterface;
-use App\Presenters\User\UserPresenter;
-use App\UseCases\Auth\RegisterUseCase;
+use App\Http\Requests\Auth\Contracts\LoginRequestInterface;
+use App\Presenters\Auth\TokenPresenter;
+use App\UseCases\Auth\LoginUseCase;
 use Illuminate\Http\Request;
 
-class RegisterController extends Controller
+class LoginController extends Controller
 {
     public function __construct(
-        private RegisterUseCase $useCase,
-        private UserPresenter $presenter,
+        private LoginUseCase $useCase,
+        private TokenPresenter $presenter,
     )
     {
     }
 
-    public function __invoke(RegisterRequestInterface $request)
+    public function __invoke(LoginRequestInterface $request)
     {
         $requestDTO = $request->getValidated();
 
