@@ -20,7 +20,7 @@ use App\Http\Controllers\User\ShowMeController as UserShowMe;
 
 Route::prefix("v1")->group(function () {
    Route::prefix("auth")->group(function () {
-      Route::post("/code", AuthController::class);
+      Route::middleware(['throttle:code'])->post("/code", AuthController::class);
       Route::post("/", LoginController::class);
       Route::middleware('auth:sanctum')->post("/register", RegisterController::class);
    });

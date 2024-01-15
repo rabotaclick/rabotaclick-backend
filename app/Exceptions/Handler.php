@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Exceptions\ThrottleRequestsException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -30,6 +31,12 @@ class Handler extends ExceptionHandler
 
     public function render($request, Throwable $e)
     {
+        if($e instanceof ThrottleRequestsException) {
+            return response()->json([
+                'seconds' => $e->getHeaders()['Retry-After'],
+                'error' => 'Превышено допустимое количество попыток. Попробуйте повторить запрос позднее'
+            ], 429);
+        }
         if(env('APP_ENV') == 'production') {
             return response()->json([
                 'error' => $e->getMessage()
