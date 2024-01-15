@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y \
       pcntl
 RUN apt-get install -y gcc g++ autoconf
 RUN pecl install swoole && docker-php-ext-enable swoole
+COPY . /backend
 WORKDIR /backend
 ENV APP_ENV production
 ENV DB_HOST db
