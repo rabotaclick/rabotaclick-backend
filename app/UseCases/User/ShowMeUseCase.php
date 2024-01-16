@@ -4,7 +4,7 @@ namespace App\UseCases\User;
 
 use App\DTO\User\UserDTO;
 use App\Repositories\User\ShowMeRepository;
-use App\UseCases\User\Exceptions\ShowMeUseCaseException;
+use App\UseCases\User\Exceptions\ShowMeUseCasesException;
 use Symfony\Component\HttpFoundation\Response;
 
 class ShowMeUseCase
@@ -21,7 +21,7 @@ class ShowMeUseCase
             $response = $this->repository->make();
             return $response;
         } catch (\Throwable $e) {
-            throw new ShowMeUseCaseException('Сервис временно недоступен', Response::HTTP_SERVICE_UNAVAILABLE, previous: $exception);
+            throw new ShowMeUseCasesException('Сервис временно недоступен', Response::HTTP_SERVICE_UNAVAILABLE, previous: $exception);
         }
     }
 }
