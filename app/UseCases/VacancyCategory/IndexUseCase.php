@@ -22,7 +22,7 @@ class IndexUseCase
             $response = $this->repository->make($requestDTO);
             return $response;
         } catch (\Throwable $exception) {
-            throw new IndexUseCasesException('Сервис временно недоступен' . $exception, Response::HTTP_SERVICE_UNAVAILABLE, previous: $exception);
+            throw new IndexUseCasesException('Сервис временно недоступен', Response::HTTP_SERVICE_UNAVAILABLE, previous: $exception);
         }
     }
 }

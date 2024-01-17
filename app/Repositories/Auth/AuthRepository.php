@@ -4,10 +4,12 @@ namespace App\Repositories\Auth;
 
 use App\DTO\Auth\AuthRequestDTO;
 use App\Models\UserAuth;
+use App\Traits\GenerateCodeTrait;
 use Illuminate\Support\Facades\Crypt;
 
 class AuthRepository
 {
+    use GenerateCodeTrait;
     public function make(AuthRequestDTO $requestDTO): string
     {
         $userAuth = UserAuth::firstOrNew([
@@ -16,21 +18,8 @@ class AuthRepository
         $userAuth->code_crypt = $this->generateCode();
         $userAuth->save();
 
-        return $userAuth->phone;
-    }
+        // TODO: implement sms service and transaction
 
-    private function generateCode(): string
-    {
-        if(env('APP_ENV') == 'production') {
-            while(true) {
-                $code = rand(0, 9999);
-                if(!UserAuth::where('code_crypt', '=',hash_hmac('sha256',$code, env('APP_KEY')))->exists()) {
-                    break;
-                }
-            }
-        } else {
-            $code = 1111;
-        }
-        return hash_hmac('sha256',$code, env('APP_KEY'));
+        return $userAuth->phone;
     }
 }

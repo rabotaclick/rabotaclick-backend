@@ -10,6 +10,7 @@ enum ResourceEnum: string
     case Phone = 'phone';
     case Email = 'email';
     case ChangeEmail = 'change_email';
+    case ChangePhone = 'change_phone';
     case CreatedAt = 'created_at';
     case UpdatedAt = 'updated_at';
 }

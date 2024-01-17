@@ -20,6 +20,7 @@ class UpdateRequest extends FormRequest implements UpdateRequestInterface
             UpdateRequestEnum::Lastname->value => 'string|max:32',
             UpdateRequestEnum::Password->value => 'string|min:8|max:32',
             UpdateRequestEnum::ChangeEmail->value => 'string|email|max:64',
+            UpdateRequestEnum::ChangePhone->value => 'string|max:32',
         ];
     }
 
@@ -37,6 +38,7 @@ class UpdateRequest extends FormRequest implements UpdateRequestInterface
             $filter->checkRequestParam(UpdateRequestEnum::Lastname),
             Hash::make($filter->checkRequestParam(UpdateRequestEnum::Password)),
             $filter->checkRequestParam(UpdateRequestEnum::ChangeEmail),
+            normalizePhone($filter->checkRequestParam(UpdateRequestEnum::ChangePhone))
         );
     }
 }

@@ -8,7 +8,9 @@ use App\Http\Requests\Auth\Contracts\LoginRequestInterface;
 use App\Http\Requests\Auth\Contracts\RegisterRequestInterface;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
+use App\Http\Requests\User\Contracts\UpdatePhoneRequestInterface as UserUpdatePhoneRequestInterface;
 use App\Http\Requests\User\Contracts\UpdateRequestInterface as UserUpdateRequestInterface;
+use App\Http\Requests\User\UpdatePhoneRequest as UserUpdatePhoneRequest;
 use App\Http\Requests\User\UpdateRequest as UserUpdateRequest;
 use App\Http\Requests\VacancyCategory\Contracts\IndexRequestInterface as VacancyCategoryIndexRequestInterface;
 use App\Http\Requests\VacancyCategory\IndexRequest as VacancyCategoryIndexRequest;
@@ -26,5 +28,6 @@ class RequestServiceProvider extends ServiceProvider
         $this->app->bind(VacancyCategoryIndexRequestInterface::class, VacancyCategoryIndexRequest::class);
         // User requests
         $this->app->bind(UserUpdateRequestInterface::class, UserUpdateRequest::class);
+        $this->app->bind(UserUpdatePhoneRequestInterface::class, UserUpdatePhoneRequest::class);
     }
 }
