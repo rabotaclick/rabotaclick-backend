@@ -20,9 +20,11 @@ class LoginRepository
     {
         DB::transaction(function () use($requestDTO) {
             $userAuth = UserAuth::findCode($requestDTO->phone, $requestDTO->code);
-            $this->user = User::firstOrCreate(
-                ['phone' => $userAuth->phone]
-            );
+            $this->user = User::withTrashed()
+                ->firstOrCreate(
+                    ['phone' => $userAuth->phone]
+                );
+            $this->checkDeletedUser();
             $userAuth->delete();
         });
 
@@ -32,5 +34,12 @@ class LoginRepository
                 expiresAt: now()->addDays(7)
             )
             ->plainTextToken;
+    }
+
+    private function checkDeletedUser()
+    {
+        if($this->user->trashed()){
+            $this->user->restore();
+        }
     }
 }

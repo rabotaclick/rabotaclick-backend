@@ -8,6 +8,7 @@ use App\Http\Controllers\User\ShowController as UserShow;
 use App\Http\Controllers\User\ShowMeController as UserShowMe;
 use App\Http\Controllers\User\UpdateController as UserUpdate;
 use App\Http\Controllers\User\UpdatePhoneController as UserPhoneUpdate;
+use App\Http\Controllers\User\DeleteController as UserDelete;
 use App\Http\Controllers\VacancyCategory\IndexController as VacancyCategoryIndex;
 use App\Http\Controllers\Email\VerifyController;
 
@@ -33,6 +34,7 @@ Route::prefix("v1")->group(function () {
       Route::get("/", UserShow::class);
       Route::middleware(['throttle:user_update'])->put("/", UserUpdate::class);
       Route::put("/phone", UserPhoneUpdate::class);
+      Route::delete("/", UserDelete::class);
    });
    Route::prefix("vacancy")->group(function () {
       Route::get("/categories", VacancyCategoryIndex::class);
