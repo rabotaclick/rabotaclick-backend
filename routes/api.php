@@ -13,17 +13,6 @@ use App\Http\Controllers\User\DeleteController as UserDelete;
 use App\Http\Controllers\VacancyCategory\IndexController as VacancyCategoryIndex;
 use App\Http\Controllers\Email\VerifyController;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
-|
-*/
-
 Route::prefix("v1")->group(function () {
    Route::prefix("auth")->group(function () {
 
