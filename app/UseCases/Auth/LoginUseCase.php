@@ -24,7 +24,7 @@ class LoginUseCase
         } catch (ModelNotFoundException $notFoundException) {
             throw new LoginUseCasesException('Неверный код', Response::HTTP_BAD_REQUEST, previous: $notFoundException);
         } catch (\Throwable $exception) {
-            throw new LoginUseCasesException('Сервис временно недоступен' . $exception, Response::HTTP_SERVICE_UNAVAILABLE, previous: $exception);
+            throw new LoginUseCasesException('Сервис временно недоступен', Response::HTTP_SERVICE_UNAVAILABLE, previous: $exception);
         }
     }
 }
