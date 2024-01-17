@@ -22,6 +22,7 @@ class VerifyRepository
             $this->user = $user_change_email->user;
             $this->user->email = $this->user->change_email;
             $this->user->change_email = null;
+            $this->user->email_verified_at = 1;
             $this->user->save();
 
             $user_change_email->delete();

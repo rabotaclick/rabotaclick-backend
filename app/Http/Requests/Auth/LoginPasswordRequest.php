@@ -29,8 +29,17 @@ class LoginPasswordRequest extends FormRequest implements LoginPasswordRequestIn
         ]);
 
         return new LoginPasswordDTO(
-            normalizePhone($filter->checkRequestParam(LoginPasswordRequestEnum::Login)),
+            $this->normalizePhoneOrEmail($filter->checkRequestParam(LoginPasswordRequestEnum::Login)),
             $filter->checkRequestParam(LoginPasswordRequestEnum::Password),
         );
+    }
+
+    private function normalizePhoneOrEmail(string $login)
+    {
+        if(filter_var($login, FILTER_VALIDATE_EMAIL)){
+            return $login;
+        } else {
+            return normalizePhone($login);
+        }
     }
 }

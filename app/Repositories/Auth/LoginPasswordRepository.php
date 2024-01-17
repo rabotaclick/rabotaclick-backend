@@ -21,7 +21,9 @@ class LoginPasswordRepository
     {
         try {
             $credentials = $this->generateCredentials($requestDTO);
-            Auth::attempt($credentials);
+            if(!Auth::attempt($credentials)) {
+                throw new InvalidCredentialsException();
+            }
         } catch (\RuntimeException $exception) {
             throw new InvalidCredentialsException();
         }

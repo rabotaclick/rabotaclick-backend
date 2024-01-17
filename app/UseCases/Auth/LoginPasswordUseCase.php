@@ -24,7 +24,7 @@ class LoginPasswordUseCase
         } catch (InvalidCredentialsException $exception) {
             throw new InvalidCredentialsException('Неверные данные', Response::HTTP_UNAUTHORIZED, $exception);
         } catch (\Throwable $exception) {
-            throw new LoginPasswordUseCasesException('Сервис временно недоступен' . $exception, Response::HTTP_SERVICE_UNAVAILABLE, $exception);
+            throw new LoginPasswordUseCasesException('Сервис временно недоступен', Response::HTTP_SERVICE_UNAVAILABLE, $exception);
         }
     }
 }
