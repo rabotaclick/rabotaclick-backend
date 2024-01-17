@@ -6,6 +6,7 @@ use App\DTO\Auth\LoginRequestDTO;
 use App\Models\User;
 use App\Models\UserAuth;
 use App\Repositories\Auth\Exceptions\LoginRepositoryException;
+use Illuminate\Support\Facades\DB;
 
 class LoginRepository
 {
@@ -17,10 +18,13 @@ class LoginRepository
 
     public function make(LoginRequestDTO $requestDTO): string
     {
-        $userAuth = UserAuth::findCode($requestDTO->phone, $requestDTO->code);
-        $this->user = User::firstOrCreate(
-            ['phone' => $userAuth->phone]
-        );
+        DB::transaction(function () use($requestDTO) {
+            $userAuth = UserAuth::findCode($requestDTO->phone, $requestDTO->code);
+            $this->user = User::firstOrCreate(
+                ['phone' => $userAuth->phone]
+            );
+            $userAuth->delete();
+        });
 
         return $this->user
             ->createToken(

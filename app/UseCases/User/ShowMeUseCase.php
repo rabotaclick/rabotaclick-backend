@@ -20,7 +20,7 @@ class ShowMeUseCase
         try {
             $response = $this->repository->make();
             return $response;
-        } catch (\Throwable $e) {
+        } catch (\Throwable $exception) {
             throw new ShowMeUseCasesException('Сервис временно недоступен', Response::HTTP_SERVICE_UNAVAILABLE, previous: $exception);
         }
     }

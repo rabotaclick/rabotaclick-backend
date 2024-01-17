@@ -8,6 +8,8 @@ use App\Http\Requests\Auth\Contracts\LoginRequestInterface;
 use App\Http\Requests\Auth\Contracts\RegisterRequestInterface;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
+use App\Http\Requests\User\Contracts\UpdateRequestInterface as UserUpdateRequestInterface;
+use App\Http\Requests\User\UpdateRequest as UserUpdateRequest;
 use App\Http\Requests\VacancyCategory\Contracts\IndexRequestInterface as VacancyCategoryIndexRequestInterface;
 use App\Http\Requests\VacancyCategory\IndexRequest as VacancyCategoryIndexRequest;
 use Illuminate\Support\ServiceProvider;
@@ -22,5 +24,7 @@ class RequestServiceProvider extends ServiceProvider
         $this->app->bind(RegisterRequestInterface::class, RegisterRequest::class);
         // VacancyCategory requests
         $this->app->bind(VacancyCategoryIndexRequestInterface::class, VacancyCategoryIndexRequest::class);
+        // User requests
+        $this->app->bind(UserUpdateRequestInterface::class, UserUpdateRequest::class);
     }
 }
