@@ -7,14 +7,13 @@ use App\DTO\User\UserDTO;
 use App\Models\User;
 use App\Models\UserEmailChange;
 use App\Models\UserPhoneChange;
-use App\Repositories\User\Exceptions\UpdateRepositoryException;
+use App\Repositories\User\Exceptions\InvalidEmailException;
+use App\Repositories\User\Exceptions\InvalidPhoneException;
 use App\Services\MailService;
 use App\Traits\GenerateCodeTrait;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
 
 class UpdateRepository
 {
@@ -72,7 +71,7 @@ class UpdateRepository
             $this->user->phone == $change_phone ||
             $this->user->change_phone == $change_phone
         ) {
-            throw new UpdateRepositoryException();
+            throw new InvalidPhoneException();
         }
     }
 
@@ -82,7 +81,7 @@ class UpdateRepository
             $this->user->email == $change_email ||
             $this->user->change_email == $change_email
         ) {
-            throw new UpdateRepositoryException();
+            throw new InvalidEmailException();
         }
     }
 }

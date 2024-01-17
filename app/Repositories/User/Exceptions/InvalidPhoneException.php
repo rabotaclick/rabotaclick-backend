@@ -4,6 +4,6 @@ namespace App\Repositories\User\Exceptions;
 
 use App\Exceptions\BaseException;
 
-class UpdateRepositoryException extends BaseException
+class InvalidPhoneException extends BaseException
 {
 }

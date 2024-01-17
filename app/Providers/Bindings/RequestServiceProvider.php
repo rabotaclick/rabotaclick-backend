@@ -4,8 +4,10 @@ namespace App\Providers\Bindings;
 
 use App\Http\Requests\Auth\Contracts\AuthRequestInterface;
 use App\Http\Requests\Auth\AuthRequest;
+use App\Http\Requests\Auth\Contracts\LoginPasswordRequestInterface;
 use App\Http\Requests\Auth\Contracts\LoginRequestInterface;
 use App\Http\Requests\Auth\Contracts\RegisterRequestInterface;
+use App\Http\Requests\Auth\LoginPasswordRequest;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Http\Requests\User\Contracts\UpdatePhoneRequestInterface as UserUpdatePhoneRequestInterface;
@@ -24,6 +26,7 @@ class RequestServiceProvider extends ServiceProvider
         $this->app->bind(AuthRequestInterface::class, AuthRequest::class);
         $this->app->bind(LoginRequestInterface::class, LoginRequest::class);
         $this->app->bind(RegisterRequestInterface::class, RegisterRequest::class);
+        $this->app->bind(LoginPasswordRequestInterface::class, LoginPasswordRequest::class);
         // VacancyCategory requests
         $this->app->bind(VacancyCategoryIndexRequestInterface::class, VacancyCategoryIndexRequest::class);
         // User requests
