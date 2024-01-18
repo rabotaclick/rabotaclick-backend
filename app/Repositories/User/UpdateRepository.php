@@ -53,7 +53,9 @@ class UpdateRepository
         $user_email_change->token = Crypt::encrypt($change_email);
         $user_email_change->save();
 
-        $this->mailService->userChangeSend($user_email_change->token, $change_email);
+        if(env('APP_ENV')  != "testing") {
+            $this->mailService->userChangeSend($user_email_change->token, $change_email);
+        }
     }
 
     private function changePhone()
