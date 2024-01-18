@@ -4,10 +4,14 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\Contracts\LoginPasswordRequestInterface;
+use App\OpenApi\Parameters\Auth\LoginPasswordParameters;
+use App\OpenApi\Responses\Auth\LoginResponse;
+use App\OpenApi\Responses\Public\InvalidCredentialsResponse;
+use App\OpenApi\Responses\Public\ServiceUnavailableErrorResponse;
 use App\Presenters\Auth\TokenPresenter;
 use App\UseCases\Auth\LoginPasswordUseCase;
-use Illuminate\Http\Request;
-
+use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
+#[OpenApi\PathItem]
 class LoginPasswordController extends Controller
 {
     public function __construct(
@@ -16,7 +20,16 @@ class LoginPasswordController extends Controller
     )
     {
     }
-
+    /**
+     * Вход пользователя с помощью пароля
+     *
+     * Вход пользователя с помощью пароля и логина (почта или телефон).
+     */
+    #[OpenApi\Operation(tags: ['Applicant'], method: 'POST')]
+    #[OpenApi\Parameters(LoginPasswordParameters::class)]
+    #[OpenApi\Response(LoginResponse::class, 200)]
+    #[OpenApi\Response(InvalidCredentialsResponse::class, 422)]
+    #[OpenApi\Response(ServiceUnavailableErrorResponse::class, 512)]
     public function __invoke(LoginPasswordRequestInterface $request)
     {
         $requestDTO = $request->getValidated();

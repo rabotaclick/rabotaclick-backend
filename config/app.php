@@ -170,7 +170,9 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         App\Providers\Bindings\HelperServiceProvider::class,
-        App\Providers\Bindings\RequestServiceProvider::class
+        App\Providers\Bindings\RequestServiceProvider::class,
+
+        Vyuldashev\LaravelOpenApi\OpenApiServiceProvider::class,
     ])->toArray(),
 
     /*
