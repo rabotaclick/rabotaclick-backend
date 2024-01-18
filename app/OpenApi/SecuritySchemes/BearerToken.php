@@ -11,7 +11,7 @@ class BearerToken extends SecuritySchemeFactory
     {
         return SecurityScheme::create('BearerToken')
             ->type(SecurityScheme::TYPE_HTTP)
-            ->scheme('bearer')
+            ->scheme('Bearer')
             ->bearerFormat('JWT');
     }
 }

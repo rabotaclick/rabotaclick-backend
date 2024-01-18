@@ -23,15 +23,23 @@ return [
 
             'tags' => [
 
-                 [
-                    'name' => 'Applicant',
-                    'description' => 'Исполнитель',
-                 ],
+                [
+                'name' => 'Applicant',
+                'description' => 'Исполнитель',
+                ],
+                [
+                'name' => 'User',
+                'description' => 'Пользователь'
+                ],
+                [
+                'name' => 'VacancyCategory',
+                'description' => 'Категории вакансий'
+                ]
 
             ],
 
             'security' => [
-                 GoldSpecDigital\ObjectOrientedOAS\Objects\SecurityRequirement::create()->securityScheme('BearerToken'),
+                 //GoldSpecDigital\ObjectOrientedOAS\Objects\SecurityRequirement::create()->securityScheme('BearerToken'),
             ],
 
             // Non standard attributes used by code/doc generation tools can be added here
