@@ -19,7 +19,7 @@ return new class extends Migration
 
             $table->string("surname");
             $table->string("name");
-            $table->string("lastname");
+            $table->string("lastname")->nullable();
             $table->date('birthdate');
             $table->integer('salary');
             $table->boolean("have_car");

@@ -23,6 +23,11 @@ class WorkHistory extends Model
         'updated_at'
     ];
 
+    protected $casts = [
+        'start_date' => 'date',
+        'end_date' => 'date'
+    ];
+
     public function resume(): BelongsTo
     {
         return $this->belongsTo(Resume::class, 'resume_id', 'id');

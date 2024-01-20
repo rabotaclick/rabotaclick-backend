@@ -14,4 +14,5 @@ enum ResourceEnum: string
     case ChangePhone = 'change_phone';
     case CreatedAt = 'created_at';
     case UpdatedAt = 'updated_at';
+    case Resumes = 'resumes';
 }

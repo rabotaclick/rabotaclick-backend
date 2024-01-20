@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Pivots\Language\LevelPivot;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -19,6 +20,10 @@ class Resume extends Model
 
     protected $guarded = [
         'id'
+    ];
+    protected $appends = [
+        'work_experience',
+        'last_work'
     ];
     public function subspecializations(): BelongsToMany
     {
@@ -73,5 +78,50 @@ class Resume extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, "user_id", "id");
+    }
+
+    public function getWorkExperienceAttribute()
+    {
+        $allMonths = collect();
+
+        foreach ($this->work_histories as $workHistory) {
+            $startDate = Carbon::parse($workHistory->start_date);
+            $endDate = ($workHistory->end_date === null) ? Carbon::now() : Carbon::parse($workHistory->end_date);
+
+            $currentDate = $startDate->copy();
+            while ($currentDate->lessThanOrEqualTo($endDate)) {
+                $allMonths->put($currentDate->format('Y-m'), true);
+                $currentDate->addMonth();
+            }
+        }
+
+        return $this->formatMonths($allMonths->count());
+    }
+
+    private function formatMonths($months)
+    {
+        $years = floor($months / 12);
+        $remainingMonths = $months % 12;
+
+        $result = [];
+
+        if ($years > 0) {
+            $result[] = ($years > 1) ? "$years года" : "1 год";
+        }
+
+        if ($remainingMonths > 0) {
+            $result[] = ($remainingMonths === 1) ? "1 месяц" : (
+            ($remainingMonths >= 2 && $remainingMonths <= 4) ? "$remainingMonths месяца" : "$remainingMonths месяцев"
+            );
+        }
+
+        return implode(', ', $result);
+    }
+
+    public function getLastWorkAttribute()
+    {
+        return $this->work_histories()->where('end_date','=',null)->first() ??
+            $this->work_histories()->orderBy('end_date', 'DESC')->first();
+
     }
 }

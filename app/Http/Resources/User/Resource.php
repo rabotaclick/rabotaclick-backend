@@ -20,7 +20,11 @@ class Resource extends JsonResource
             ResourceEnum::ChangeEmail->value => $this->change_email,
             ResourceEnum::ChangePhone->value => $this->change_phone,
             ResourceEnum::CreatedAt->value => $this->created_at->format('Y-m-d H:i:s'),
-            ResourceEnum::UpdatedAt->value => $this->updated_at->format('Y-m-d H:i:s')
+            ResourceEnum::UpdatedAt->value => $this->updated_at->format('Y-m-d H:i:s'),
+            ResourceEnum::Resumes->value => $this->resumes()
+                ->select(['id','updated_at','profession'])
+                ->get()
+                ->makeHidden(['work_histories'])
         ];
     }
 }

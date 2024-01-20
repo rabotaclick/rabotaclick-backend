@@ -32,7 +32,7 @@ class StoreRequest extends FormRequest implements StoreRequestInterface
         return [
             StoreRequestEnum::Name->value => 'required|string|max:32',
             StoreRequestEnum::Surname->value => 'required|string|max:32',
-            StoreRequestEnum::Lastname->value => 'required|string|max:32',
+            StoreRequestEnum::Lastname->value => 'string|max:32',
             StoreRequestEnum::Birthdate->value => 'required|date_format:Y-m-d|before_or_equal:'. now()->subYears(14)->format('Y-m-d'),
             StoreRequestEnum::Gender->value => 'required|in:' . $enumHelper->serialize(ResumeGenderEnum::class),
             StoreRequestEnum::CityId->value => 'required|uuid|exists:cities,id',

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Resume;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Resume\Contracts\StoreRequestInterface;
 use App\Http\Requests\Resume\StoreRequest;
 use App\OpenApi\Parameters\Resume\StoreParameters;
 use App\OpenApi\Responses\Public\ServiceUnavailableErrorResponse;
@@ -32,7 +33,7 @@ class StoreController extends Controller
     #[OpenApi\Response(ResumeResponse::class, 200)]
     #[OpenApi\Response(TooManyResumesResponse::class, 422)]
     #[OpenApi\Response(ServiceUnavailableErrorResponse::class, 503)]
-    public function __invoke(StoreRequest $request)
+    public function __invoke(StoreRequestInterface $request)
     {
         $requestDTO = $request->getValidated();
 

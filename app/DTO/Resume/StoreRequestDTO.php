@@ -20,7 +20,7 @@ readonly class StoreRequestDTO
     public function __construct(
         public string                       $surname,
         public string                       $name,
-        public string                       $lastname,
+        public string|null                  $lastname = null,
         public Carbon                       $birthdate,
         public string                       $gender,
         public City                         $city,
