@@ -2,6 +2,9 @@
 
 namespace Database\Seeders\Important;
 
+use App\Models\City;
+use App\Models\Country;
+use App\Models\Region;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -213,6 +216,22 @@ class SubjectsSeeder extends Seeder
 
     public function run(): void
     {
-        //
+        foreach ($this->subjects as $country => $regions) {
+            $created_country = Country::factory([
+                'name' => $country
+            ])->create();
+            foreach($regions as $region => $cities) {
+                $created_region = Region::factory([
+                    'name' => $region,
+                    'country_id' => $created_country->id
+                ])->create();
+                foreach ($cities as $city) {
+                    City::factory([
+                        'name' => $city,
+                        'region_id' => $created_region->id
+                    ])->create();
+                }
+            }
+        }
     }
 }
