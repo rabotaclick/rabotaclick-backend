@@ -38,6 +38,10 @@ return [
                 [
                     'name' => 'Resume',
                     'description' => 'Резюме'
+                ],
+                [
+                    'name' => 'City',
+                    'description' => 'Города'
                 ]
 
             ],
