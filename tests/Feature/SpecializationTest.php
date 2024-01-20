@@ -10,6 +10,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\States\SeedDatabaseState;
 use Tests\TestCase;
+use Tests\Traits\SeedDatabaseTrait;
 
 class SpecializationTest extends TestCase
 {
@@ -18,8 +19,7 @@ class SpecializationTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        SeedDatabaseState::$seeders = [SpecializationsSeeder::class];
-        $this->seedDatabase();
+        Specialization::factory()->create();
     }
 
     public function test_index()

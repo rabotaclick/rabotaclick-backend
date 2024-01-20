@@ -2,11 +2,14 @@
 
 namespace Tests\Feature;
 
+use App\Models\City;
+use Database\Seeders\Important\SpecializationsSeeder;
 use Database\Seeders\Important\SubjectsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\States\SeedDatabaseState;
 use Tests\TestCase;
+use Tests\Traits\SeedDatabaseTrait;
 
 class CityTest extends TestCase
 {
@@ -15,8 +18,8 @@ class CityTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        SeedDatabaseState::$seeders = [SubjectsSeeder::class];
-        $this->seedDatabase();
+        City::factory()->count(4)->create();
+        City::factory(['name' => 'Якутск'])->count(1)->create();
     }
 
     public function test_get_cities()
@@ -56,7 +59,7 @@ class CityTest extends TestCase
         $response->assertJson([
             "data" => [
                 [
-                    "name" => 'Янаул',
+                    "name" => 'Якутск',
                 ]
             ]
         ]);

@@ -20,6 +20,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\States\SeedDatabaseState;
 use Tests\TestCase;
+use Tests\Traits\SeedDatabaseTrait;
 
 class ResumeTest extends TestCase
 {
@@ -29,8 +30,12 @@ class ResumeTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        SeedDatabaseState::$seeders = [SpecializationsSeeder::class, DriverCategoriesSeeder::class, KeySkillsSeeder::class, LanguagesSeeder::class, SubjectsSeeder::class];
-        $this->seedDatabase();
+
+        City::factory()->create();
+        Subspecialization::factory()->create();
+        KeySkill::factory()->create();
+        DriverCategory::factory()->create();
+        Language::factory()->create();
 
         $user = User::factory()->create();
         $this->token = $user->createToken('auth-token')->plainTextToken;

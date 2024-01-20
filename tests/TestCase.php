@@ -7,7 +7,7 @@ use Tests\Traits\SeedDatabaseTrait;
 
 abstract class TestCase extends BaseTestCase
 {
-    use CreatesApplication, SeedDatabaseTrait;
+    use CreatesApplication;
 
     public function setUp(): void
     {
