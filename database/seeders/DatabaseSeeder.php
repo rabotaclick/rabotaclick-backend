@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Database\Seeders\Important\KeySkillsSeeder;
+use Database\Seeders\Important\SpecializationsSeeder;
+use Database\Seeders\Important\SubjectsSeeder;
 use Database\Seeders\Important\VacancyCategoriesSeeder;
 use Illuminate\Database\Seeder;
 
@@ -15,11 +18,15 @@ class DatabaseSeeder extends Seeder
     {
         if(env("APP_ENV") == 'production') {
             $this->call([
-                VacancyCategoriesSeeder::class
+                SpecializationsSeeder::class,
+                KeySkillsSeeder::class,
+                SubjectsSeeder::class
             ]);
         } else {
             $this->call([
-                VacancyCategoriesSeeder::class
+                SpecializationsSeeder::class,
+                KeySkillsSeeder::class,
+                SubjectsSeeder::class
             ]);
         }
 

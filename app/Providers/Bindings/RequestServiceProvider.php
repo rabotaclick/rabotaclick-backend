@@ -14,8 +14,8 @@ use App\Http\Requests\User\Contracts\UpdatePhoneRequestInterface as UserUpdatePh
 use App\Http\Requests\User\Contracts\UpdateRequestInterface as UserUpdateRequestInterface;
 use App\Http\Requests\User\UpdatePhoneRequest as UserUpdatePhoneRequest;
 use App\Http\Requests\User\UpdateRequest as UserUpdateRequest;
-use App\Http\Requests\VacancyCategory\Contracts\IndexRequestInterface as VacancyCategoryIndexRequestInterface;
-use App\Http\Requests\VacancyCategory\IndexRequest as VacancyCategoryIndexRequest;
+use App\Http\Requests\Specialization\Contracts\IndexRequestInterface as SpecializationIndexRequestInterface;
+use App\Http\Requests\Specialization\IndexRequest as SpecializationIndexRequest;
 use Illuminate\Support\ServiceProvider;
 
 class RequestServiceProvider extends ServiceProvider
@@ -27,8 +27,8 @@ class RequestServiceProvider extends ServiceProvider
         $this->app->bind(LoginRequestInterface::class, LoginRequest::class);
         $this->app->bind(RegisterRequestInterface::class, RegisterRequest::class);
         $this->app->bind(LoginPasswordRequestInterface::class, LoginPasswordRequest::class);
-        // VacancyCategory requests
-        $this->app->bind(VacancyCategoryIndexRequestInterface::class, VacancyCategoryIndexRequest::class);
+        // Specialization requests
+        $this->app->bind(SpecializationIndexRequestInterface::class, SpecializationIndexRequest::class);
         // User requests
         $this->app->bind(UserUpdateRequestInterface::class, UserUpdateRequest::class);
         $this->app->bind(UserUpdatePhoneRequestInterface::class, UserUpdatePhoneRequest::class);

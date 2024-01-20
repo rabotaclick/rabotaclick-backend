@@ -10,7 +10,7 @@ use App\Http\Controllers\User\ShowMeController as UserShowMe;
 use App\Http\Controllers\User\UpdateController as UserUpdate;
 use App\Http\Controllers\User\UpdatePhoneController as UserPhoneUpdate;
 use App\Http\Controllers\User\DeleteController as UserDelete;
-use App\Http\Controllers\VacancyCategory\IndexController as VacancyCategoryIndex;
+use App\Http\Controllers\Specialization\IndexController as SpecializationIndex;
 use App\Http\Controllers\Email\VerifyController;
 
 Route::prefix("v1")->group(function () {
@@ -34,9 +34,9 @@ Route::prefix("v1")->group(function () {
       Route::delete("/", UserDelete::class);
 
    });
-   Route::prefix("vacancy")->group(function () {
+   Route::prefix("specializations")->group(function () {
 
-      Route::get("/categories", VacancyCategoryIndex::class);
+      Route::get("/", SpecializationIndex::class);
 
    });
    Route::prefix("email")->group(function () {

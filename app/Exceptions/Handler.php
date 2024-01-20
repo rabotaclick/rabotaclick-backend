@@ -34,7 +34,7 @@ class Handler extends ExceptionHandler
         if($e instanceof ThrottleRequestsException) {
             return response()->json([
                 'seconds' => $e->getHeaders()['Retry-After'],
-                'error' => 'Превышено допустимое количество попыток. Попробуйте повторить запрос позднее'
+                'message' => 'Превышено допустимое количество попыток. Попробуйте повторить запрос позднее'
             ], 429);
         }
         if(env('APP_ENV') == 'production') {

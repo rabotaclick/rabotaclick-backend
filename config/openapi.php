@@ -32,7 +32,7 @@ return [
                 'description' => 'Пользователь'
                 ],
                 [
-                'name' => 'VacancyCategory',
+                'name' => 'Specialization',
                 'description' => 'Категории вакансий'
                 ]
 
