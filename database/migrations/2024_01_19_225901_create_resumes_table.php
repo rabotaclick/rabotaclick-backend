@@ -24,6 +24,7 @@ return new class extends Migration
             $table->date('birthdate');
             $table->integer('salary');
             $table->boolean("have_car");
+            $table->text("about_me");
 
             $table->string('phone');
             $table->string('email');

@@ -8,6 +8,7 @@ use Database\Seeders\Important\LanguagesSeeder;
 use Database\Seeders\Important\SpecializationsSeeder;
 use Database\Seeders\Important\SubjectsSeeder;
 use Database\Seeders\Important\VacancyCategoriesSeeder;
+use Database\Seeders\Optional\UserSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -29,7 +30,8 @@ class DatabaseSeeder extends Seeder
                 SpecializationsSeeder::class,
                 KeySkillsSeeder::class,
                 SubjectsSeeder::class,
-                LanguagesSeeder::class
+                LanguagesSeeder::class,
+                UserSeeder::class
             ]);
         }
 
