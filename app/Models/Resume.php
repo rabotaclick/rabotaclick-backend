@@ -25,6 +25,20 @@ class Resume extends Model
         return $this->belongsToMany(Subspecialization::class, 'resume_subspecializations');
     }
 
+    public function driver_categories(): BelongsToMany
+    {
+        return $this->belongsToMany(DriverCategory::class, 'resume_driver_categories');
+    }
+    public function main_language(): BelongsTo
+    {
+        return $this->belongsTo(Language::class, 'main_language_id', 'id');
+    }
+
+    public function languages(): BelongsToMany
+    {
+        return $this->belongsToMany(Language::class, 'resume_languages');
+    }
+
     public function city(): BelongsTo
     {
         return $this->belongsTo(City::class, 'city_id', 'id');

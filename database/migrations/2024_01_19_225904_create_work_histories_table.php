@@ -14,11 +14,13 @@ return new class extends Migration
         Schema::create('work_histories', function (Blueprint $table) {
             $table->uuid("id")->primary();
             $table->timestamps();
-            $table->string("name");
+            $table->string("organization");
+            $table->string("website_url");
             $table->string("job");
             $table->text('description');
             $table->date("start_date");
             $table->date("end_date")->nullable();
+            $table->foreignUuid('region_id')->constrained()->noActionOnDelete();
             $table->foreignUuid("resume_id")->constrained()->noActionOnDelete();
         });
     }

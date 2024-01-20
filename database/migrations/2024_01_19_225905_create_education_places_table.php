@@ -14,6 +14,16 @@ return new class extends Migration
         Schema::create('education_places', function (Blueprint $table) {
             $table->uuid("id")->primary();
             $table->timestamps();
+            $table->enum('education', [
+                'secondary',
+                'secondary_specialized',
+                'incomplete_higher',
+                'higher',
+                'bachelor',
+                'master',
+                'candidate',
+                'doctor'
+            ]);
             $table->string("name");
             $table->string("faculty");
             $table->string("specialization");

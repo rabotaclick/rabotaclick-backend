@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Database\Seeders\Important\KeySkillsSeeder;
+use Database\Seeders\Important\LanguagesSeeder;
 use Database\Seeders\Important\SpecializationsSeeder;
 use Database\Seeders\Important\SubjectsSeeder;
 use Database\Seeders\Important\VacancyCategoriesSeeder;
@@ -20,13 +21,15 @@ class DatabaseSeeder extends Seeder
             $this->call([
                 SpecializationsSeeder::class,
                 KeySkillsSeeder::class,
-                SubjectsSeeder::class
+                SubjectsSeeder::class,
+                LanguagesSeeder::class
             ]);
         } else {
             $this->call([
                 SpecializationsSeeder::class,
                 KeySkillsSeeder::class,
-                SubjectsSeeder::class
+                SubjectsSeeder::class,
+                LanguagesSeeder::class
             ]);
         }
 

@@ -21,25 +21,25 @@ return new class extends Migration
             $table->string("surname");
             $table->string("name");
             $table->string("lastname");
-            $table->string('phone');
             $table->date('birthdate');
+            $table->integer('salary');
+            $table->boolean("have_car");
+
+            $table->string('phone');
+            $table->string('email');
+            $table->enum('preferred_contact', ['phone','email']);
 
             $table->enum("gender", ["male", "female"]);
             $table->enum('ready_to_move', ['no', 'yes', 'want']);
-            $table->enum('education', [
-                'secondary',
-                'secondary_specialized',
-                'incomplete_higher',
-                'higher',
-                'bachelor',
-                'master',
-                'candidate',
-                'doctor'
-            ]);
+            $table->enum('business_trips', ['never', 'ready', 'sometimes']);
+            $table->enum('occupation', ['full-time', 'part-time', 'project', 'volunteer', 'internship']);
+            $table->enum('schedule', ['full', 'shift', 'flexible', 'remote', 'rotation']);
+            $table->enum('travel_time', ['dontcare', 'hour', 'hourhalf']);
 
-            $table->foreignUuid("city_id")->nullable()->constrained()->nullOnDelete();
-            $table->foreignUuid("citizenship_country_id")->nullable()->constrained('countries')->nullOnDelete();
-            $table->foreignUuid("work_permit_country_id")->nullable()->constrained('countries')->nullOnDelete();
+            $table->foreignUuid('main_language_id')->constrained('languages')->noActionOnDelete();
+            $table->foreignUuid("city_id")->constrained()->noActionOnDelete();
+            $table->foreignUuid("citizenship_country_id")->constrained('countries')->noActionOnDelete();
+            $table->foreignUuid("work_permit_country_id")->constrained('countries')->noActionOnDelete();
             $table->foreignUuid('user_id')->constrained()->cascadeOnDelete();
         });
     }
