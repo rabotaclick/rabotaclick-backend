@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('driver_categories', function (Blueprint $table) {
             $table->uuid("id")->primary();
             $table->timestamps();
-            $table->enum('category', ['A','B','C','D','E','BE','CE','DE','Tm','Tb']);
+            $table->string('category');
         });
     }
 

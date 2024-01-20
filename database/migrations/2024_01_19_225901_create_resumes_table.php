@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('resumes', function (Blueprint $table) {
             $table->uuid("id")->primary();
             $table->timestamps();
-            $table->softDeletes();
 
             $table->string('profession')->nullable();
 
@@ -41,7 +40,7 @@ return new class extends Migration
             $table->foreignUuid("city_id")->constrained()->noActionOnDelete();
             $table->foreignUuid("citizenship_country_id")->constrained('countries')->noActionOnDelete();
             $table->foreignUuid("work_permit_country_id")->constrained('countries')->noActionOnDelete();
-            $table->foreignUuid('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignUuid('user_id')->constrained()->noActionOnDelete();
         });
     }
 

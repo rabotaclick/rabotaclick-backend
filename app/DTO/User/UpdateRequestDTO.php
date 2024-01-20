@@ -10,6 +10,7 @@ readonly class UpdateRequestDTO implements Arrayable
         public string|null $name = null,
         public string|null $surname = null,
         public string|null $lastname = null,
+        public string|null $status = null,
         public string|null $password = null,
         public string|null $change_email = null,
         public string|null $change_phone = null,
@@ -23,6 +24,7 @@ readonly class UpdateRequestDTO implements Arrayable
             'name' => $this->name,
             'surname' => $this->surname,
             'lastname' => $this->lastname,
+            'status' => $this->status,
             'password' => $this->password,
             'change_email' => $this->change_email,
             'change_phone' => $this->change_phone

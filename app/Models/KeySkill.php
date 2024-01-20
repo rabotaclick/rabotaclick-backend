@@ -17,6 +17,11 @@ class KeySkill extends Model
         'id'
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
+
     public function resume(): BelongsToMany
     {
         return $this->belongsToMany(Resume::class, 'resume_key_skills');

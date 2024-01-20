@@ -23,6 +23,8 @@ return new class extends Migration
             $table->string('email')->nullable()->unique();
             $table->string('change_email')->nullable();
 
+            $table->enum('status', ['active', 'considering', 'offered', 'already_got', 'not_looking'])->default('considering');
+
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->timestamps();

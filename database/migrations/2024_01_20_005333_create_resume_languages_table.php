@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('resume_languages', function (Blueprint $table) {
             $table->id();
-            $table->foreignUuid('resume_id')->constrained()->noActionOnDelete();
+            $table->foreignUuid('resume_id')->constrained()->cascadeOnDelete();
             $table->foreignUuid('language_id')->constrained()->cascadeOnDelete();
             $table->enum('level', ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']);
         });

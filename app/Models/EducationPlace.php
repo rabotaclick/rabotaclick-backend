@@ -17,6 +17,10 @@ class EducationPlace extends Model
         'id'
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
     public function resume(): BelongsTo
     {
         return $this->belongsTo(Resume::class, 'resume_id', 'id');

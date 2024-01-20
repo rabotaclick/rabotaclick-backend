@@ -19,6 +19,11 @@ class Subspecialization extends Model
         'id'
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
+
     public function specialization(): BelongsTo
     {
         return $this->belongsTo(Specialization::class, 'specialization_id', 'id');

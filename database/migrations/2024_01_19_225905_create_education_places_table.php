@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string("faculty");
             $table->string("specialization");
             $table->integer("year_of_ending");
-            $table->foreignUuid("resume_id")->constrained()->noActionOnDelete();
+            $table->foreignUuid("resume_id")->constrained()->cascadeOnDelete();
         });
     }
 

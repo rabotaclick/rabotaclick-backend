@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Database\Seeders\Important\DriverCategoriesSeeder;
 use Database\Seeders\Important\KeySkillsSeeder;
 use Database\Seeders\Important\LanguagesSeeder;
 use Database\Seeders\Important\SpecializationsSeeder;
@@ -23,7 +24,8 @@ class DatabaseSeeder extends Seeder
                 SpecializationsSeeder::class,
                 KeySkillsSeeder::class,
                 SubjectsSeeder::class,
-                LanguagesSeeder::class
+                LanguagesSeeder::class,
+                DriverCategoriesSeeder::class
             ]);
         } else {
             $this->call([
@@ -31,6 +33,7 @@ class DatabaseSeeder extends Seeder
                 KeySkillsSeeder::class,
                 SubjectsSeeder::class,
                 LanguagesSeeder::class,
+                DriverCategoriesSeeder::class,
                 UserSeeder::class
             ]);
         }

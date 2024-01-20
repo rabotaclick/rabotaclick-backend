@@ -21,7 +21,7 @@ return new class extends Migration
             $table->date("start_date");
             $table->date("end_date")->nullable();
             $table->foreignUuid('region_id')->constrained()->noActionOnDelete();
-            $table->foreignUuid("resume_id")->constrained()->noActionOnDelete();
+            $table->foreignUuid("resume_id")->constrained()->cascadeOnDelete();
         });
     }
 

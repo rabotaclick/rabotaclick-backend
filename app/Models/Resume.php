@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Pivots\Language\LevelPivot;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -12,14 +13,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Resume extends Model
 {
-    use HasFactory, HasUuids, SoftDeletes;
+    use HasFactory, HasUuids;
 
     protected $table = 'resumes';
 
     protected $guarded = [
         'id'
     ];
-
     public function subspecializations(): BelongsToMany
     {
         return $this->belongsToMany(Subspecialization::class, 'resume_subspecializations');
@@ -36,7 +36,8 @@ class Resume extends Model
 
     public function languages(): BelongsToMany
     {
-        return $this->belongsToMany(Language::class, 'resume_languages');
+        return $this->belongsToMany(Language::class, 'resume_languages')
+            ->withPivot('level');
     }
 
     public function city(): BelongsTo

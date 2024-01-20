@@ -7,6 +7,7 @@ enum ResourceEnum: string
     case Name = 'name';
     case Surname = 'surname';
     case Lastname = 'lastname';
+    case Status = 'status';
     case Phone = 'phone';
     case Email = 'email';
     case ChangeEmail = 'change_email';

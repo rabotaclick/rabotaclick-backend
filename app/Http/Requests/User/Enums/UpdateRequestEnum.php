@@ -10,6 +10,7 @@ enum UpdateRequestEnum: string implements RequestParamEnumInterface
     case Surname = 'surname';
     case Lastname = 'lastname';
     case Password = 'password';
+    case Status = 'status';
     case ChangeEmail = 'change_email';
     case ChangePhone = 'change_phone';
 }

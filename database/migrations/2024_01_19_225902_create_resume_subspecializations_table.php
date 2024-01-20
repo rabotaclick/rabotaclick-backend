@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('resume_subspecializations', function (Blueprint $table) {
             $table->id();
-            $table->foreignUuid("resume_id")->constrained()->noActionOnDelete();
+            $table->foreignUuid("resume_id")->constrained()->cascadeOnDelete();
             $table->foreignUuid("subspecialization_id")->constrained()->cascadeOnDelete();
         });
     }

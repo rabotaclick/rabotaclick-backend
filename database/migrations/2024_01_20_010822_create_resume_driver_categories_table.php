@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('resume_driver_categories', function (Blueprint $table) {
             $table->id();
-            $table->foreignUuid('resume_id')->constrained()->noActionOnDelete();
+            $table->foreignUuid('resume_id')->constrained()->cascadeOnDelete();
             $table->foreignUuid('driver_category_id')->constrained()->cascadeOnDelete();
         });
     }

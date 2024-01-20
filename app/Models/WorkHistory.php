@@ -18,6 +18,11 @@ class WorkHistory extends Model
         'id'
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
+
     public function resume(): BelongsTo
     {
         return $this->belongsTo(Resume::class, 'resume_id', 'id');
@@ -26,5 +31,10 @@ class WorkHistory extends Model
     public function subspecializations(): BelongsToMany
     {
         return $this->belongsToMany(Subspecialization::class, 'work_history_subspecializations');
+    }
+
+    public function region(): BelongsTo
+    {
+        return $this->belongsTo(Region::class, 'region_id', 'id');
     }
 }

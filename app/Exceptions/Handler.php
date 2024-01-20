@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Exceptions\ThrottleRequestsException;
 use Throwable;
@@ -36,6 +37,11 @@ class Handler extends ExceptionHandler
                 'seconds' => $e->getHeaders()['Retry-After'],
                 'message' => 'Превышено допустимое количество попыток. Попробуйте повторить запрос позднее'
             ], 429);
+        }
+        if($e instanceof AuthorizationException) {
+            return response()->json([
+                'message' => 'У вас нету доступа'
+            ], 403);
         }
         if(env('APP_ENV') == 'production') {
             return response()->json([

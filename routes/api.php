@@ -12,6 +12,8 @@ use App\Http\Controllers\User\UpdatePhoneController as UserPhoneUpdate;
 use App\Http\Controllers\User\DeleteController as UserDelete;
 use App\Http\Controllers\Specialization\IndexController as SpecializationIndex;
 use App\Http\Controllers\Email\VerifyController;
+use App\Http\Controllers\Resume\StoreController as ResumeStore;
+use App\Http\Controllers\Resume\DeleteController as ResumeDelete;
 
 Route::prefix("v1")->group(function () {
    Route::prefix("auth")->group(function () {
@@ -32,6 +34,11 @@ Route::prefix("v1")->group(function () {
       Route::put("/phone", UserPhoneUpdate::class);
 
       Route::delete("/", UserDelete::class);
+
+      Route::prefix('resume')->group(function () {
+         Route::post('/', ResumeStore::class);
+         Route::delete('/{id}', ResumeDelete::class);
+      });
 
    });
    Route::prefix("specializations")->group(function () {

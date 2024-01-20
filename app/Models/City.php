@@ -17,6 +17,11 @@ class City extends Model
         'id'
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
+
     public function region(): BelongsTo
     {
         return $this->belongsTo(Region::class, 'region_id', 'id');

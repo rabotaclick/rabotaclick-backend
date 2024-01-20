@@ -14,6 +14,7 @@ class Resource extends JsonResource
             ResourceEnum::Name->value => $this->name,
             ResourceEnum::Surname->value => $this->surname,
             ResourceEnum::Lastname->value => $this->lastname,
+            ResourceEnum::Status->value => $this->status,
             ResourceEnum::Phone->value => $this->phone,
             ResourceEnum::Email->value => $this->email,
             ResourceEnum::ChangeEmail->value => $this->change_email,

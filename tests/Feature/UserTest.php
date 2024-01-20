@@ -37,6 +37,7 @@ class UserTest extends TestCase
             "name" => "newName",
             "surname" => "newSurname",
             "lastname" => "newLastname",
+            "status" => "active",
             "password" => "newPassword",
             "change_email" => "wotacc0809@gmail.com",
             "change_phone" => "+79243609722"
@@ -47,6 +48,7 @@ class UserTest extends TestCase
                 "name" => "newName",
                 "surname" => "newSurname",
                 "lastname" => "newLastname",
+                "status" => "active",
                 "change_email" => "wotacc0809@gmail.com",
                 "change_phone" => "+79243609722"
             ]

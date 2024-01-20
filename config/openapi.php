@@ -34,6 +34,10 @@ return [
                 [
                 'name' => 'Specialization',
                 'description' => 'Категории вакансий'
+                ],
+                [
+                    'name' => 'Resume',
+                    'description' => 'Резюме'
                 ]
 
             ],

@@ -17,6 +17,11 @@ class Country extends Model
         'id'
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
+
     public function regions(): HasMany
     {
         return $this->hasMany(Region::class, 'country_id', 'id');

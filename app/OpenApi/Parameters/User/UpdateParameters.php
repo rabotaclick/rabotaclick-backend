@@ -31,6 +31,11 @@ class UpdateParameters extends ParametersFactory
                 ->required(false)
                 ->schema(Schema::string()),
             Parameter::query()
+                ->name('status')
+                ->description('Статус пользователя')
+                ->required(false)
+                ->schema(Schema::string()),
+            Parameter::query()
                 ->name('password')
                 ->description('Новый пароль пользователя')
                 ->required(false)
