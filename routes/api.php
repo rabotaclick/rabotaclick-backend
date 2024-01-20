@@ -14,6 +14,7 @@ use App\Http\Controllers\Specialization\IndexController as SpecializationIndex;
 use App\Http\Controllers\Email\VerifyController;
 use App\Http\Controllers\Resume\StoreController as ResumeStore;
 use App\Http\Controllers\Resume\DeleteController as ResumeDelete;
+use App\Http\Controllers\City\IndexController as CityIndex;
 
 Route::prefix("v1")->group(function () {
    Route::prefix("auth")->group(function () {
@@ -40,6 +41,9 @@ Route::prefix("v1")->group(function () {
          Route::delete('/{id}', ResumeDelete::class);
       });
 
+   });
+   Route::prefix("cities")->group(function () {
+        Route::get('/', CityIndex::class);
    });
    Route::prefix("specializations")->group(function () {
 

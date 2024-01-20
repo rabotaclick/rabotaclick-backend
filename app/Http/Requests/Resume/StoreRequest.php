@@ -121,7 +121,7 @@ class StoreRequest extends FormRequest implements StoreRequestInterface
             Country::find($filter->checkRequestParam(StoreRequestEnum::CitizenshipCountryId)),
             Country::find($filter->checkRequestParam(StoreRequestEnum::WorkPermitCountryId)),
             $filter->checkRequestParam(StoreRequestEnum::TravelTime),
-            $filter->checkRequestParam(StoreRequestEnum::Phone),
+            normalizePhone($filter->checkRequestParam(StoreRequestEnum::Phone)),
             $filter->checkRequestParam(StoreRequestEnum::Email),
             $filter->checkRequestParam(StoreRequestEnum::PreferredContact),
         );
