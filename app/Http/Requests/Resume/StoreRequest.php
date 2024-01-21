@@ -82,7 +82,7 @@ class StoreRequest extends FormRequest implements StoreRequestInterface
             StoreRequestEnum::WorkPermitCountryId->value => 'required|uuid|exists:countries,id',
             StoreRequestEnum::TravelTime->value => 'required|in:' . $enumHelper->serialize(ResumeTravelTimeEnum::class),
 
-            StoreRequestEnum::Phone->value => 'required|string|max:32',
+            StoreRequestEnum::Phone->value => 'required|string|max:32|regex:/^([0-9\s\-\+\(\)]*)$/|min:11',
             StoreRequestEnum::Email->value => 'required|string|email|max:128',
             StoreRequestEnum::PreferredContact->value => 'required|in:' . $enumHelper->serialize(ResumePreferredContactEnum::class)
         ];

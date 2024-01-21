@@ -146,4 +146,21 @@ class ResumeTest extends TestCase
             ]
         ]);
     }
+
+    public function test_update_resume_contacts()
+    {
+        $this->test_create_resume();
+        $response = $this->put('/api/v1/user/resume/' . Resume::first()->id . '/personal', [
+            "phone" => "+79243609722",
+            "email" => "info@rabotaclick.pro",
+            "preferred_contact" => "phone",
+        ], ['Authorization' => 'Bearer ' . $this->token]);
+        $response->assertStatus(200);
+        $response->assertJsonStructure([
+            "data" => [
+                "name",
+                "surname"
+            ]
+        ]);
+    }
 }

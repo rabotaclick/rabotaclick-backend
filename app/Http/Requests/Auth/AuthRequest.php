@@ -14,7 +14,7 @@ class AuthRequest extends FormRequest implements AuthRequestInterface
     public function rules(): array
     {
         return [
-            AuthRequestEnum::Phone->value => 'required|string|max:32'
+            AuthRequestEnum::Phone->value => 'required|string|max:32|regex:/^([0-9\s\-\+\(\)]*)$/|min:11'
         ];
     }
 

@@ -2,22 +2,29 @@
 
 use App\Http\Controllers\Auth\LoginPasswordController;
 use Illuminate\Support\Facades\Route;
+// Auth
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+// User
 use App\Http\Controllers\User\ShowController as UserShow;
 use App\Http\Controllers\User\ShowMeController as UserShowMe;
 use App\Http\Controllers\User\UpdateController as UserUpdate;
 use App\Http\Controllers\User\UpdatePhoneController as UserPhoneUpdate;
 use App\Http\Controllers\User\DeleteController as UserDelete;
+// Specialization
 use App\Http\Controllers\Specialization\IndexController as SpecializationIndex;
+// Email
 use App\Http\Controllers\Email\VerifyController;
+// Resume
 use App\Http\Controllers\Resume\StoreController as ResumeStore;
 use App\Http\Controllers\Resume\DeleteController as ResumeDelete;
 use App\Http\Controllers\Resume\ShowController as ResumeShow;
 use App\Http\Controllers\Resume\IndexController as ResumeIndex;
-use App\Http\Controllers\City\IndexController as CityIndex;
 use App\Http\Controllers\Resume\UpdatePersonalController as ResumeUpdatePersonal;
+use App\Http\Controllers\Resume\UpdateContactsController as ResumeUpdateContacts;
+// City
+use App\Http\Controllers\City\IndexController as CityIndex;
 
 Route::prefix("v1")->group(function () {
    Route::prefix("auth")->group(function () {
@@ -45,7 +52,7 @@ Route::prefix("v1")->group(function () {
          Route::get('/', ResumeIndex::class);
          Route::delete('/{id}', ResumeDelete::class);
          Route::put('/{id}/personal', ResumeUpdatePersonal::class);
-         Route::put('/{id}/contacts', );
+         Route::put('/{id}/contacts', ResumeUpdateContacts::class);
          Route::put('/{id}/profession', );
          Route::put('/{id}/working_history', );
          Route::put('/{id}/education', );

@@ -15,7 +15,7 @@ class LoginRequest extends FormRequest implements LoginRequestInterface
     {
         return [
             LoginRequestEnum::Code->value => 'required|numeric|digits:4',
-            LoginRequestEnum::Phone->value => 'required|string|max:32',
+            LoginRequestEnum::Phone->value => 'required|string|max:32|regex:/^([0-9\s\-\+\(\)]*)$/|min:11',
         ];
     }
 
