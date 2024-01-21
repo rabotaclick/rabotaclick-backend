@@ -2,10 +2,12 @@
 
 namespace App\DTO\User;
 
+use App\Traits\FilterDataTrait;
 use Illuminate\Contracts\Support\Arrayable;
 
 readonly class UpdateRequestDTO implements Arrayable
 {
+    use FilterDataTrait;
     public function __construct(
         public string|null $name = null,
         public string|null $surname = null,
@@ -18,9 +20,9 @@ readonly class UpdateRequestDTO implements Arrayable
     {
     }
 
-    public function toArray()
+    public function toArray(): array
     {
-        return [
+        $data = [
             'name' => $this->name,
             'surname' => $this->surname,
             'lastname' => $this->lastname,
@@ -29,5 +31,7 @@ readonly class UpdateRequestDTO implements Arrayable
             'change_email' => $this->change_email,
             'change_phone' => $this->change_phone
         ];
+
+        return $this->filterData($data);
     }
 }

@@ -122,4 +122,28 @@ class ResumeTest extends TestCase
             "status" => true
         ]);
     }
+
+    public function test_update_resume_personal()
+    {
+        $this->test_create_resume();
+        $response = $this->put('/api/v1/user/resume/' . Resume::first()->id . '/personal', [
+            "name" => "test2",
+            "surname" => "test3",
+            "lastname" => "test4",
+            "birthdate" => "2005-06-14",
+            "gender" => "male",
+            "city_id" => City::first()->id,
+            "ready_to_move" => "yes",
+            "business_trips" => "ready",
+            "citizenship_country_id" => Country::first()->id,
+            "work_permit_country_id" => Country::first()->id,
+        ], ['Authorization' => 'Bearer ' . $this->token]);
+        $response->assertStatus(200);
+        $response->assertJsonStructure([
+            "data" => [
+                "name",
+                "surname"
+            ]
+        ]);
+    }
 }

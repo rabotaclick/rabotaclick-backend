@@ -17,6 +17,7 @@ use App\Http\Controllers\Resume\DeleteController as ResumeDelete;
 use App\Http\Controllers\Resume\ShowController as ResumeShow;
 use App\Http\Controllers\Resume\IndexController as ResumeIndex;
 use App\Http\Controllers\City\IndexController as CityIndex;
+use App\Http\Controllers\Resume\UpdatePersonalController as ResumeUpdatePersonal;
 
 Route::prefix("v1")->group(function () {
    Route::prefix("auth")->group(function () {
@@ -43,6 +44,13 @@ Route::prefix("v1")->group(function () {
          Route::get('/{id}', ResumeShow::class);
          Route::get('/', ResumeIndex::class);
          Route::delete('/{id}', ResumeDelete::class);
+         Route::put('/{id}/personal', ResumeUpdatePersonal::class);
+         Route::put('/{id}/contacts', );
+         Route::put('/{id}/profession', );
+         Route::put('/{id}/working_history', );
+         Route::put('/{id}/education', );
+         Route::put('/{id}/languages', );
+         Route::put('/{id}/photo', );
       });
 
    });

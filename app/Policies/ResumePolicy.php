@@ -37,7 +37,10 @@ class ResumePolicy
      */
     public function update(User $user, Resume $resume): bool
     {
-        return true;
+        if($user->id == $resume->user->id) {
+            return true;
+        }
+        return false;
     }
 
     /**

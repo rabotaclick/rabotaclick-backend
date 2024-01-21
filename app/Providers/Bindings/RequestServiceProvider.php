@@ -13,7 +13,9 @@ use App\Http\Requests\Auth\RegisterRequest;
 use App\Http\Requests\City\Contracts\IndexRequestInterface as CityIndexRequestInterface;
 use App\Http\Requests\City\IndexRequest as CityIndexRequest;
 use App\Http\Requests\Resume\Contracts\StoreRequestInterface as ResumeStoreRequestInterface;
+use App\Http\Requests\Resume\Contracts\UpdatePersonalRequestInterface as ResumeUpdatePersonalRequestInterface;
 use App\Http\Requests\Resume\StoreRequest as ResumeStoreRequest;
+use App\Http\Requests\Resume\UpdatePersonalRequest as ResumeUpdatePersonalRequest;
 use App\Http\Requests\User\Contracts\UpdatePhoneRequestInterface as UserUpdatePhoneRequestInterface;
 use App\Http\Requests\User\Contracts\UpdateRequestInterface as UserUpdateRequestInterface;
 use App\Http\Requests\User\UpdatePhoneRequest as UserUpdatePhoneRequest;
@@ -38,6 +40,7 @@ class RequestServiceProvider extends ServiceProvider
         $this->app->bind(UserUpdatePhoneRequestInterface::class, UserUpdatePhoneRequest::class);
         // Resume requests
         $this->app->bind(ResumeStoreRequestInterface::class, ResumeStoreRequest::class);
+        $this->app->bind(ResumeUpdatePersonalRequestInterface::class, ResumeUpdatePersonalRequest::class);
         // City requests
         $this->app->bind(CityIndexRequestInterface::class, CityIndexRequest::class);
     }
