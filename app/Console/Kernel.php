@@ -16,6 +16,10 @@ class Kernel extends ConsoleKernel
             ->everyFiveMinutes()
             ->withoutOverlapping()
             ->onOneServer();
+        $schedule->command('app:delete-user-phone-changes')
+            ->everyFiveMinutes()
+            ->withoutOverlapping()
+            ->onOneServer();
     }
 
     /**
