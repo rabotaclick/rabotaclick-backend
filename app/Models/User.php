@@ -29,8 +29,17 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    protected $appends = [
+        'has_password'
+    ];
+
     public function resumes(): HasMany
     {
         return $this->hasMany(Resume::class, "user_id", "id");
+    }
+
+    public function getHasPasswordAttribute(): bool
+    {
+        return isset($this->password);
     }
 }

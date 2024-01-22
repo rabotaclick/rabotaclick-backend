@@ -26,7 +26,8 @@ class UserTest extends TestCase
         $response->assertJsonStructure([
             "data" => [
                 "name",
-                "surname"
+                "surname",
+                "has_password"
             ]
         ]);
     }

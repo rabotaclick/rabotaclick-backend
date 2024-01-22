@@ -15,4 +15,6 @@ enum ResourceEnum: string
     case CreatedAt = 'created_at';
     case UpdatedAt = 'updated_at';
     case Resumes = 'resumes';
+
+    case HasPassword = 'has_password';
 }

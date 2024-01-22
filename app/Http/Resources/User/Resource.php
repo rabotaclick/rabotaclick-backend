@@ -19,6 +19,7 @@ class Resource extends JsonResource
             ResourceEnum::Email->value => $this->email,
             ResourceEnum::ChangeEmail->value => $this->change_email,
             ResourceEnum::ChangePhone->value => $this->change_phone,
+            ResourceEnum::HasPassword->value => $this->has_password,
             ResourceEnum::CreatedAt->value => $this->created_at->format('Y-m-d H:i:s'),
             ResourceEnum::UpdatedAt->value => $this->updated_at->format('Y-m-d H:i:s'),
             ResourceEnum::Resumes->value => $this->resumes()
