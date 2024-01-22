@@ -1,7 +1,10 @@
 <?php
 
-function normalizePhone($phone): string
+function normalizePhone($phone): string|null
 {
+    if($phone == null) {
+        return null;
+    }
     $phone = preg_replace('/[^+0-9]/', '', $phone);
 
     if (!str_starts_with($phone, '+')) {
