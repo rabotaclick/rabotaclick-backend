@@ -23,6 +23,7 @@ use App\Http\Controllers\Resume\ShowController as ResumeShow;
 use App\Http\Controllers\Resume\IndexController as ResumeIndex;
 use App\Http\Controllers\Resume\UpdatePersonalController as ResumeUpdatePersonal;
 use App\Http\Controllers\Resume\UpdateContactsController as ResumeUpdateContacts;
+use App\Http\Controllers\Resume\UpdateProfessionController as ResumeUpdateProfession;
 // City
 use App\Http\Controllers\City\IndexController as CityIndex;
 
@@ -53,7 +54,7 @@ Route::prefix("v1")->group(function () {
          Route::delete('/{id}', ResumeDelete::class);
          Route::put('/{id}/personal', ResumeUpdatePersonal::class);
          Route::put('/{id}/contacts', ResumeUpdateContacts::class);
-         Route::put('/{id}/profession', );
+         Route::put('/{id}/profession', ResumeUpdateProfession::class);
          Route::put('/{id}/working_history', );
          Route::put('/{id}/education', );
          Route::put('/{id}/languages', );

@@ -163,4 +163,31 @@ class ResumeTest extends TestCase
             ]
         ]);
     }
+
+    public function test_update_resume_profession()
+    {
+        $this->test_create_resume();
+        $response = $this->put('/api/v1/user/resume/' . Resume::first()->id . '/profession', [
+            "profession" => "test",
+            "subspecializations" => [
+                "add" => [
+                    Subspecialization::first()->id
+                ],
+                "remove" => [
+                    Subspecialization::first()->id
+                ]
+            ],
+            "salary" => 100000,
+            "occupation" => "part-time",
+            "schedule" => "shift",
+            "travel_time" => "hour"
+        ], ['Authorization' => 'Bearer ' . $this->token]);
+        $response->assertStatus(200);
+        $response->assertJsonStructure([
+            "data" => [
+                "name",
+                "surname"
+            ]
+        ]);
+    }
 }
