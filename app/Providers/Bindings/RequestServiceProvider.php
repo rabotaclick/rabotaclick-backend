@@ -32,6 +32,9 @@ use App\Http\Requests\User\UpdateRequest as UserUpdateRequest;
 use App\Http\Requests\Specialization\Contracts\IndexRequestInterface as SpecializationIndexRequestInterface;
 use App\Http\Requests\Specialization\IndexRequest as SpecializationIndexRequest;
 use Illuminate\Support\ServiceProvider;
+// Storage
+use App\Http\Requests\Storage\Contracts\PutRequestInterface;
+use App\Http\Requests\Storage\PutRequest;
 
 class RequestServiceProvider extends ServiceProvider
 {
@@ -54,5 +57,7 @@ class RequestServiceProvider extends ServiceProvider
         $this->app->bind(ResumeUpdateProfessionRequestInterface::class, ResumeUpdateProfessionRequest::class);
         // City requests
         $this->app->bind(CityIndexRequestInterface::class, CityIndexRequest::class);
+        // Storage requests
+        $this->app->bind(PutRequestInterface::class, PutRequest::class);
     }
 }

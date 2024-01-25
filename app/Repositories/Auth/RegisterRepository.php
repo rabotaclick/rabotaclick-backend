@@ -22,7 +22,7 @@ class RegisterRepository
     public function make(RegisterRequestDTO $requestDTO): UserDTO
     {
         $this->user = Auth::user();
-        if(isset($this->user->name) || isset($this->user->name)) {
+        if(isset($this->user->name) || isset($this->user->surname)) {
             throw new RegisterRepositoryException();
         }
         $this->user->name = $requestDTO->name;

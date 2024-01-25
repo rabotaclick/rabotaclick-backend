@@ -26,6 +26,8 @@ use App\Http\Controllers\Resume\UpdateContactsController as ResumeUpdateContacts
 use App\Http\Controllers\Resume\UpdateProfessionController as ResumeUpdateProfession;
 // City
 use App\Http\Controllers\City\IndexController as CityIndex;
+// Storage
+use App\Http\Controllers\Storage\PutController;
 
 Route::prefix("v1")->group(function () {
    Route::prefix("auth")->group(function () {
@@ -74,5 +76,8 @@ Route::prefix("v1")->group(function () {
 
       Route::get('/verify/{token}', VerifyController::class);
 
+   });
+   Route::prefix('storage')->group(function () {
+      Route::post('/put', PutController::class);
    });
 });
