@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid("id")->primary();
             $table->timestamps();
             $table->string("organization");
-            $table->string("website_url");
+            $table->string("website_url")->nullable();
             $table->string("job");
             $table->text('description');
             $table->date("start_date");

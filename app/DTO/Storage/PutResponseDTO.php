@@ -2,7 +2,7 @@
 
 namespace App\DTO\Storage;
 
-class PutResponseDTO
+readonly class PutResponseDTO
 {
     public function __construct(
         public array $urls,

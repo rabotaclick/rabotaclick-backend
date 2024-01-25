@@ -11,6 +11,7 @@ use App\Models\Region;
 use App\Models\Resume;
 use App\Models\Subspecialization;
 use App\Models\User;
+use App\Models\WorkHistory;
 use Database\Seeders\Important\DriverCategoriesSeeder;
 use Database\Seeders\Important\KeySkillsSeeder;
 use Database\Seeders\Important\LanguagesSeeder;
@@ -181,6 +182,46 @@ class ResumeTest extends TestCase
             "occupation" => "part-time",
             "schedule" => "shift",
             "travel_time" => "hour"
+        ], ['Authorization' => 'Bearer ' . $this->token]);
+        $response->assertStatus(200);
+        $response->assertJsonStructure([
+            "data" => [
+                "name",
+                "surname"
+            ]
+        ]);
+    }
+
+    public function test_update_resume_working_histories()
+    {
+        $this->test_create_resume();
+        $resume = Resume::first()->id;
+        $work_history = WorkHistory::factory(["resume_id" => $resume])->create();
+        $response = $this->put('/api/v1/user/resume/' . $resume . '/working_history', [
+            "about_me" => "test",
+            "have_car" => true,
+            "driver_categories" => [
+                DriverCategory::first()->id
+            ],
+            "key_skills" => [
+                "create" => [
+                    KeySkill::first()->id
+                ]
+            ],
+            "work_histories" => [
+                "create" => [
+                    [
+                        "start_date" => "2024-01-25",
+                        "organization" => "test",
+                        "region_id" => Region::first()->id,
+                        "job" => "test",
+                        "description" => "test"
+                    ]
+                ],
+                "delete" => [
+                    $work_history->id
+                ]
+            ]
         ], ['Authorization' => 'Bearer ' . $this->token]);
         $response->assertStatus(200);
         $response->assertJsonStructure([

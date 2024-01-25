@@ -42,6 +42,10 @@ return [
                 [
                     'name' => 'City',
                     'description' => 'Города'
+                ],
+                [
+                    'name' => 'Storage',
+                    'description' => 'Выгрузка файлов в хранилище'
                 ]
 
             ],
