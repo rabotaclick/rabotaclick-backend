@@ -46,17 +46,16 @@ class Resource extends JsonResource
                 ->with(['region',
                     'region.country'])
                 ->get()
-                ->makeHidden(['id','resume_id','region_id']),
+                ->makeHidden(['resume_id','region_id']),
             ResourceEnum::KeySkills->value => $this->key_skills
-                ->makeHidden(['id','pivot']),
+                ->makeHidden(['pivot']),
             ResourceEnum::DriverCategories->value => $this->driver_categories
                 ->makeHidden(['id','pivot']),
             ResourceEnum::EducationPlaces->value => $this->education_places
-                ->makeHidden(['id','resume_id']),
-            ResourceEnum::Languages->value => $this->languages
-                ->makeHidden(['id']),
+                ->makeHidden(['resume_id']),
+            ResourceEnum::Languages->value => $this->languages,
             ResourceEnum::Subspecializations->value => $this->subspecializations
-                ->makeHidden(['id','pivot','specialization_id']),
+                ->makeHidden(['pivot','specialization_id']),
         ];
     }
 }

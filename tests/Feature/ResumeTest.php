@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\City;
 use App\Models\Country;
 use App\Models\DriverCategory;
+use App\Models\EducationPlace;
 use App\Models\KeySkill;
 use App\Models\Language;
 use App\Models\Region;
@@ -220,6 +221,36 @@ class ResumeTest extends TestCase
                 ],
                 "delete" => [
                     $work_history->id
+                ]
+            ]
+        ], ['Authorization' => 'Bearer ' . $this->token]);
+        $response->assertStatus(200);
+        $response->assertJsonStructure([
+            "data" => [
+                "name",
+                "surname"
+            ]
+        ]);
+    }
+
+    public function test_update_resume_education()
+    {
+        $this->test_create_resume();
+        $resume = Resume::first()->id;
+        $educationPlace = EducationPlace::factory(["resume_id" => $resume])->create();
+        $response = $this->put('/api/v1/user/resume/' . $resume . '/education', [
+            "education_places" => [
+                "create" => [
+                    [
+                        "education" => "master",
+                        "name" => "test",
+                        "faculty" => "test",
+                        "specialization" => "test",
+                        "year_of_ending" => "2030"
+                    ]
+                ],
+                "delete" => [
+                    $educationPlace->id
                 ]
             ]
         ], ['Authorization' => 'Bearer ' . $this->token]);

@@ -83,7 +83,9 @@ class UpdateWorkingHistoryRepository
     {
         if(isset($workHistories['delete'])) {
             foreach($workHistories['delete'] as $deleteWorkHistory) {
-                WorkHistory::find($deleteWorkHistory)->delete();
+                $this->resume->work_histories()
+                    ->where('id', $deleteWorkHistory)
+                    ->delete();
             }
         }
     }
@@ -91,7 +93,9 @@ class UpdateWorkingHistoryRepository
     {
         if(isset($workHistories['update'])) {
             foreach($workHistories['update'] as $updateWorkHistory) {
-                $this->resume->work_histories()->where("id", $updateWorkHistory['id'])->update($updateWorkHistory);
+                $this->resume->work_histories()
+                    ->where("id", $updateWorkHistory['id'])
+                    ->update($updateWorkHistory);
             }
         }
     }

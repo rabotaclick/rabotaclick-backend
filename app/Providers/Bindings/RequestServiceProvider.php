@@ -25,6 +25,8 @@ use App\Http\Requests\Resume\UpdatePersonalRequest as ResumeUpdatePersonalReques
 use App\Http\Requests\Resume\UpdateProfessionRequest as ResumeUpdateProfessionRequest;
 use App\Http\Requests\Resume\Contracts\UpdateWorkingHistoryRequestInterface as ResumeUpdateWorkingHistoryRequestInterface;
 use App\Http\Requests\Resume\UpdateWorkingHistoryRequest as ResumeUpdateWorkingHistoryRequest;
+use App\Http\Requests\Resume\Contracts\UpdateEducationRequestInterface as ResumeUpdateEducationRequestInterface;
+use App\Http\Requests\Resume\UpdateEducationRequest as ResumeUpdateEducationRequest;
 // User
 use App\Http\Requests\User\Contracts\UpdatePhoneRequestInterface as UserUpdatePhoneRequestInterface;
 use App\Http\Requests\User\Contracts\UpdateRequestInterface as UserUpdateRequestInterface;
@@ -58,6 +60,7 @@ class RequestServiceProvider extends ServiceProvider
         $this->app->bind(ResumeUpdateContactsRequestInterface::class, ResumeUpdateContactsRequest::class);
         $this->app->bind(ResumeUpdateProfessionRequestInterface::class, ResumeUpdateProfessionRequest::class);
         $this->app->bind(ResumeUpdateWorkingHistoryRequestInterface::class, ResumeUpdateWorkingHistoryRequest::class);
+        $this->app->bind(ResumeUpdateEducationRequestInterface::class, ResumeUpdateEducationRequest::class);
         // City requests
         $this->app->bind(CityIndexRequestInterface::class, CityIndexRequest::class);
         // Storage requests

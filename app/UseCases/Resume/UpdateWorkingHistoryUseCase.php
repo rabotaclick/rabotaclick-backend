@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 class UpdateWorkingHistoryUseCase
 {
     public function __construct(
-        public UpdateWorkingHistoryRepository $repository
+        private UpdateWorkingHistoryRepository $repository
     )
     {
     }
