@@ -22,7 +22,7 @@ class PutUseCase
             $response = $this->storageService->put($requestDTO);
             return $response;
         } catch (\Throwable $exception) {
-            throw new PutUseCasesException('Сервис временно недоступен' . $exception, Response::HTTP_SERVICE_UNAVAILABLE, $exception);
+            throw new PutUseCasesException('Сервис временно недоступен', Response::HTTP_SERVICE_UNAVAILABLE, $exception);
         }
     }
 }
