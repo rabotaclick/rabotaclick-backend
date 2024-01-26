@@ -302,4 +302,18 @@ class ResumeTest extends TestCase
             ]
         ]);
     }
+
+    public function test_get_resume()
+    {
+        $this->test_create_resume();
+        $resume = Resume::first()->id;
+        $response = $this->get('/api/v1/user/resume/' . $resume, ['Authorization' => 'Bearer ' . $this->token]);
+        $response->assertStatus(200);
+        $response->assertJsonStructure([
+            "data" => [
+                "name",
+                "surname"
+            ]
+        ]);
+    }
 }
