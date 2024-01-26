@@ -30,6 +30,8 @@ use App\Http\Controllers\Resume\UpdateLanguagesController as ResumeUpdateLanguag
 use App\Http\Controllers\Resume\UpdatePhotoController as ResumeUpdatePhoto;
 // City
 use App\Http\Controllers\City\IndexController as CityIndex;
+// Country
+use App\Http\Controllers\Country\IndexController as CountryIndex;
 // Storage
 use App\Http\Controllers\Storage\PutController;
 
@@ -70,6 +72,9 @@ Route::prefix("v1")->group(function () {
    });
    Route::prefix("cities")->group(function () {
         Route::get('/', CityIndex::class);
+   });
+   Route::prefix("countries")->group(function () {
+        Route::get('/', CountryIndex::class);
    });
    Route::prefix("specializations")->group(function () {
 

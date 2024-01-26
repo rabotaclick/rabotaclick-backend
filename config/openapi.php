@@ -46,6 +46,10 @@ return [
                 [
                     'name' => 'Storage',
                     'description' => 'Выгрузка файлов в хранилище'
+                ],
+                [
+                    'name' => 'Country',
+                    'description' => 'Страны'
                 ]
 
             ],

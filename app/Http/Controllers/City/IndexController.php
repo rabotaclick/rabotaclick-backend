@@ -9,7 +9,6 @@ use App\OpenApi\Responses\City\IndexResponse;
 use App\OpenApi\Responses\Public\ServiceUnavailableErrorResponse;
 use App\Presenters\City\CityPresenter;
 use App\UseCases\City\IndexUseCase;
-use Illuminate\Http\Request;
 use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
 #[OpenApi\PathItem]
 class IndexController extends Controller
