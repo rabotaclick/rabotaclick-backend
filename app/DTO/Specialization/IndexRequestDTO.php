@@ -10,7 +10,8 @@ readonly class IndexRequestDTO
         public int $first,
         public int $page,
         public OrderByEnum $orderBy,
-        public string $column
+        public string $column,
+        public bool   $withSubspecializations
     )
     {
     }

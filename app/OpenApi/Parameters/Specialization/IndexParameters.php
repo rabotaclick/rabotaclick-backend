@@ -35,6 +35,11 @@ class IndexParameters extends ParametersFactory
                 ->description('Сортировка по колонке')
                 ->required(false)
                 ->schema(Schema::string()),
+            Parameter::query()
+                ->name('with_subspecializations')
+                ->description('Показать подспециализации')
+                ->required(false)
+                ->schema(Schema::boolean()),
 
         ];
     }

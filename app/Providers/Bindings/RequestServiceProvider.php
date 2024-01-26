@@ -40,6 +40,9 @@ use App\Http\Requests\User\UpdateRequest as UserUpdateRequest;
 use App\Http\Requests\Specialization\Contracts\IndexRequestInterface as SpecializationIndexRequestInterface;
 use App\Http\Requests\Specialization\IndexRequest as SpecializationIndexRequest;
 use Illuminate\Support\ServiceProvider;
+// SubSpecialization
+use App\Http\Requests\SubSpecialization\Contracts\IndexRequestInterface as SubSpecializationIndexRequestInterface;
+use App\Http\Requests\SubSpecialization\IndexRequest as SubSpecializationIndexRequest;
 // Storage
 use App\Http\Requests\Storage\Contracts\PutRequestInterface;
 use App\Http\Requests\Storage\PutRequest;
@@ -55,6 +58,8 @@ class RequestServiceProvider extends ServiceProvider
         $this->app->bind(LoginPasswordRequestInterface::class, LoginPasswordRequest::class);
         // Specialization requests
         $this->app->bind(SpecializationIndexRequestInterface::class, SpecializationIndexRequest::class);
+        // SubSpecialization requests
+        $this->app->bind(SubSpecializationIndexRequestInterface::class, SubSpecializationIndexRequest::class);
         // User requests
         $this->app->bind(UserUpdateRequestInterface::class, UserUpdateRequest::class);
         $this->app->bind(UserUpdatePhoneRequestInterface::class, UserUpdatePhoneRequest::class);

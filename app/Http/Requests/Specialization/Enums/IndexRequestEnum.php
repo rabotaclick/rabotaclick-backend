@@ -8,4 +8,6 @@ enum IndexRequestEnum: string implements RequestParamEnumInterface
 {
     case OrderBy = 'orderBy';
     case Column = 'column';
+
+    case WithSubspecializations = 'with_subspecializations';
 }

@@ -21,7 +21,8 @@ class IndexRequest extends FormRequest implements IndexRequestInterface
             PaginationRequestEnum::First->value => 'required|numeric|max:100',
             PaginationRequestEnum::Page->value => 'numeric',
             IndexRequestEnum::OrderBy->value => 'string|in:' . $enumHelper->serialize(OrderByEnum::class),
-            IndexRequestEnum::Column->value => 'string'
+            IndexRequestEnum::Column->value => 'string',
+            IndexRequestEnum::WithSubspecializations->value => 'boolean'
         ];
     }
 
@@ -38,6 +39,7 @@ class IndexRequest extends FormRequest implements IndexRequestInterface
             $filter->checkRequestParam(PaginationRequestEnum::Page) ?? 1,
             $filter->checkRequestParam(IndexRequestEnum::OrderBy) ?? OrderByEnum::ASC,
             $filter->checkRequestParam(IndexRequestEnum::Column) ?? "id",
+            $filter->checkRequestParam(IndexRequestEnum::WithSubspecializations) ?? false,
         );
     }
 }

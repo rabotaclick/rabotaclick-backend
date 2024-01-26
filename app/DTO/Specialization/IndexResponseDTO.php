@@ -8,7 +8,8 @@ readonly class IndexResponseDTO
 {
     public function __construct(
         public LengthAwarePaginator $collection,
-        public int  $totalRowCount
+        public int  $totalRowCount,
+        public bool $withSubspecializations
     )
     {
     }

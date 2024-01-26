@@ -14,6 +14,8 @@ use App\Http\Controllers\User\UpdatePhoneController as UserPhoneUpdate;
 use App\Http\Controllers\User\DeleteController as UserDelete;
 // Specialization
 use App\Http\Controllers\Specialization\IndexController as SpecializationIndex;
+// Subspecialization
+use App\Http\Controllers\SubSpecialization\IndexController as SubSpecializationIndex;
 // Email
 use App\Http\Controllers\Email\VerifyController;
 // Resume
@@ -77,14 +79,13 @@ Route::prefix("v1")->group(function () {
         Route::get('/', CountryIndex::class);
    });
    Route::prefix("specializations")->group(function () {
-
       Route::get("/", SpecializationIndex::class);
-
+   });
+   Route::prefix("subspecializations")->group(function () {
+      Route::get("/", SubSpecializationIndex::class);
    });
    Route::prefix("email")->group(function () {
-
       Route::get('/verify/{token}', VerifyController::class);
-
    });
    Route::prefix('storage')->group(function () {
       Route::post('/put', PutController::class);

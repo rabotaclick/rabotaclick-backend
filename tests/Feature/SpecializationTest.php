@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Specialization;
+use App\Models\Subspecialization;
 use Database\Seeders\DatabaseSeeder;
 use Database\Seeders\Important\SpecializationsSeeder;
 use Database\Seeders\Important\VacancyCategoriesSeeder;
@@ -20,6 +21,7 @@ class SpecializationTest extends TestCase
     {
         parent::setUp();
         Specialization::factory()->create();
+        Subspecialization::factory()->create();
     }
 
     public function test_index()
@@ -31,6 +33,20 @@ class SpecializationTest extends TestCase
                 [
                     "title",
                     "vacancies"
+                ]
+            ]
+        ]);
+    }
+
+    public function test_subspecializations_index()
+    {
+        $response = $this->get('/api/v1/subspecializations');
+        $response->assertStatus(200);
+        $response->assertJsonStructure([
+            "data" => [
+                [
+                    "title",
+                    "id"
                 ]
             ]
         ]);

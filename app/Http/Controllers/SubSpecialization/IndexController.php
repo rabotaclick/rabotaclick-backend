@@ -1,29 +1,29 @@
 <?php
 
-namespace App\Http\Controllers\Specialization;
+namespace App\Http\Controllers\SubSpecialization;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Specialization\Contracts\IndexRequestInterface;
-use App\OpenApi\Parameters\Specialization\IndexParameters;
+use App\Http\Requests\SubSpecialization\Contracts\IndexRequestInterface;
+use App\OpenApi\Parameters\SubSpecialization\IndexParameters;
 use App\OpenApi\Responses\Public\ServiceUnavailableErrorResponse;
-use App\OpenApi\Responses\Specialization\IndexResponse;
-use App\Presenters\Specialization\IndexPresenter;
-use App\UseCases\Specialization\IndexUseCase;
+use App\OpenApi\Responses\SubSpecialization\IndexResponse;
+use App\Presenters\SubSpecialization\IndexPresenter;
+use App\UseCases\SubSpecialization\IndexUseCase;
+use Illuminate\Http\Request;
 use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
 #[OpenApi\PathItem]
-
 class IndexController extends Controller
 {
     public function __construct(
         private IndexUseCase $useCase,
-        private IndexPresenter $presenter
+        private IndexPresenter $presenter,
     )
     {
     }
     /**
-     * Получение категорий вакансий
+     * Получение подспециализаций
      *
-     * Получение категорий вакансий с пагинацией и сортировкой.
+     * Получение подспециализаций с поиском.
      */
     #[OpenApi\Operation(tags: ['Specialization'] ,method: 'GET')]
     #[OpenApi\Parameters(IndexParameters::class)]

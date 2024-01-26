@@ -20,7 +20,8 @@ class IndexRepository
 
         return new IndexResponseDTO(
             $specialization,
-            $totalRowCount
+            $totalRowCount,
+            $requestDTO->withSubspecializations
         );
     }
 }
