@@ -262,4 +262,44 @@ class ResumeTest extends TestCase
             ]
         ]);
     }
+
+    public function test_update_resume_languages()
+    {
+        $this->test_create_resume();
+        $resume = Resume::first()->id;
+        $response = $this->put('/api/v1/user/resume/' . $resume . '/languages', [
+            "main_language_id" => Language::first()->id,
+            "languages" => [
+                "manipulate" => [
+                    [
+                        "language_id" => Language::first()->id,
+                        "level" => "B2"
+                    ]
+                ]
+            ]
+        ], ['Authorization' => 'Bearer ' . $this->token]);
+        $response->assertStatus(200);
+        $response->assertJsonStructure([
+            "data" => [
+                "name",
+                "surname"
+            ]
+        ]);
+    }
+
+    public function test_update_resume_photo()
+    {
+        $this->test_create_resume();
+        $resume = Resume::first()->id;
+        $response = $this->put('/api/v1/user/resume/' . $resume . '/photo', [
+            "url" => "https://cdn.rabotaclick.pro/photos/phpic5YTD.webp"
+        ], ['Authorization' => 'Bearer ' . $this->token]);
+        $response->assertStatus(200);
+        $response->assertJsonStructure([
+            "data" => [
+                "name",
+                "surname"
+            ]
+        ]);
+    }
 }

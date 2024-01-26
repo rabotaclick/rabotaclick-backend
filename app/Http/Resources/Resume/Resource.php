@@ -56,6 +56,7 @@ class Resource extends JsonResource
             ResourceEnum::Languages->value => $this->languages,
             ResourceEnum::Subspecializations->value => $this->subspecializations
                 ->makeHidden(['pivot','specialization_id']),
+            ResourceEnum::Photo->value => $this->photo
         ];
     }
 }

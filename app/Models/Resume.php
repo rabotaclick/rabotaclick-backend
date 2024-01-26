@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Pivots\Language\LevelPivot;
+use App\Traits\Resume\FormatMonthsTrait;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -10,11 +11,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Resume extends Model
 {
-    use HasFactory, HasUuids;
+    use HasFactory, HasUuids, FormatMonthsTrait;
 
     protected $table = 'resumes';
 
@@ -80,6 +82,11 @@ class Resume extends Model
         return $this->belongsTo(User::class, "user_id", "id");
     }
 
+    public function photo(): HasOne
+    {
+        return $this->hasOne(ResumePhoto::class, "resume_id", "id");
+    }
+
     public function getWorkExperienceAttribute()
     {
         $allMonths = collect();
@@ -98,30 +105,11 @@ class Resume extends Model
         return $this->formatMonths($allMonths->count());
     }
 
-    private function formatMonths($months)
-    {
-        $years = floor($months / 12);
-        $remainingMonths = $months % 12;
-
-        $result = [];
-
-        if ($years > 0) {
-            $result[] = ($years > 1) ? "$years года" : "1 год";
-        }
-
-        if ($remainingMonths > 0) {
-            $result[] = ($remainingMonths === 1) ? "1 месяц" : (
-            ($remainingMonths >= 2 && $remainingMonths <= 4) ? "$remainingMonths месяца" : "$remainingMonths месяцев"
-            );
-        }
-
-        return implode(', ', $result);
-    }
-
     public function getLastWorkAttribute()
     {
         return $this->work_histories()->where('end_date','=',null)->first() ??
             $this->work_histories()->orderBy('end_date', 'DESC')->first();
 
     }
+
 }

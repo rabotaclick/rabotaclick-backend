@@ -27,6 +27,7 @@ use App\Http\Controllers\Resume\UpdateProfessionController as ResumeUpdateProfes
 use App\Http\Controllers\Resume\UpdateWorkingHistoryController as ResumeUpdateWorkingHistory;
 use App\Http\Controllers\Resume\UpdateEducationController as ResumeUpdateEducation;
 use App\Http\Controllers\Resume\UpdateLanguagesController as ResumeUpdateLanguages;
+use App\Http\Controllers\Resume\UpdatePhotoController as ResumeUpdatePhoto;
 // City
 use App\Http\Controllers\City\IndexController as CityIndex;
 // Storage
@@ -63,7 +64,7 @@ Route::prefix("v1")->group(function () {
          Route::put('/{id}/working_history', ResumeUpdateWorkingHistory::class);
          Route::put('/{id}/education', ResumeUpdateEducation::class);
          Route::put('/{id}/languages', ResumeUpdateLanguages::class);
-         Route::put('/{id}/photo', );
+         Route::put('/{id}/photo', ResumeUpdatePhoto::class);
       });
 
    });
