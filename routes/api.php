@@ -36,6 +36,9 @@ use App\Http\Controllers\City\IndexController as CityIndex;
 use App\Http\Controllers\Country\IndexController as CountryIndex;
 // Storage
 use App\Http\Controllers\Storage\PutController;
+// KeySkill
+use App\Http\Controllers\KeySkill\IndexController as KeySkillIndex;
+
 
 Route::prefix("v1")->group(function () {
    Route::prefix("auth")->group(function () {
@@ -71,6 +74,9 @@ Route::prefix("v1")->group(function () {
          Route::put('/{id}/photo', ResumeUpdatePhoto::class);
       });
 
+   });
+   Route::prefix("key_skills")->group(function () {
+       Route::get('/', KeySkillIndex::class);
    });
    Route::prefix("cities")->group(function () {
         Route::get('/', CityIndex::class);

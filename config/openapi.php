@@ -50,6 +50,10 @@ return [
                 [
                     'name' => 'Country',
                     'description' => 'Страны'
+                ],
+                [
+                    'name' => 'KeySkill',
+                    'description' => 'Ключевые Навыки'
                 ]
 
             ],

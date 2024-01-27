@@ -46,6 +46,9 @@ use App\Http\Requests\SubSpecialization\IndexRequest as SubSpecializationIndexRe
 // Storage
 use App\Http\Requests\Storage\Contracts\PutRequestInterface;
 use App\Http\Requests\Storage\PutRequest;
+// KeySkill
+use App\Http\Requests\KeySkill\Contracts\IndexRequestInterface as KeySkillIndexRequestInterface;
+use App\Http\Requests\KeySkill\IndexRequest as KeySkillIndexRequest;
 
 class RequestServiceProvider extends ServiceProvider
 {
@@ -76,5 +79,7 @@ class RequestServiceProvider extends ServiceProvider
         $this->app->bind(CityIndexRequestInterface::class, CityIndexRequest::class);
         // Storage requests
         $this->app->bind(PutRequestInterface::class, PutRequest::class);
+        // KeySkill requests
+        $this->app->bind(KeySkillIndexRequestInterface::class, KeySkillIndexRequest::class);
     }
 }
