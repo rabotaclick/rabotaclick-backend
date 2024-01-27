@@ -42,6 +42,7 @@ class Resource extends JsonResource
             ResourceEnum::User->value => $this->user()
                 ->select(['id','name','surname','lastname'])
                 ->first(),
+            ResourceEnum::WorkExperience->value => $this->work_experience,
             ResourceEnum::WorkHistories->value => $this->work_histories()
                 ->with(['region',
                     'region.country'])

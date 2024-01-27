@@ -4,12 +4,10 @@ namespace App\Http\Controllers\Resume;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Resume\Contracts\StoreRequestInterface;
-use App\Http\Requests\Resume\StoreRequest;
 use App\OpenApi\Parameters\Resume\StoreParameters;
 use App\OpenApi\Responses\Public\ServiceUnavailableErrorResponse;
 use App\OpenApi\Responses\Resume\ResumeResponse;
 use App\OpenApi\Responses\Resume\TooManyResumesResponse;
-use App\OpenApi\Schemas\ResumeSchema;
 use App\OpenApi\SecuritySchemes\BearerToken;
 use App\Presenters\Resume\ResumePresenter;
 use App\UseCases\Resume\StoreUseCase;

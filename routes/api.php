@@ -71,8 +71,6 @@ Route::prefix("v1")->group(function () {
 
         Route::prefix('resume')->group(function () {
             Route::post('/', ResumeStore::class);
-            Route::get('/{id}', ResumeShow::class);
-            Route::get('/', ResumeIndex::class);
             Route::delete('/{id}', ResumeDelete::class);
             Route::put('/{id}/personal', ResumeUpdatePersonal::class);
             Route::put('/{id}/contacts', ResumeUpdateContacts::class);
@@ -83,6 +81,11 @@ Route::prefix("v1")->group(function () {
             Route::put('/{id}/photo', ResumeUpdatePhoto::class);
         });
 
+    });
+    // Resumes
+    Route::prefix('resumes')->group(function () {
+        Route::get('/{id}', ResumeShow::class);
+        Route::post('/', ResumeIndex::class);
     });
     // Storage
     Route::prefix('storage')->group(function () {

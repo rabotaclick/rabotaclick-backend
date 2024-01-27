@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Custom\Scout\ExtendedMeiliSearchEngine;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Scout\EngineManager;
+use Meilisearch\Client as MeilisearchClient;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +22,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        $container = resolve(EngineManager::class)->getContainer();
+        resolve(EngineManager::class)->extend('extendedmeilisearch', function () use($container) {
+            return new ExtendedMeiliSearchEngine(
+                $container->make(MeilisearchClient::class),
+                config('scout.soft_delete', false)
+            );
+        });
     }
 }

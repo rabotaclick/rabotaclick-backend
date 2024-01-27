@@ -29,6 +29,7 @@ enum ResourceEnum: string
     case CitizenshipCountry = 'citizenship_country';
     case WorkPermitCountry = 'work_permit_country';
     case User = 'user';
+    case WorkExperience = 'work_experience';
     case WorkHistories = 'work_histories';
     case KeySkills = 'key_skills';
     case DriverCategories = 'driver_categories';

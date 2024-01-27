@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Pivots\Language\LevelPivot;
+use App\Custom\Scout\ExtendedSearchable;
 use App\Traits\Resume\FormatMonthsTrait;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
@@ -12,11 +12,31 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Resume extends Model
 {
-    use HasFactory, HasUuids, FormatMonthsTrait;
+    use HasFactory, HasUuids, FormatMonthsTrait, ExtendedSearchable;
+
+    public function searchableAs(): string
+    {
+        return 'resumes_index';
+    }
+
+    public function toSearchableArray(): array
+    {
+        $array = [
+            'name' => $this->name,
+            'lastname' => $this->lastname,
+            'surname' => $this->surname,
+            'profession' => $this->profession,
+            'about_me' => $this->about_me,
+            'occupation' => $this->occupation,
+            'schedule' => $this->schedule,
+            'work_experience' => (int) $this->getWorkExperienceAttribute(),
+            'gender' => $this->gender
+        ];
+        return $array;
+    }
 
     protected $table = 'resumes';
 
@@ -102,7 +122,7 @@ class Resume extends Model
             }
         }
 
-        return $this->formatMonths($allMonths->count());
+        return $allMonths->count();
     }
 
     public function getLastWorkAttribute()

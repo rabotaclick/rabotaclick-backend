@@ -307,7 +307,7 @@ class ResumeTest extends TestCase
     {
         $this->test_create_resume();
         $resume = Resume::first()->id;
-        $response = $this->get('/api/v1/user/resume/' . $resume, ['Authorization' => 'Bearer ' . $this->token]);
+        $response = $this->get('/api/v1/resumes/' . $resume, ['Authorization' => 'Bearer ' . $this->token]);
         $response->assertStatus(200);
         $response->assertJsonStructure([
             "data" => [

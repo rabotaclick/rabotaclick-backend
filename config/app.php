@@ -171,6 +171,7 @@ return [
 
         App\Providers\Bindings\HelperServiceProvider::class,
         App\Providers\Bindings\RequestServiceProvider::class,
+        App\Providers\ExtendedScoutServiceProvider::class,
 
         Vyuldashev\LaravelOpenApi\OpenApiServiceProvider::class,
     ])->toArray(),

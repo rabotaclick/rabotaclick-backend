@@ -11,7 +11,7 @@ readonly class IndexRequestDTO
         public int $page,
         public OrderByEnum $orderBy,
         public string $column,
-        public bool   $withSubspecializations
+        public bool $withSubspecializations
     )
     {
     }

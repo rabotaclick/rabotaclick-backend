@@ -3,15 +3,38 @@
 namespace App\Http\Controllers\Resume;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-
+use App\Http\Requests\Resume\Contracts\IndexRequestInterface;
+use App\OpenApi\Parameters\Resume\IndexParameters;
+use App\OpenApi\Parameters\Resume\StoreParameters;
+use App\OpenApi\Responses\Public\ServiceUnavailableErrorResponse;
+use App\OpenApi\Responses\Resume\IndexResponse;
+use App\Presenters\Resume\ResumesPresenter;
+use App\UseCases\Resume\IndexUseCase;
+use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
+#[OpenApi\PathItem]
 class IndexController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     */
-    public function __invoke(Request $request)
+    public function __construct(
+        private IndexUseCase $useCase,
+        private ResumesPresenter $presenter,
+    )
     {
-        //
+    }
+    /**
+     * Поиск резюме
+     *
+     * Поиск резюме с фильтрами.
+     */
+    #[OpenApi\Operation(tags: ['Resume'], method: 'POST')]
+    #[OpenApi\Parameters(IndexParameters::class)]
+    #[OpenApi\Response(IndexResponse::class, 200)]
+    #[OpenApi\Response(ServiceUnavailableErrorResponse::class, 503)]
+    public function __invoke(IndexRequestInterface $request)
+    {
+        $requestDTO = $request->getValidated();
+
+        $responseDTO = $this->useCase->execute($requestDTO);
+
+        return $this->presenter->present($responseDTO);
     }
 }

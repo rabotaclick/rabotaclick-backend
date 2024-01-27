@@ -31,6 +31,8 @@ use App\Http\Requests\Resume\Contracts\UpdateLanguagesRequestInterface as Resume
 use App\Http\Requests\Resume\UpdateLanguagesRequest as ResumeUpdateLanguagesRequest;
 use App\Http\Requests\Resume\Contracts\UpdatePhotoRequestInterface as ResumeUpdatePhotoRequestInterface;
 use App\Http\Requests\Resume\UpdatePhotoRequest as ResumeUpdatePhotoRequest;
+use App\Http\Requests\Resume\Contracts\IndexRequestInterface as ResumeIndexRequestInterface;
+use App\Http\Requests\Resume\IndexRequest as ResumeIndexRequest;
 // User
 use App\Http\Requests\User\Contracts\UpdatePhoneRequestInterface as UserUpdatePhoneRequestInterface;
 use App\Http\Requests\User\Contracts\UpdateRequestInterface as UserUpdateRequestInterface;
@@ -81,6 +83,7 @@ class RequestServiceProvider extends ServiceProvider
         $this->app->bind(ResumeUpdateEducationRequestInterface::class, ResumeUpdateEducationRequest::class);
         $this->app->bind(ResumeUpdateLanguagesRequestInterface::class, ResumeUpdateLanguagesRequest::class);
         $this->app->bind(ResumeUpdatePhotoRequestInterface::class, ResumeUpdatePhotoRequest::class);
+        $this->app->bind(ResumeIndexRequestInterface::class, ResumeIndexRequest::class);
         // City requests
         $this->app->bind(CityIndexRequestInterface::class, CityIndexRequest::class);
         // Storage requests

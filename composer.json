@@ -7,12 +7,16 @@
     "require": {
         "php": "^8.2",
         "guzzlehttp/guzzle": "^7.2",
+        "http-interop/http-factory-guzzle": "^1.2",
         "juststeveking/laravel-redoc": "^2.0",
         "laravel/framework": "^10.10",
         "laravel/octane": "^2.2",
         "laravel/sanctum": "^3.3",
+        "laravel/scout": "^10.8",
         "laravel/tinker": "^2.8",
         "league/flysystem-aws-s3-v3": "^3.0",
+        "meilisearch/meilisearch-php": "^1.6",
+        "predis/predis": "^2.2",
         "vyuldashev/laravel-openapi": "^1.11"
     },
     "require-dev": {
@@ -26,6 +30,7 @@
     },
     "autoload": {
         "files": [
+            "app/Helpers/PaginationHelper.php",
             "app/Helpers/helpers.php"
         ],
         "psr-4": {
