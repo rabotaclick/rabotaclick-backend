@@ -38,7 +38,7 @@ return [
         | Customize the html title of your API documentation
         |
         */
-        'title' => env('REDOC_TITLE', 'ReDoc'),
+        'title' => env('REDOC_TITLE', 'RabotaClick API'),
 
         /*
         |--------------------------------------------------------------------------
@@ -50,7 +50,7 @@ return [
         | Supported: "true", "false"
         |
         */
-        'search' => false,
+        'search' => true,
 
         /*
         |--------------------------------------------------------------------------
