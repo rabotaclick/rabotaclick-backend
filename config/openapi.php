@@ -58,6 +58,10 @@ return [
                 [
                     'name' => 'Language',
                     'description' => 'Язык'
+                ],
+                [
+                    'name' => 'Region',
+                    'description' => 'Регион'
                 ]
 
             ],

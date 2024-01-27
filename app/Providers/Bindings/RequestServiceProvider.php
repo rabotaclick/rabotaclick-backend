@@ -52,6 +52,9 @@ use App\Http\Requests\KeySkill\IndexRequest as KeySkillIndexRequest;
 // Language
 use App\Http\Requests\Language\Contracts\IndexRequestInterface as LanguageIndexRequestInterface;
 use App\Http\Requests\Language\IndexRequest as LanguageIndexRequest;
+// Region
+use App\Http\Requests\Region\Contracts\IndexRequestInterface as RegionIndexRequestInterface;
+use App\Http\Requests\Region\IndexRequest as RegionIndexRequest;
 
 class RequestServiceProvider extends ServiceProvider
 {
@@ -86,5 +89,7 @@ class RequestServiceProvider extends ServiceProvider
         $this->app->bind(KeySkillIndexRequestInterface::class, KeySkillIndexRequest::class);
         // Language requests
         $this->app->bind(LanguageIndexRequestInterface::class, LanguageIndexRequest::class);
+        // Region requests
+        $this->app->bind(RegionIndexRequestInterface::class, RegionIndexRequest::class);
     }
 }

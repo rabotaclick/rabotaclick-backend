@@ -40,6 +40,8 @@ use App\Http\Controllers\Storage\PutController;
 use App\Http\Controllers\KeySkill\IndexController as KeySkillIndex;
 // Language
 use App\Http\Controllers\Language\IndexController as LanguageIndex;
+// Region
+use App\Http\Controllers\Region\IndexController as RegionIndex;
 
 
 Route::prefix("v1")->group(function () {
@@ -92,6 +94,9 @@ Route::prefix("v1")->group(function () {
     });
     Route::prefix("cities")->group(function () {
         Route::get('/', CityIndex::class);
+    });
+    Route::prefix('regions')->group(function () {
+        Route::get('/', RegionIndex::class);
     });
     Route::prefix("countries")->group(function () {
         Route::get('/', CountryIndex::class);

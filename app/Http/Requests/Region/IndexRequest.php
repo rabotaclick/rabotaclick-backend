@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Language;
+namespace App\Http\Requests\Region;
 
-use App\DTO\Language\IndexRequestDTO;
+use App\DTO\Region\IndexRequestDTO;
 use App\Helpers\Contracts\RequestFilterHelperInterface;
-use App\Http\Requests\Language\Contracts\IndexRequestInterface;
-use App\Http\Requests\Language\Enums\IndexRequestEnum;
+use App\Http\Requests\Region\Contracts\IndexRequestInterface;
+use App\Http\Requests\Region\Enums\IndexRequestEnum;
 use App\Providers\Bindings\HelperServiceProvider;
 use Illuminate\Foundation\Http\FormRequest;
 
