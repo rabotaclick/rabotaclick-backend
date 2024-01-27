@@ -11,7 +11,7 @@ use App\Presenters\Region\RegionsPresenter;
 use App\UseCases\Region\IndexUseCase;
 use Illuminate\Http\Request;
 use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
-
+#[OpenApi\PathItem]
 class IndexController extends Controller
 {
     public function __construct(
