@@ -39,3 +39,13 @@ jobs:
       - run: composer install -n --prefer-dist
       - run: php artisan key:generate
       - run: php artisan test
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to production
+        uses: appleboy/ssh-action@master
+        with:
+          username: ${{ secrets.SSH_USERNAME }}
+          host: ${{ secrets.SSH_HOST }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          script: 'cd ~/rabotaclick/rabotaclick-backend && ./deploy.sh'
