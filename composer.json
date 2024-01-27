@@ -17,6 +17,7 @@
         "league/flysystem-aws-s3-v3": "^3.0",
         "meilisearch/meilisearch-php": "^1.6",
         "predis/predis": "^2.2",
+        "vladimir-yuldashev/laravel-queue-rabbitmq": "^13.3",
         "vyuldashev/laravel-openapi": "^1.11"
     },
     "require-dev": {
