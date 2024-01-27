@@ -41,59 +41,63 @@ use App\Http\Controllers\KeySkill\IndexController as KeySkillIndex;
 
 
 Route::prefix("v1")->group(function () {
-   Route::prefix("auth")->group(function () {
+    // Authorization and Verification
+    Route::prefix("auth")->group(function () {
 
-      Route::middleware(['throttle:code'])->post("/code", AuthController::class);
-      Route::post("/", LoginController::class);
-      Route::middleware('auth:sanctum')->post("/register", RegisterController::class);
+        Route::middleware(['throttle:code'])->post("/code", AuthController::class);
+        Route::post("/", LoginController::class);
+        Route::middleware('auth:sanctum')->post("/register", RegisterController::class);
 
-      Route::post("/password", LoginPasswordController::class);
+        Route::post("/password", LoginPasswordController::class);
 
-   });
-   Route::prefix("user")->middleware('auth:sanctum')->group(function () {
+    });
+    Route::prefix("email")->group(function () {
+        Route::get('/verify/{token}', VerifyController::class);
+    });
+    // User
+    Route::prefix("user")->middleware('auth:sanctum')->group(function () {
 
-      Route::get("/me", UserShowMe::class);
-      Route::get("/{id}", UserShow::class);
+        Route::get("/me", UserShowMe::class);
+        Route::get("/{id}", UserShow::class);
 
-      Route::middleware(['throttle:user_update'])->put("/", UserUpdate::class);
-      Route::put("/phone", UserPhoneUpdate::class);
+        Route::middleware(['throttle:user_update'])->put("/", UserUpdate::class);
+        Route::put("/phone", UserPhoneUpdate::class);
 
-      Route::delete("/", UserDelete::class);
+        Route::delete("/", UserDelete::class);
 
-      Route::prefix('resume')->group(function () {
-         Route::post('/', ResumeStore::class);
-         Route::get('/{id}', ResumeShow::class);
-         Route::get('/', ResumeIndex::class);
-         Route::delete('/{id}', ResumeDelete::class);
-         Route::put('/{id}/personal', ResumeUpdatePersonal::class);
-         Route::put('/{id}/contacts', ResumeUpdateContacts::class);
-         Route::put('/{id}/profession', ResumeUpdateProfession::class);
-         Route::put('/{id}/working_history', ResumeUpdateWorkingHistory::class);
-         Route::put('/{id}/education', ResumeUpdateEducation::class);
-         Route::put('/{id}/languages', ResumeUpdateLanguages::class);
-         Route::put('/{id}/photo', ResumeUpdatePhoto::class);
-      });
+        Route::prefix('resume')->group(function () {
+            Route::post('/', ResumeStore::class);
+            Route::get('/{id}', ResumeShow::class);
+            Route::get('/', ResumeIndex::class);
+            Route::delete('/{id}', ResumeDelete::class);
+            Route::put('/{id}/personal', ResumeUpdatePersonal::class);
+            Route::put('/{id}/contacts', ResumeUpdateContacts::class);
+            Route::put('/{id}/profession', ResumeUpdateProfession::class);
+            Route::put('/{id}/working_history', ResumeUpdateWorkingHistory::class);
+            Route::put('/{id}/education', ResumeUpdateEducation::class);
+            Route::put('/{id}/languages', ResumeUpdateLanguages::class);
+            Route::put('/{id}/photo', ResumeUpdatePhoto::class);
+        });
 
-   });
-   Route::prefix("key_skills")->group(function () {
-       Route::get('/', KeySkillIndex::class);
-   });
-   Route::prefix("cities")->group(function () {
+    });
+    // Storage
+    Route::prefix('storage')->group(function () {
+        Route::post('/put', PutController::class);
+    });
+    // Static Models
+    Route::prefix("key_skills")->group(function () {
+        Route::get('/', KeySkillIndex::class);
+    });
+    Route::prefix("cities")->group(function () {
         Route::get('/', CityIndex::class);
-   });
-   Route::prefix("countries")->group(function () {
+    });
+    Route::prefix("countries")->group(function () {
         Route::get('/', CountryIndex::class);
-   });
-   Route::prefix("specializations")->group(function () {
-      Route::get("/", SpecializationIndex::class);
-   });
-   Route::prefix("subspecializations")->group(function () {
-      Route::get("/", SubSpecializationIndex::class);
-   });
-   Route::prefix("email")->group(function () {
-      Route::get('/verify/{token}', VerifyController::class);
-   });
-   Route::prefix('storage')->group(function () {
-      Route::post('/put', PutController::class);
-   });
+    });
+    Route::prefix("specializations")->group(function () {
+        Route::get("/", SpecializationIndex::class);
+    });
+    Route::prefix("subspecializations")->group(function () {
+        Route::get("/", SubSpecializationIndex::class);
+    });
 });
