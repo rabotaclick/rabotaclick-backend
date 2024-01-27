@@ -49,6 +49,9 @@ use App\Http\Requests\Storage\PutRequest;
 // KeySkill
 use App\Http\Requests\KeySkill\Contracts\IndexRequestInterface as KeySkillIndexRequestInterface;
 use App\Http\Requests\KeySkill\IndexRequest as KeySkillIndexRequest;
+// Language
+use App\Http\Requests\Language\Contracts\IndexRequestInterface as LanguageIndexRequestInterface;
+use App\Http\Requests\Language\IndexRequest as LanguageIndexRequest;
 
 class RequestServiceProvider extends ServiceProvider
 {
@@ -81,5 +84,7 @@ class RequestServiceProvider extends ServiceProvider
         $this->app->bind(PutRequestInterface::class, PutRequest::class);
         // KeySkill requests
         $this->app->bind(KeySkillIndexRequestInterface::class, KeySkillIndexRequest::class);
+        // Language requests
+        $this->app->bind(LanguageIndexRequestInterface::class, LanguageIndexRequest::class);
     }
 }

@@ -54,6 +54,10 @@ return [
                 [
                     'name' => 'KeySkill',
                     'description' => 'Ключевые Навыки'
+                ],
+                [
+                    'name' => 'Language',
+                    'description' => 'Язык'
                 ]
 
             ],

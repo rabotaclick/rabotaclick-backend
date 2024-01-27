@@ -38,6 +38,8 @@ use App\Http\Controllers\Country\IndexController as CountryIndex;
 use App\Http\Controllers\Storage\PutController;
 // KeySkill
 use App\Http\Controllers\KeySkill\IndexController as KeySkillIndex;
+// Language
+use App\Http\Controllers\Language\IndexController as LanguageIndex;
 
 
 Route::prefix("v1")->group(function () {
@@ -85,7 +87,7 @@ Route::prefix("v1")->group(function () {
         Route::post('/put', PutController::class);
     });
     // Static Models
-    Route::prefix("key_skills")->group(function () {
+    Route::prefix('key_skills')->group(function () {
         Route::get('/', KeySkillIndex::class);
     });
     Route::prefix("cities")->group(function () {
@@ -94,10 +96,13 @@ Route::prefix("v1")->group(function () {
     Route::prefix("countries")->group(function () {
         Route::get('/', CountryIndex::class);
     });
-    Route::prefix("specializations")->group(function () {
-        Route::get("/", SpecializationIndex::class);
+    Route::prefix('specializations')->group(function () {
+        Route::get('/', SpecializationIndex::class);
     });
-    Route::prefix("subspecializations")->group(function () {
-        Route::get("/", SubSpecializationIndex::class);
+    Route::prefix('subspecializations')->group(function () {
+        Route::get('/', SubSpecializationIndex::class);
+    });
+    Route::prefix('languages')->group(function () {
+        Route::get('/', LanguageIndex::class);
     });
 });

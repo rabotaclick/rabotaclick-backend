@@ -1,30 +1,30 @@
 <?php
 
-namespace App\Http\Controllers\KeySkill;
+namespace App\Http\Controllers\Language;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\KeySkill\Contracts\IndexRequestInterface;
-use App\OpenApi\Parameters\KeySkill\IndexParameters;
-use App\OpenApi\Responses\KeySkill\IndexResponse;
+use App\Http\Requests\Language\Contracts\IndexRequestInterface;
+use App\OpenApi\Parameters\Language\IndexParameters;
+use App\OpenApi\Responses\Language\IndexResponse;
 use App\OpenApi\Responses\Public\ServiceUnavailableErrorResponse;
-use App\Presenters\KeySkill\KeySkillsPresenter;
-use App\UseCases\KeySkill\IndexUseCase;
+use App\Presenters\Language\LanguagesPresenter;
+use App\UseCases\Language\IndexUseCase;
 use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
 #[OpenApi\PathItem]
 class IndexController extends Controller
 {
     public function __construct(
         private IndexUseCase $useCase,
-        private KeySkillsPresenter $presenter,
+        private LanguagesPresenter $presenter
     )
     {
     }
     /**
-     * Получение ключевых навыков
+     * Получение языков
      *
-     * Получение ключевых навыков.
+     * Получение языков.
      */
-    #[OpenApi\Operation(tags: ['KeySkill'], method: 'GET')]
+    #[OpenApi\Operation(tags: ['Language'], method: 'GET')]
     #[OpenApi\Parameters(IndexParameters::class)]
     #[OpenApi\Response(IndexResponse::class, 200)]
     #[OpenApi\Response(ServiceUnavailableErrorResponse::class, 503)]
