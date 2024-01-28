@@ -13,4 +13,4 @@ ENV APP_ENV development
 ENV DB_HOST db
 ENV REDIS_HOST redis
 ENV MEILISEARCH_HOST meilisearch:7700
-CMD ["php", "artisan", "octane:start", "--host=0.0.0.0"]
+CMD ["php", "artisan", "octane:start", "--host=0.0.0.0", "--workers=4"]
