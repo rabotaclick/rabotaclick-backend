@@ -43,6 +43,11 @@ use App\Http\Controllers\Language\IndexController as LanguageIndex;
 // Region
 use App\Http\Controllers\Region\IndexController as RegionIndex;
 
+Route::prefix('test')->group(function () {
+   Route::get('/ping', function () {
+       return true;
+   });
+});
 
 Route::prefix("v1")->group(function () {
     // Authorization and Verification
