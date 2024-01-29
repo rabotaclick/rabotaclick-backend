@@ -11,6 +11,7 @@
         "juststeveking/laravel-redoc": "^2.0",
         "laravel/framework": "^10.10",
         "laravel/octane": "^2.2",
+        "laravel/pulse": "^1.0@beta",
         "laravel/sanctum": "^3.3",
         "laravel/scout": "^10.8",
         "laravel/tinker": "^2.8",
@@ -74,6 +75,6 @@
             "php-http/discovery": true
         }
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "beta",
     "prefer-stable": true
 }

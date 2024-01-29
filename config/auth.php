@@ -43,6 +43,10 @@ return [
         'employer' => [
             'driver' => 'session',
             'provider' => 'user_employers'
+        ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'user_admins'
         ]
     ],
 
@@ -73,6 +77,11 @@ return [
             'driver' => 'eloquent',
             'model' => \App\Models\UserEmployer::class,
         ],
+
+        'user_admins' => [
+            'driver' => 'eloquent',
+            'model' => \App\Models\UserAdmin::class
+        ]
     ],
 
     /*

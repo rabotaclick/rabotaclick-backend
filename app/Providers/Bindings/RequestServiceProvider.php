@@ -2,6 +2,9 @@
 
 namespace App\Providers\Bindings;
 
+// Admin
+use App\Http\Requests\Admin\Contracts\AuthRequestInterface as AdminAuthRequestInterface;
+use App\Http\Requests\Admin\AuthRequest as AdminAuthRequest;
 // Auth
 use App\Http\Requests\Auth\Contracts\AuthRequestInterface;
 use App\Http\Requests\Auth\AuthRequest;
@@ -62,6 +65,8 @@ class RequestServiceProvider extends ServiceProvider
 {
     public function register()
     {
+        // Admin requests
+        $this->app->bind(AdminAuthRequestInterface::class, AdminAuthRequest::class);
         // Auth requests
         $this->app->bind(AuthRequestInterface::class, AuthRequest::class);
         $this->app->bind(LoginRequestInterface::class, LoginRequest::class);
