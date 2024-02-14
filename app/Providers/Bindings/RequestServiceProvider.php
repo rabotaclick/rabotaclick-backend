@@ -10,10 +10,13 @@ use App\Http\Requests\Auth\Contracts\AuthRequestInterface;
 use App\Http\Requests\Auth\AuthRequest;
 use App\Http\Requests\Auth\Contracts\LoginPasswordRequestInterface;
 use App\Http\Requests\Auth\Contracts\LoginRequestInterface;
-use App\Http\Requests\Auth\Contracts\RegisterRequestInterface;
+use App\Http\Requests\Auth\Contracts\RegisterRequestInterface as ApplicantRegisterRequestInterface;
 use App\Http\Requests\Auth\LoginPasswordRequest;
 use App\Http\Requests\Auth\LoginRequest;
-use App\Http\Requests\Auth\RegisterRequest;
+use App\Http\Requests\Auth\RegisterRequest as ApplicantRegisterRequest;
+// Auth Employer
+use App\Http\Requests\Auth\Employer\RegisterRequest as EmployerRegisterRequest;
+use App\Http\Requests\Auth\Employer\Contracts\RegisterRequestInterface as EmployerRegisterRequestInterface;
 // City
 use App\Http\Requests\City\Contracts\IndexRequestInterface as CityIndexRequestInterface;
 use App\Http\Requests\City\IndexRequest as CityIndexRequest;
@@ -70,8 +73,10 @@ class RequestServiceProvider extends ServiceProvider
         // Auth requests
         $this->app->bind(AuthRequestInterface::class, AuthRequest::class);
         $this->app->bind(LoginRequestInterface::class, LoginRequest::class);
-        $this->app->bind(RegisterRequestInterface::class, RegisterRequest::class);
+        $this->app->bind(ApplicantRegisterRequestInterface::class, ApplicantRegisterRequest::class);
         $this->app->bind(LoginPasswordRequestInterface::class, LoginPasswordRequest::class);
+        // Auth Employers requests
+        $this->app->bind(EmployerRegisterRequestInterface::class, EmployerRegisterRequest::class);
         // Specialization requests
         $this->app->bind(SpecializationIndexRequestInterface::class, SpecializationIndexRequest::class);
         // SubSpecialization requests

@@ -24,16 +24,20 @@ return [
             'tags' => [
 
                 [
-                'name' => 'Applicant',
-                'description' => 'Исполнитель',
+                    'name' => 'Applicant',
+                    'description' => 'Исполнитель',
                 ],
                 [
-                'name' => 'User',
-                'description' => 'Пользователь'
+                    'name' => 'Employer',
+                    'description' => 'Работодатель'
                 ],
                 [
-                'name' => 'Specialization',
-                'description' => 'Категории вакансий'
+                    'name' => 'User',
+                    'description' => 'Пользователь'
+                ],
+                [
+                    'name' => 'Specialization',
+                    'description' => 'Категории вакансий'
                 ],
                 [
                     'name' => 'Resume',

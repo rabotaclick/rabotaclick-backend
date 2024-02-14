@@ -23,7 +23,7 @@ class UpdateRequest extends FormRequest implements UpdateRequestInterface
             UpdateRequestEnum::Lastname->value => 'string|max:32',
             UpdateRequestEnum::Status->value => 'string|in:' . $enumHelper->serialize(UpdateRequestStatusEnum::class),
             UpdateRequestEnum::Password->value => 'string|min:8|max:32',
-            UpdateRequestEnum::ChangeEmail->value => 'string|email|max:128',
+            UpdateRequestEnum::ChangeEmail->value => 'string|email|max:128|unique:users,email',
             UpdateRequestEnum::ChangePhone->value => 'string|max:32',
         ];
     }

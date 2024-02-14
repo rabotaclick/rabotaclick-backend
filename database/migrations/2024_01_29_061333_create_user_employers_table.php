@@ -17,12 +17,11 @@ return new class extends Migration
             $table->string('surname')->nullable();
             $table->string('lastname')->nullable();
 
-            $table->string('phone')->unique();
+            $table->string('phone')->nullable();
             $table->string('email')->unique();
 
             $table->string('password')->nullable();
 
-            $table->foreignUuid('company_id')->constrained('companies')->cascadeOnDelete();
             $table->timestamps();
             $table->softDeletes();
         });

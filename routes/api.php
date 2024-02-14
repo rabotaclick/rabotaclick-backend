@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\Auth\LoginPasswordController;
 use Illuminate\Support\Facades\Route;
-// Auth
+// Auth Applicant
 use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\LoginController as ApplicantLogin;
+use App\Http\Controllers\Auth\RegisterController as ApplicantRegister;
+// Auth Employer
+use App\Http\Controllers\Auth\Employer\RegisterController as EmployerRegister;
 // User
 use App\Http\Controllers\User\ShowController as UserShow;
 use App\Http\Controllers\User\ShowMeController as UserShowMe;
@@ -17,7 +19,8 @@ use App\Http\Controllers\Specialization\IndexController as SpecializationIndex;
 // Subspecialization
 use App\Http\Controllers\SubSpecialization\IndexController as SubSpecializationIndex;
 // Email
-use App\Http\Controllers\Email\VerifyController;
+use App\Http\Controllers\Email\VerifyController as ApplicantVerifyController;
+use App\Http\Controllers\Email\Employer\VerifyController as EmployerVerifyController;
 // Resume
 use App\Http\Controllers\Resume\StoreController as ResumeStore;
 use App\Http\Controllers\Resume\DeleteController as ResumeDelete;
@@ -54,14 +57,19 @@ Route::prefix("v1")->group(function () {
     Route::prefix("auth")->group(function () {
 
         Route::middleware(['throttle:code'])->post("/code", AuthController::class);
-        Route::post("/", LoginController::class);
-        Route::middleware('auth:sanctum')->post("/register", RegisterController::class);
+        Route::post("/", ApplicantLogin::class);
+        Route::middleware('auth:sanctum')->post("/register", ApplicantRegister::class);
 
         Route::post("/password", LoginPasswordController::class);
 
+        // Employer Auth
+        Route::prefix('employer')->group(function () {
+            Route::post('/register', EmployerRegister::class);
+        });
     });
     Route::prefix("email")->group(function () {
-        Route::get('/verify/{token}', VerifyController::class);
+        Route::get('/verify/{token}', ApplicantVerifyController::class);
+        Route::get('/employer/verify/{token}', EmployerVerifyController::class);
     });
     // User
     Route::prefix("user")->middleware('auth:sanctum')->group(function () {
