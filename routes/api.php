@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\LoginController as ApplicantLogin;
 use App\Http\Controllers\Auth\RegisterController as ApplicantRegister;
 // Auth Employer
 use App\Http\Controllers\Auth\Employer\RegisterController as EmployerRegister;
+use App\Http\Controllers\Auth\Employer\FinishRegisterController as EmployerFinishRegisterController;
 // User
 use App\Http\Controllers\User\ShowController as UserShow;
 use App\Http\Controllers\User\ShowMeController as UserShowMe;
@@ -65,6 +66,7 @@ Route::prefix("v1")->group(function () {
         // Employer Auth
         Route::prefix('employer')->group(function () {
             Route::post('/register', EmployerRegister::class);
+            Route::middleware('auth:sanctum')->post('/register/finish', EmployerFinishRegisterController::class);
         });
     });
     Route::prefix("email")->group(function () {

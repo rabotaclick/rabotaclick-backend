@@ -22,6 +22,7 @@ return new class extends Migration
 
             $table->string('password')->nullable();
 
+            $table->foreignUuid('company_id')->nullable()->constrained('companies')->cascadeOnDelete();
             $table->timestamps();
             $table->softDeletes();
         });

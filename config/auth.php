@@ -75,12 +75,12 @@ return [
 
         'user_employers' => [
             'driver' => 'eloquent',
-            'model' => \App\Models\UserEmployer::class,
+            'model' => App\Models\UserEmployer::class,
         ],
 
         'user_admins' => [
             'driver' => 'eloquent',
-            'model' => \App\Models\UserAdmin::class
+            'model' => App\Models\UserAdmin::class
         ]
     ],
 

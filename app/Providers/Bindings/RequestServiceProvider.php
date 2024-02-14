@@ -17,6 +17,8 @@ use App\Http\Requests\Auth\RegisterRequest as ApplicantRegisterRequest;
 // Auth Employer
 use App\Http\Requests\Auth\Employer\RegisterRequest as EmployerRegisterRequest;
 use App\Http\Requests\Auth\Employer\Contracts\RegisterRequestInterface as EmployerRegisterRequestInterface;
+use App\Http\Requests\Auth\Employer\FinishRegisterRequest as EmployerFinishRegisterRequest;
+use App\Http\Requests\Auth\Employer\Contracts\FinishRegisterRequestInterface as EmployerFinishRegisterRequestInterface;
 // City
 use App\Http\Requests\City\Contracts\IndexRequestInterface as CityIndexRequestInterface;
 use App\Http\Requests\City\IndexRequest as CityIndexRequest;
@@ -77,6 +79,7 @@ class RequestServiceProvider extends ServiceProvider
         $this->app->bind(LoginPasswordRequestInterface::class, LoginPasswordRequest::class);
         // Auth Employers requests
         $this->app->bind(EmployerRegisterRequestInterface::class, EmployerRegisterRequest::class);
+        $this->app->bind(EmployerFinishRegisterRequestInterface::class, EmployerFinishRegisterRequest::class);
         // Specialization requests
         $this->app->bind(SpecializationIndexRequestInterface::class, SpecializationIndexRequest::class);
         // SubSpecialization requests

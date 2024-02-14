@@ -28,13 +28,31 @@ class AuthEmployerTest extends TestCase
         ]);
     }
 
-    public function test_verify()
+    public function test_verify(): string
     {
         $this->test_register();
         $response = $this->get('/api/v1/email/employer/verify/' . UserEmployerRegister::first()->token);
         $response->assertStatus(200);
         $response->assertJsonStructure([
             "token"
+        ]);
+
+        return $response->json('token');
+    }
+
+    public function test_finish_register()
+    {
+        $token = $this->test_verify();
+        $response = $this->post('/api/v1/auth/employer/register/finish', [
+            "name" => "test",
+            "surname" => "test"
+        ], ['Authorization' => 'Bearer ' . $token]);
+        $response->assertStatus(200);
+        $response->assertJson([
+            "data" => [
+                "name" => "test",
+                "surname" => "test"
+            ]
         ]);
     }
 }
