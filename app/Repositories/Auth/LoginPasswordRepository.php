@@ -32,7 +32,8 @@ class LoginPasswordRepository
         return $this->user
             ->createToken(
                 'auth-token',
-                expiresAt: now()->addDays(7)
+                ['role:applicant'],
+                now()->addDays(7)
             )
             ->plainTextToken;
     }

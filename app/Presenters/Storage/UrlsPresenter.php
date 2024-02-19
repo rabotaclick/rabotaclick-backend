@@ -2,13 +2,13 @@
 
 namespace App\Presenters\Storage;
 
-use App\DTO\Storage\PutResponseDTO;
+use App\DTO\Storage\PutManyResponseDTO;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
 class UrlsPresenter
 {
-    public function present(PutResponseDTO $responseDTO): JsonResponse
+    public function present(PutManyResponseDTO $responseDTO): JsonResponse
     {
         return response()
             ->json([

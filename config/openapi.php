@@ -32,6 +32,10 @@ return [
                     'description' => 'Работодатель'
                 ],
                 [
+                    'name' => 'Company',
+                    'description' => 'Компания'
+                ],
+                [
                     'name' => 'User',
                     'description' => 'Пользователь'
                 ],

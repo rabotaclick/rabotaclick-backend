@@ -27,6 +27,6 @@ class VerifyRepository
             $user_employer_register->delete();
         });
 
-        return $this->userEmployer->createToken('auth-token')->plainTextToken;
+        return $this->userEmployer->createToken('auth-token', ['role:employer'])->plainTextToken;
     }
 }

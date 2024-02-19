@@ -2,6 +2,8 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\ApplicantMiddleware;
+use App\Http\Middleware\EmployerMiddleware;
 use App\Http\Middleware\SetJsonHeader;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -66,5 +68,7 @@ class Kernel extends HttpKernel
         'signed' => \App\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'type.applicant' => ApplicantMiddleware::class,
+        'type.employer' => EmployerMiddleware::class
     ];
 }

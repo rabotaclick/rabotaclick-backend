@@ -12,11 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('companies', function (Blueprint $table) {
-            $table->uuid("id")->primary();
+            $table->uuid('id')->primary();
             $table->timestamps();
 
-            $table->string("name");
-            $table->foreignUuid("city_id");
+            $table->enum('type', ['individual', 'project', 'person', 'self-employed', 'recruiter', 'agency']);
+            $table->string('name');
+            $table->string('website')->nullable();
+            $table->string('phone');
+            $table->text('description')->nullable();
+            $table->foreignUuid('city_id')->constrained()->noActionOnDelete();
+            $table->foreignUuid('specialization_id')->constrained()->noActionOnDelete();
         });
     }
 

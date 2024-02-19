@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Storage;
 
-use App\DTO\Storage\PutRequestDTO;
+use App\DTO\Storage\PutManyRequestDTO;
 use App\Helpers\Contracts\RequestFilterHelperInterface;
 use App\Http\Requests\Storage\Contracts\PutRequestInterface;
 use App\Http\Requests\Storage\Enums\PutRequestEnum;
@@ -19,7 +19,7 @@ class PutRequest extends FormRequest implements PutRequestInterface
             ];
         }
 
-    public function getValidated(): PutRequestDTO
+    public function getValidated(): PutManyRequestDTO
     {
         $requestParams = $this->validated();
 
@@ -27,7 +27,7 @@ class PutRequest extends FormRequest implements PutRequestInterface
             HelperServiceProvider::PARAM_REQUEST_PARAMS => $requestParams,
         ]);
 
-        return new PutRequestDTO(
+        return new PutManyRequestDTO(
             $filter->checkRequestParam(PutRequestEnum::Files)
         );
     }

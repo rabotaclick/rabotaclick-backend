@@ -2,29 +2,37 @@
 
 namespace App\Services;
 
-use App\DTO\Storage\PutRequestDTO;
-use App\DTO\Storage\PutResponseDTO;
+use App\DTO\Storage\PutManyRequestDTO;
+use App\DTO\Storage\PutManyResponseDTO;
+use App\DTO\Storage\PutOneRequestDTO;
+use App\DTO\Storage\PutOneResponseDTO;
 use Illuminate\Support\Facades\Storage;
 
 class StorageService
 {
-    public function __construct(
-        public array $urls = []
-    )
+    public function putOne(PutOneRequestDTO $requestDTO, string $disk): PutOneResponseDTO
     {
-    }
+        $file = $requestDTO->file;
+        $filePath = $disk . $file->getFilename() . $file->getClientOriginalExtension();
+        Storage::disk('s3')->put($filePath, file_get_contents($file));
+        $url = Storage::disk('s3')->url($filePath);
 
-    public function put(PutRequestDTO $requestDTO): PutResponseDTO
+        return new PutOneResponseDTO(
+            $url
+        );
+
+    }
+    public function putMany(PutManyRequestDTO $requestDTO, string $disk): PutManyResponseDTO
     {
-        $disk = "photos/";
+        $urls = [];
         foreach ($requestDTO->file_array as $file) {
-            $imagePath = $disk . $file->getFilename() . ".webp";
-            Storage::disk('s3')->put($imagePath, file_get_contents($file));
-            $this->urls[] = Storage::disk('s3')->url($imagePath);
+            $filePath = $disk . $file->getFilename() . $file->getClientOriginalExtension();
+            Storage::disk('s3')->put($filePath, file_get_contents($file));
+            $urls[] = Storage::disk('s3')->url($filePath);
         }
 
-        return new PutResponseDTO(
-            $this->urls
+        return new PutManyResponseDTO(
+            $urls
         );
     }
 }

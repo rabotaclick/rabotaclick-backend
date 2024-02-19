@@ -9,6 +9,8 @@ use App\Http\Controllers\Auth\RegisterController as ApplicantRegister;
 // Auth Employer
 use App\Http\Controllers\Auth\Employer\RegisterController as EmployerRegister;
 use App\Http\Controllers\Auth\Employer\FinishRegisterController as EmployerFinishRegisterController;
+// Company
+use App\Http\Controllers\Company\StoreController as CompanyStore;
 // User
 use App\Http\Controllers\User\ShowController as UserShow;
 use App\Http\Controllers\User\ShowMeController as UserShowMe;
@@ -59,22 +61,26 @@ Route::prefix("v1")->group(function () {
 
         Route::middleware(['throttle:code'])->post("/code", AuthController::class);
         Route::post("/", ApplicantLogin::class);
-        Route::middleware('auth:sanctum')->post("/register", ApplicantRegister::class);
+        Route::middleware(['auth:sanctum', 'type.applicant'])->post("/register", ApplicantRegister::class);
 
         Route::post("/password", LoginPasswordController::class);
 
         // Employer Auth
         Route::prefix('employer')->group(function () {
             Route::post('/register', EmployerRegister::class);
-            Route::middleware('auth:sanctum')->post('/register/finish', EmployerFinishRegisterController::class);
+            Route::middleware(['auth:sanctum', 'type.employer'])->post('/register/finish', EmployerFinishRegisterController::class);
         });
     });
     Route::prefix("email")->group(function () {
         Route::get('/verify/{token}', ApplicantVerifyController::class);
         Route::get('/employer/verify/{token}', EmployerVerifyController::class);
     });
+    // Company
+    Route::prefix("company")->middleware(['auth:sanctum', 'type.employer'])->group(function () {
+        Route::post('/', CompanyStore::class);
+    });
     // User
-    Route::prefix("user")->middleware('auth:sanctum')->group(function () {
+    Route::prefix("user")->middleware(['auth:sanctum', 'type.applicant'])->group(function () {
 
         Route::get("/me", UserShowMe::class);
         Route::get("/{id}", UserShow::class);

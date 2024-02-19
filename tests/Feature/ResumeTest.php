@@ -40,7 +40,7 @@ class ResumeTest extends TestCase
         Language::factory()->create();
 
         $user = User::factory()->create();
-        $this->token = $user->createToken('auth-token')->plainTextToken;
+        $this->token = $user->createToken('auth-token', ['role:applicant'])->plainTextToken;
     }
 
     public function test_create_resume()

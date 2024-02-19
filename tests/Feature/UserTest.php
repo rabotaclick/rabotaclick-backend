@@ -16,7 +16,7 @@ class UserTest extends TestCase
         parent::setUp();
 
         $user = User::factory()->create();
-        $this->token = $user->createToken('auth-token')->plainTextToken;
+        $this->token = $user->createToken('auth-token', ['role:applicant'])->plainTextToken;
     }
 
     public function test_get_me()

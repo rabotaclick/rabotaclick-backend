@@ -16,7 +16,10 @@ class Specialization extends Model
     protected $guarded = [
         'id'
     ];
-
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
     public function subspecializations(): HasMany
     {
         return $this->hasMany(Subspecialization::class, 'specialization_id', 'id');

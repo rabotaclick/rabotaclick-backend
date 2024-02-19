@@ -36,7 +36,7 @@ class UserSeeder extends Seeder
             "resume_id" => $resume->id,
             "region_id" => Region::first()->id
         ])->create();
-        $token = $andrew->createToken('auth-token')->plainTextToken;
+        $token = $andrew->createToken('auth-token', ['role:applicant'])->plainTextToken;
         print('  Andrew User Token: ' . $token . "\n");
     }
 }

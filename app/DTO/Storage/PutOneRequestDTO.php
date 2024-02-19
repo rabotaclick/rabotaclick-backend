@@ -4,10 +4,10 @@ namespace App\DTO\Storage;
 
 use Illuminate\Http\UploadedFile;
 
-readonly class PutRequestDTO
+readonly class PutOneRequestDTO
 {
     public function __construct(
-        public array|UploadedFile $file_array
+        public UploadedFile $file
     )
     {
     }
