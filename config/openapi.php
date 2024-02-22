@@ -40,6 +40,10 @@ return [
                     'description' => 'Пользователь'
                 ],
                 [
+                    'name' => 'UserEmployer',
+                    'description' => 'Пользователь работодателя'
+                ],
+                [
                     'name' => 'Specialization',
                     'description' => 'Категории вакансий'
                 ],

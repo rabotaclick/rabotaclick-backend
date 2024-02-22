@@ -28,7 +28,7 @@ class LoginPasswordController extends Controller
     #[OpenApi\Operation(tags: ['Applicant'], method: 'POST')]
     #[OpenApi\Parameters(LoginPasswordParameters::class)]
     #[OpenApi\Response(LoginResponse::class, 200)]
-    #[OpenApi\Response(InvalidCredentialsResponse::class, 422)]
+    #[OpenApi\Response(InvalidCredentialsResponse::class, 401)]
     #[OpenApi\Response(ServiceUnavailableErrorResponse::class, 512)]
     public function __invoke(LoginPasswordRequestInterface $request)
     {

@@ -30,7 +30,7 @@ class LoginController extends Controller
     #[OpenApi\Operation(tags: ['Employer'], method: 'POST')]
     #[OpenApi\Parameters(LoginParameters::class)]
     #[OpenApi\Response(LoginResponse::class, 200)]
-    #[OpenApi\Response(InvalidCredentialsResponse::class, 422)]
+    #[OpenApi\Response(InvalidCredentialsResponse::class, 401)]
     #[OpenApi\Response(ServiceUnavailableErrorResponse::class, 512)]
     public function __invoke(LoginRequestInterface $request)
     {

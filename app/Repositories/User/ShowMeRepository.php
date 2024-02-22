@@ -18,6 +18,8 @@ class ShowMeRepository
     {
         $this->user = Auth::user();
 
-        return new UserDTO($this->user);
+        return new UserDTO(
+            $this->user
+        );
     }
 }
