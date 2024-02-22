@@ -2,9 +2,11 @@
 
 namespace Tests\Feature;
 
+use App\Models\UserEmployer;
 use App\Models\UserEmployerRegister;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
 class AuthEmployerTest extends TestCase
@@ -53,6 +55,22 @@ class AuthEmployerTest extends TestCase
                 "name" => "test",
                 "surname" => "test"
             ]
+        ]);
+    }
+
+    public function test_login()
+    {
+        UserEmployer::factory([
+            'email' => 'test@gmail.com',
+            'password' => Hash::make('testtest')
+        ])->create();
+        $response = $this->post('/api/v1/auth/employer/', [
+            "email" => "test@gmail.com",
+            "password" => "testtest"
+        ]);
+        $response->assertStatus(200);
+        $response->assertJsonStructure([
+            "token"
         ]);
     }
 }

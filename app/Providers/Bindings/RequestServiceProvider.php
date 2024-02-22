@@ -19,6 +19,8 @@ use App\Http\Requests\Auth\Employer\RegisterRequest as EmployerRegisterRequest;
 use App\Http\Requests\Auth\Employer\Contracts\RegisterRequestInterface as EmployerRegisterRequestInterface;
 use App\Http\Requests\Auth\Employer\FinishRegisterRequest as EmployerFinishRegisterRequest;
 use App\Http\Requests\Auth\Employer\Contracts\FinishRegisterRequestInterface as EmployerFinishRegisterRequestInterface;
+use App\Http\Requests\Auth\Employer\LoginRequest as EmployerLoginRequest;
+use App\Http\Requests\Auth\Employer\Contracts\LoginRequestInterface as EmployerLoginRequestInterface;
 // Company
 use App\Http\Requests\Company\StoreRequest as CompanyStoreRequest;
 use App\Http\Requests\Company\Contracts\StoreRequestInterface as CompanyStoreRequestInterface;
@@ -83,6 +85,7 @@ class RequestServiceProvider extends ServiceProvider
         // Auth Employers requests
         $this->app->bind(EmployerRegisterRequestInterface::class, EmployerRegisterRequest::class);
         $this->app->bind(EmployerFinishRegisterRequestInterface::class, EmployerFinishRegisterRequest::class);
+        $this->app->bind(EmployerLoginRequestInterface::class, EmployerLoginRequest::class);
         // Company requests
         $this->app->bind(CompanyStoreRequestInterface::class, CompanyStoreRequest::class);
         // Specialization requests
