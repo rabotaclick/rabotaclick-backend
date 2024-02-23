@@ -46,6 +46,9 @@ use App\Http\Requests\Resume\Contracts\UpdatePhotoRequestInterface as ResumeUpda
 use App\Http\Requests\Resume\UpdatePhotoRequest as ResumeUpdatePhotoRequest;
 use App\Http\Requests\Resume\Contracts\IndexRequestInterface as ResumeIndexRequestInterface;
 use App\Http\Requests\Resume\IndexRequest as ResumeIndexRequest;
+// UserEmployer
+use App\Http\Requests\UserEmployer\UpdateRequest as UserEmployerUpdateRequest;
+use App\Http\Requests\UserEmployer\Contracts\UpdateRequestInterface as UserEmployerUpdateRequestInterface;
 // User
 use App\Http\Requests\User\Contracts\UpdatePhoneRequestInterface as UserUpdatePhoneRequestInterface;
 use App\Http\Requests\User\Contracts\UpdateRequestInterface as UserUpdateRequestInterface;
@@ -92,6 +95,8 @@ class RequestServiceProvider extends ServiceProvider
         $this->app->bind(SpecializationIndexRequestInterface::class, SpecializationIndexRequest::class);
         // SubSpecialization requests
         $this->app->bind(SubSpecializationIndexRequestInterface::class, SubSpecializationIndexRequest::class);
+        // UserEmployer requests
+        $this->app->bind(UserEmployerUpdateRequestInterface::class, UserEmployerUpdateRequest::class);
         // User requests
         $this->app->bind(UserUpdateRequestInterface::class, UserUpdateRequest::class);
         $this->app->bind(UserUpdatePhoneRequestInterface::class, UserUpdatePhoneRequest::class);

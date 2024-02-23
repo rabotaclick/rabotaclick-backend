@@ -14,6 +14,7 @@ use App\Http\Controllers\Auth\Employer\LoginController as EmployerLogin;
 use App\Http\Controllers\Company\StoreController as CompanyStore;
 // UserEmployer
 use App\Http\Controllers\UserEmployer\ShowMeController as EmployerShowMe;
+use App\Http\Controllers\UserEmployer\UpdateController as EmployerUpdate;
 // User
 use App\Http\Controllers\User\ShowController as UserShow;
 use App\Http\Controllers\User\ShowMeController as UserShowMe;
@@ -85,7 +86,11 @@ Route::prefix('v1')->group(function () {
     });
     // User Employer
     Route::prefix('employer')->middleware(['auth:sanctum', 'type.employer'])->group(function () {
+
         Route::get('/me', EmployerShowMe::class);
+
+        Route::put('/', EmployerUpdate::class);
+
     });
     // User
     Route::prefix('user')->middleware(['auth:sanctum', 'type.applicant'])->group(function () {
