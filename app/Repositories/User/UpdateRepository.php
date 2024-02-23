@@ -9,11 +9,13 @@ use App\Models\UserEmailChange;
 use App\Models\UserPhoneChange;
 use App\Repositories\User\Exceptions\InvalidEmailException;
 use App\Repositories\User\Exceptions\InvalidPhoneException;
+use App\Repositories\UserEmployer\Exceptions\InvalidPasswordException;
 use App\Services\MailService;
 use App\Traits\GenerateCodeTrait;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UpdateRepository
 {
@@ -38,13 +40,25 @@ class UpdateRepository
                 $this->checkPhone($requestDTO->change_phone);
                 $this->changePhone();
             }
-
+            $this->changePassword($requestDTO->password, $requestDTO->new_password);
             $this->user->update($requestDTO->toArray());
         });
 
         return new UserDTO(
             $this->user
         );
+    }
+
+    private function changePassword(string|null $password, string|null $new_password)
+    {
+        if(isset($password) && isset($new_password)) {
+            if(Hash::check($password, $this->user->password)) {
+                $this->user->password = $new_password;
+                $this->user->save();
+            } else {
+                throw new InvalidPasswordException();
+            }
+        }
     }
 
     private function changeEmail($change_email)

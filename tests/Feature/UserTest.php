@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
 class UserTest extends TestCase
@@ -15,7 +16,7 @@ class UserTest extends TestCase
     {
         parent::setUp();
 
-        $user = User::factory()->create();
+        $user = User::factory(['password' => Hash::make('testtest')])->create();
         $this->token = $user->createToken('auth-token', ['role:applicant'])->plainTextToken;
     }
 
@@ -39,7 +40,8 @@ class UserTest extends TestCase
             "surname" => "newSurname",
             "lastname" => "newLastname",
             "status" => "active",
-            "password" => "newPassword",
+            "password" => "testtest",
+            "new_password" => "newPassword",
             "change_email" => "wotacc0809@gmail.com",
             "change_phone" => "+79243609722"
         ], ['Authorization' => 'Bearer ' . $this->token]);

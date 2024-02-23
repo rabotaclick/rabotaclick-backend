@@ -22,7 +22,8 @@ class UpdateRequest extends FormRequest implements UpdateRequestInterface
             UpdateRequestEnum::Surname->value => 'string|max:32',
             UpdateRequestEnum::Lastname->value => 'string|max:32',
             UpdateRequestEnum::Status->value => 'string|in:' . $enumHelper->serialize(UpdateRequestStatusEnum::class),
-            UpdateRequestEnum::Password->value => 'string|min:8|max:32',
+            UpdateRequestEnum::Password->value => 'required_with:'.UpdateRequestEnum::NewPassword->value.'|string|min:8|max:32',
+            UpdateRequestEnum::NewPassword->value => 'string|min:8|max:32',
             UpdateRequestEnum::ChangeEmail->value => 'string|email|max:128|unique:users,email',
             UpdateRequestEnum::ChangePhone->value => 'string|max:32',
         ];
@@ -41,7 +42,8 @@ class UpdateRequest extends FormRequest implements UpdateRequestInterface
             $filter->checkRequestParam(UpdateRequestEnum::Surname),
             $filter->checkRequestParam(UpdateRequestEnum::Lastname),
             $filter->checkRequestParam(UpdateRequestEnum::Status),
-            Hash::make($filter->checkRequestParam(UpdateRequestEnum::Password)),
+            $filter->checkRequestParam(UpdateRequestEnum::Password),
+            $filter->checkRequestParam(UpdateRequestEnum::NewPassword),
             $filter->checkRequestParam(UpdateRequestEnum::ChangeEmail),
             normalizePhone($filter->checkRequestParam(UpdateRequestEnum::ChangePhone))
         );
