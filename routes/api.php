@@ -92,7 +92,7 @@ Route::prefix('v1')->group(function () {
         Route::get('/me', EmployerShowMe::class);
         Route::put('/', EmployerUpdate::class);
         // User Company
-        Route::prefix('company')->middleware(['auth:sanctum', 'type.employer'])->group(function () {
+        Route::prefix('company')->group(function () {
             Route::get('/my', CompanyShowMy::class);
             Route::post('/', CompanyStore::class);
             Route::put('/', CompanyUpdate::class);

@@ -20,6 +20,10 @@ class Kernel extends ConsoleKernel
             ->everyFiveMinutes()
             ->withoutOverlapping()
             ->onOneServer();
+        $schedule->command('app:delete-companies')
+            ->daily()
+            ->withoutOverlapping()
+            ->onOneServer();
     }
 
     /**
