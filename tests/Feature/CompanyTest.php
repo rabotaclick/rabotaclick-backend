@@ -42,4 +42,24 @@ class CompanyTest extends TestCase
             ]
         ]);
     }
+
+    public function test_company_update()
+    {
+        $this->test_company_create();
+        $response = $this->put('/api/v1/company', [
+            'name' => 'test',
+            'city_id' => City::first()->id,
+            'website' => 'https://test.com',
+            'specialization_id' => Specialization::first()->id,
+            'phone' => '+79243609722',
+            'description' => 'test'
+        ], ['Authorization' => 'Bearer ' . $this->token]);
+        $response->assertStatus(200);
+        $response->assertJsonStructure([
+            "data" => [
+                "id",
+                "name"
+            ]
+        ]);
+    }
 }

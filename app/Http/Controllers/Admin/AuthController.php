@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Contracts\AuthRequestInterface;
 use App\UseCases\Admin\AuthUseCase;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,7 +17,7 @@ class AuthController extends Controller
     {
     }
 
-    public function __invoke(AuthRequestInterface $request)
+    public function __invoke(AuthRequestInterface $request): RedirectResponse
     {
         $requestDTO = $request->getValidated();
 
@@ -26,5 +27,7 @@ class AuthController extends Controller
             $request->session()->regenerate();
             return redirect('/pulse');
         }
+
+        return redirect('/pulse/auth');
     }
 }

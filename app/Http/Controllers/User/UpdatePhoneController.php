@@ -11,6 +11,7 @@ use App\OpenApi\Responses\Public\ServiceUnavailableErrorResponse;
 use App\OpenApi\SecuritySchemes\BearerToken;
 use App\Presenters\User\UserPresenter;
 use App\UseCases\User\UpdatePhoneUseCase;
+use Illuminate\Http\JsonResponse;
 use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
 #[OpenApi\PathItem]
 class UpdatePhoneController extends Controller
@@ -31,7 +32,7 @@ class UpdatePhoneController extends Controller
     #[OpenApi\Response(RegisterResponse::class, 200)]
     #[OpenApi\Response(LoginNotFoundResponse::class, 422)]
     #[OpenApi\Response(ServiceUnavailableErrorResponse::class, 503)]
-    public function __invoke(UpdatePhoneRequestInterface $request)
+    public function __invoke(UpdatePhoneRequestInterface $request): JsonResponse
     {
         $requestDTO = $request->getValidated();
 

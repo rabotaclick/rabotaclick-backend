@@ -12,6 +12,7 @@ use App\OpenApi\Responses\User\InvalidPhoneErrorResponse;
 use App\OpenApi\SecuritySchemes\BearerToken;
 use App\Presenters\User\UserPresenter;
 use App\UseCases\User\UpdateUseCase;
+use Illuminate\Http\JsonResponse;
 use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
 #[OpenApi\PathItem]
 class UpdateController extends Controller
@@ -33,7 +34,7 @@ class UpdateController extends Controller
     #[OpenApi\Response(InvalidEmailErrorResponse::class, 422)]
     #[OpenApi\Response(InvalidPhoneErrorResponse::class, 422)]
     #[OpenApi\Response(ServiceUnavailableErrorResponse::class, 503)]
-    public function __invoke(UpdateRequestInterface $request)
+    public function __invoke(UpdateRequestInterface $request): JsonResponse
     {
         $requestDTO = $request->getValidated();
 

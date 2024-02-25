@@ -11,6 +11,7 @@ use App\OpenApi\Responses\Resume\TooManyResumesResponse;
 use App\OpenApi\SecuritySchemes\BearerToken;
 use App\Presenters\Resume\ResumePresenter;
 use App\UseCases\Resume\StoreUseCase;
+use Illuminate\Http\JsonResponse;
 use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
 #[OpenApi\PathItem]
 class StoreController extends Controller
@@ -31,7 +32,7 @@ class StoreController extends Controller
     #[OpenApi\Response(ResumeResponse::class, 200)]
     #[OpenApi\Response(TooManyResumesResponse::class, 422)]
     #[OpenApi\Response(ServiceUnavailableErrorResponse::class, 503)]
-    public function __invoke(StoreRequestInterface $request)
+    public function __invoke(StoreRequestInterface $request): JsonResponse
     {
         $requestDTO = $request->getValidated();
 

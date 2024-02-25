@@ -10,6 +10,7 @@ use App\OpenApi\Responses\Public\RegisterResponse;
 use App\OpenApi\Responses\Public\ServiceUnavailableErrorResponse;
 use App\Presenters\User\UserPresenter;
 use App\UseCases\Auth\RegisterUseCase;
+use Illuminate\Http\JsonResponse;
 use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
 
 #[OpenApi\PathItem]
@@ -31,7 +32,7 @@ class RegisterController extends Controller
     #[OpenApi\Response(RegisterResponse::class, 200)]
     #[OpenApi\Response(RegisterAlreadyResponse::class, 422)]
     #[OpenApi\Response(ServiceUnavailableErrorResponse::class, 503)]
-    public function __invoke(RegisterRequestInterface $request)
+    public function __invoke(RegisterRequestInterface $request): JsonResponse
     {
         $requestDTO = $request->getValidated();
 

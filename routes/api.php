@@ -12,6 +12,7 @@ use App\Http\Controllers\Auth\Employer\FinishRegisterController as EmployerFinis
 use App\Http\Controllers\Auth\Employer\LoginController as EmployerLogin;
 // Company
 use App\Http\Controllers\Company\StoreController as CompanyStore;
+use App\Http\Controllers\Company\UpdateController as CompanyUpdate;
 // UserEmployer
 use App\Http\Controllers\UserEmployer\ShowMeController as EmployerShowMe;
 use App\Http\Controllers\UserEmployer\UpdateController as EmployerUpdate;
@@ -63,7 +64,7 @@ Route::prefix('v1')->group(function () {
     // Authorization and Verification
     Route::prefix('auth')->group(function () {
 
-        Route::middleware(['throttle:code'])->post("/code", AuthController::class);
+        Route::middleware(['throttle:one'])->post("/code", AuthController::class);
         Route::post("/", ApplicantLogin::class);
         Route::middleware(['auth:sanctum', 'type.applicant'])->post("/register", ApplicantRegister::class);
 
@@ -72,7 +73,7 @@ Route::prefix('v1')->group(function () {
         // Employer Auth
         Route::prefix('employer')->group(function () {
             Route::post('/', EmployerLogin::Class);
-            Route::post('/register', EmployerRegister::class);
+            Route::middleware(['throttle:one'])->post('/register', EmployerRegister::class);
             Route::middleware(['auth:sanctum', 'type.employer'])->post('/register/finish', EmployerFinishRegisterController::class);
         });
     });
@@ -83,6 +84,7 @@ Route::prefix('v1')->group(function () {
     // Company
     Route::prefix('company')->middleware(['auth:sanctum', 'type.employer'])->group(function () {
         Route::post('/', CompanyStore::class);
+        Route::put('/', CompanyUpdate::class);
     });
     // User Employer
     Route::prefix('employer')->middleware(['auth:sanctum', 'type.employer'])->group(function () {
@@ -98,7 +100,7 @@ Route::prefix('v1')->group(function () {
         Route::get('/me', UserShowMe::class);
         Route::get('/{id}', UserShow::class);
 
-        Route::middleware(['throttle:user_update'])->put("/", UserUpdate::class);
+        Route::middleware(['throttle:three'])->put("/", UserUpdate::class);
         Route::put('/phone', UserPhoneUpdate::class);
 
         Route::delete('/', UserDelete::class);

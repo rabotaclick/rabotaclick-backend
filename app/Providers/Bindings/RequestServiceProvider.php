@@ -24,6 +24,8 @@ use App\Http\Requests\Auth\Employer\Contracts\LoginRequestInterface as EmployerL
 // Company
 use App\Http\Requests\Company\StoreRequest as CompanyStoreRequest;
 use App\Http\Requests\Company\Contracts\StoreRequestInterface as CompanyStoreRequestInterface;
+use App\Http\Requests\Company\UpdateRequest as CompanyUpdateRequest;
+use App\Http\Requests\Company\Contracts\UpdateRequestInterface as CompanyUpdateRequestInterface;
 // City
 use App\Http\Requests\City\Contracts\IndexRequestInterface as CityIndexRequestInterface;
 use App\Http\Requests\City\IndexRequest as CityIndexRequest;
@@ -91,6 +93,7 @@ class RequestServiceProvider extends ServiceProvider
         $this->app->bind(EmployerLoginRequestInterface::class, EmployerLoginRequest::class);
         // Company requests
         $this->app->bind(CompanyStoreRequestInterface::class, CompanyStoreRequest::class);
+        $this->app->bind(CompanyUpdateRequestInterface::class, CompanyUpdateRequest::class);
         // Specialization requests
         $this->app->bind(SpecializationIndexRequestInterface::class, SpecializationIndexRequest::class);
         // SubSpecialization requests

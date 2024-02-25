@@ -11,6 +11,7 @@ use App\OpenApi\SecuritySchemes\BearerToken;
 use App\Presenters\Resume\ResumePresenter;
 use App\Traits\Resume\ValidateTrait;
 use App\UseCases\Resume\UpdateProfessionUseCase;
+use Illuminate\Http\JsonResponse;
 use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
 #[OpenApi\PathItem]
 class UpdateProfessionController extends Controller
@@ -31,7 +32,7 @@ class UpdateProfessionController extends Controller
     #[OpenApi\Parameters(UpdateProfessionParameters::class)]
     #[OpenApi\Response(ResumeResponse::class, 200)]
     #[OpenApi\Response(ServiceUnavailableErrorResponse::class, 503)]
-    public function __invoke(UpdateProfessionRequestInterface $request, string $id)
+    public function __invoke(UpdateProfessionRequestInterface $request, string $id): JsonResponse
     {
         $this->validateId($id);
 

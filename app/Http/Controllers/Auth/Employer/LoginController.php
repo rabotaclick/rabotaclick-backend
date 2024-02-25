@@ -10,6 +10,7 @@ use App\OpenApi\Responses\Public\InvalidCredentialsResponse;
 use App\OpenApi\Responses\Public\ServiceUnavailableErrorResponse;
 use App\Presenters\Auth\TokenPresenter;
 use App\UseCases\Auth\Employer\LoginUseCase;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
 
@@ -32,7 +33,7 @@ class LoginController extends Controller
     #[OpenApi\Response(LoginResponse::class, 200)]
     #[OpenApi\Response(InvalidCredentialsResponse::class, 401)]
     #[OpenApi\Response(ServiceUnavailableErrorResponse::class, 512)]
-    public function __invoke(LoginRequestInterface $request)
+    public function __invoke(LoginRequestInterface $request): JsonResponse
     {
         $requestDTO = $request->getValidated();
 

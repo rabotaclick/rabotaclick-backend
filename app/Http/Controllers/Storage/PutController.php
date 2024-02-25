@@ -9,6 +9,7 @@ use App\OpenApi\Responses\Public\ServiceUnavailableErrorResponse;
 use App\OpenApi\Responses\Storage\PutResponse;
 use App\Presenters\Storage\UrlsPresenter;
 use App\UseCases\Storage\PutUseCase;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
 #[OpenApi\PathItem]
@@ -29,7 +30,7 @@ class PutController extends Controller
     #[OpenApi\Parameters(PutParameters::class)]
     #[OpenApi\Response(PutResponse::class, 200)]
     #[OpenApi\Response(ServiceUnavailableErrorResponse::class, 503)]
-    public function __invoke(PutRequestInterface $request)
+    public function __invoke(PutRequestInterface $request): JsonResponse
     {
         $requestDTO = $request->getValidated();
 

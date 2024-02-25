@@ -9,6 +9,7 @@ use App\OpenApi\Responses\Language\IndexResponse;
 use App\OpenApi\Responses\Public\ServiceUnavailableErrorResponse;
 use App\Presenters\Language\LanguagesPresenter;
 use App\UseCases\Language\IndexUseCase;
+use Illuminate\Http\JsonResponse;
 use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
 #[OpenApi\PathItem]
 class IndexController extends Controller
@@ -28,7 +29,7 @@ class IndexController extends Controller
     #[OpenApi\Parameters(IndexParameters::class)]
     #[OpenApi\Response(IndexResponse::class, 200)]
     #[OpenApi\Response(ServiceUnavailableErrorResponse::class, 503)]
-    public function __invoke(IndexRequestInterface $request)
+    public function __invoke(IndexRequestInterface $request): JsonResponse
     {
         $requestDTO = $request->getValidated();
 

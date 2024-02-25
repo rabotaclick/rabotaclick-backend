@@ -11,6 +11,7 @@ use App\OpenApi\SecuritySchemes\BearerToken;
 use App\Presenters\Resume\ResumePresenter;
 use App\Traits\Resume\ValidateTrait;
 use App\UseCases\Resume\UpdateEducationUseCase;
+use Illuminate\Http\JsonResponse;
 use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
 #[OpenApi\PathItem]
 class UpdateEducationController extends Controller
@@ -31,7 +32,7 @@ class UpdateEducationController extends Controller
     #[OpenApi\Parameters(UpdateEducationParameters::class)]
     #[OpenApi\Response(ResumeResponse::class, 200)]
     #[OpenApi\Response(ServiceUnavailableErrorResponse::class, 503)]
-    public function __invoke(UpdateEducationRequestInterface $request, string $id)
+    public function __invoke(UpdateEducationRequestInterface $request, string $id): JsonResponse
     {
         $this->validateId($id);
 

@@ -10,6 +10,7 @@ use App\OpenApi\Responses\Public\LoginNotFoundResponse;
 use App\OpenApi\Responses\Public\ServiceUnavailableErrorResponse;
 use App\Presenters\Auth\TokenPresenter;
 use App\UseCases\Auth\LoginUseCase;
+use Illuminate\Http\JsonResponse;
 use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
 
 #[OpenApi\PathItem]
@@ -31,7 +32,7 @@ class LoginController extends Controller
     #[OpenApi\Response(LoginResponse::class, 200)]
     #[OpenApi\Response(LoginNotFoundResponse::class, 422)]
     #[OpenApi\Response(ServiceUnavailableErrorResponse::class, 503)]
-    public function __invoke(LoginRequestInterface $request)
+    public function __invoke(LoginRequestInterface $request): JsonResponse
     {
         $requestDTO = $request->getValidated();
 

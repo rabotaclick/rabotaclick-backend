@@ -9,6 +9,7 @@ use App\OpenApi\Responses\Public\ServiceUnavailableErrorResponse;
 use App\OpenApi\SecuritySchemes\BearerToken;
 use App\Presenters\User\UserPresenter;
 use App\UseCases\User\ShowMeUseCase;
+use Illuminate\Http\JsonResponse;
 use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
 #[OpenApi\PathItem]
 class ShowMeController extends Controller
@@ -27,7 +28,7 @@ class ShowMeController extends Controller
     #[OpenApi\Operation(tags: ['User'], security: BearerToken::class ,method: 'GET')]
     #[OpenApi\Response(RegisterResponse::class, 200)]
     #[OpenApi\Response(ServiceUnavailableErrorResponse::class, 503)]
-    public function __invoke()
+    public function __invoke(): JsonResponse
     {
         $responseDTO = $this->useCase->execute();
 

@@ -11,6 +11,7 @@ use App\OpenApi\SecuritySchemes\BearerToken;
 use App\Presenters\Resume\ResumePresenter;
 use App\Traits\Resume\ValidateTrait;
 use App\UseCases\Resume\UpdateContactsUseCase;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
 #[OpenApi\PathItem]
@@ -32,7 +33,7 @@ class UpdateContactsController extends Controller
     #[OpenApi\Parameters(UpdateContactsParameters::class)]
     #[OpenApi\Response(ResumeResponse::class, 200)]
     #[OpenApi\Response(ServiceUnavailableErrorResponse::class, 503)]
-    public function __invoke(UpdateContactsRequestInterface $request, string $id)
+    public function __invoke(UpdateContactsRequestInterface $request, string $id): JsonResponse
     {
         $this->validateId($id);
 

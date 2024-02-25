@@ -9,6 +9,7 @@ use App\OpenApi\Responses\Auth\AuthResponse;
 use App\OpenApi\Responses\Public\ServiceUnavailableErrorResponse;
 use App\Presenters\Auth\AuthPresenter;
 use App\UseCases\Auth\AuthUseCase;
+use Illuminate\Http\JsonResponse;
 use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
 #[OpenApi\PathItem]
 class AuthController extends Controller
@@ -28,7 +29,7 @@ class AuthController extends Controller
     #[OpenApi\Parameters(factory: AuthParameters::class)]
     #[OpenApi\Response(factory: AuthResponse::class, statusCode: 200)]
     #[OpenApi\Response(factory: ServiceUnavailableErrorResponse::class, statusCode: 503)]
-    public function __invoke(AuthRequestInterface $request): mixed
+    public function __invoke(AuthRequestInterface $request): JsonResponse
     {
         $requestDTO = $request->getValidated();
 

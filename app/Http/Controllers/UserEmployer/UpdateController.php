@@ -11,6 +11,7 @@ use App\OpenApi\Responses\UserEmployer\UserEmployerResponse;
 use App\OpenApi\SecuritySchemes\BearerToken;
 use App\Presenters\UserEmployer\UserEmployerPresenter;
 use App\UseCases\UserEmployer\UpdateUseCase;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
 #[OpenApi\PathItem]
@@ -32,7 +33,7 @@ class UpdateController extends Controller
     #[OpenApi\Response(UserEmployerResponse::class, 200)]
     #[OpenApi\Response(InvalidPasswordResponse::class, 401)]
     #[OpenApi\Response(ServiceUnavailableErrorResponse::class, 503)]
-    public function __invoke(UpdateRequestInterface $request)
+    public function __invoke(UpdateRequestInterface $request): JsonResponse
     {
         $requestDTO = $request->getValidated();
 

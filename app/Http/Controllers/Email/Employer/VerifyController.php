@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Email\Employer;
 use App\Http\Controllers\Controller;
 use App\Presenters\Auth\TokenPresenter;
 use App\UseCases\Email\Employer\VerifyUseCase;
+use Illuminate\Http\JsonResponse;
+
 class VerifyController extends Controller
 {
     public function __construct(
@@ -13,7 +15,7 @@ class VerifyController extends Controller
     )
     {
     }
-    public function __invoke(string $token)
+    public function __invoke(string $token): JsonResponse
     {
         $responseDTO = $this->useCase->execute($token);
 

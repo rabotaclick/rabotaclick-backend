@@ -8,6 +8,7 @@ use App\OpenApi\Responses\User\DeleteResponse;
 use App\OpenApi\SecuritySchemes\BearerToken;
 use App\Presenters\User\DeletePresenter;
 use App\UseCases\User\DeleteUseCase;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
 #[OpenApi\PathItem]
@@ -27,7 +28,7 @@ class DeleteController extends Controller
     #[OpenApi\Operation(tags: ['User'], security: BearerToken::class ,method: 'DELETE')]
     #[OpenApi\Response(DeleteResponse::class, 200)]
     #[OpenApi\Response(ServiceUnavailableErrorResponse::class, 503)]
-    public function __invoke()
+    public function __invoke(): JsonResponse
     {
         $responseDTO = $this->useCase->execute();
 
