@@ -10,6 +10,7 @@ class IndexResource extends JsonResource
     public function toArray($request): array
     {
         return [
+            IndexResourceEnum::Id->value => $this->id,
             IndexResourceEnum::Title->value => $this->title,
             IndexResourceEnum::Vacancies->value => 0
         ];
