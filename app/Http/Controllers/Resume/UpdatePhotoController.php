@@ -4,21 +4,19 @@ namespace App\Http\Controllers\Resume;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Resume\Contracts\UpdatePhotoRequestInterface;
-use App\OpenApi\Parameters\Resume\UpdatePersonalParameters;
 use App\OpenApi\Parameters\Resume\UpdatePhotoParameters;
 use App\OpenApi\Responses\Public\ServiceUnavailableErrorResponse;
 use App\OpenApi\Responses\Resume\ResumeResponse;
 use App\OpenApi\SecuritySchemes\BearerToken;
 use App\Presenters\Resume\ResumePresenter;
-use App\Traits\Resume\ValidateTrait;
 use App\UseCases\Resume\UpdatePhotoUseCase;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
+
 #[OpenApi\PathItem]
 class UpdatePhotoController extends Controller
 {
-    use ValidateTrait;
+    use \App\Traits\ValidateTrait;
     public function __construct(
         private UpdatePhotoUseCase $useCase,
         private ResumePresenter $presenter,
@@ -36,7 +34,7 @@ class UpdatePhotoController extends Controller
     #[OpenApi\Response(ServiceUnavailableErrorResponse::class, 503)]
     public function __invoke(UpdatePhotoRequestInterface $request, string $id): JsonResponse
     {
-        $this->validateId($id);
+        $this->validateResumeId($id);
 
         $requestDTO = $request->getValidated();
 

@@ -26,7 +26,7 @@ class CompanyTest extends TestCase
 
     public function test_company_create()
     {
-        $response = $this->post('/api/v1/company', [
+        $response = $this->post('/api/v1/employer/company', [
             'type' => 'project',
             'name' => 'test',
             'city_id' => City::first()->id,
@@ -47,7 +47,7 @@ class CompanyTest extends TestCase
     public function test_company_update()
     {
         $this->test_company_create();
-        $response = $this->put('/api/v1/company', [
+        $response = $this->put('/api/v1/employer/company', [
             'name' => 'test',
             'city_id' => City::first()->id,
             'website' => 'https://test.com',
@@ -67,7 +67,7 @@ class CompanyTest extends TestCase
     public function test_update_company_photo()
     {
         $this->test_company_create();
-        $response = $this->put('/api/v1/company/photo', [
+        $response = $this->put('/api/v1/employer/company/photo', [
             "url" => "https://cdn.rabotaclick.pro/photos/phpic5YTD.webp"
         ], ['Authorization' => 'Bearer ' . $this->token]);
         $response->assertStatus(200);
@@ -82,7 +82,20 @@ class CompanyTest extends TestCase
     public function test_get_my_company()
     {
         $this->test_company_create();
-        $response = $this->get('/api/v1/company/my', ['Authorization' => 'Bearer ' . $this->token]);
+        $response = $this->get('/api/v1/employer/company/my', ['Authorization' => 'Bearer ' . $this->token]);
+        $response->assertStatus(200);
+        $response->assertJsonStructure([
+            "data" => [
+                "id",
+                "photo"
+            ]
+        ]);
+    }
+
+    public function test_get_company()
+    {
+        $this->test_company_create();
+        $response = $this->get('/api/v1/company/'.Company::first()->id);
         $response->assertStatus(200);
         $response->assertJsonStructure([
             "data" => [

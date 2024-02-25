@@ -9,15 +9,14 @@ use App\OpenApi\Responses\Public\UnauthoraizedResponse;
 use App\OpenApi\Responses\User\DeleteResponse;
 use App\OpenApi\SecuritySchemes\BearerToken;
 use App\Presenters\Resume\DeletePresenter;
-use App\Traits\Resume\ValidateTrait;
 use App\UseCases\Resume\DeleteUseCase;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Validator;
 use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
+
 #[OpenApi\PathItem]
 class DeleteController extends Controller
 {
-    use ValidateTrait;
+    use \App\Traits\ValidateTrait;
     public function __construct(
         private DeleteUseCase $useCase,
         private DeletePresenter $presenter,
@@ -36,7 +35,7 @@ class DeleteController extends Controller
     #[OpenApi\Response(ServiceUnavailableErrorResponse::class, 503)]
     public function __invoke(string $id): JsonResponse
     {
-        $this->validateId($id);
+        $this->validateResumeId($id);
 
         $response = $this->useCase->execute($id);
 

@@ -15,6 +15,7 @@ use App\Http\Controllers\Company\StoreController as CompanyStore;
 use App\Http\Controllers\Company\UpdateController as CompanyUpdate;
 use App\Http\Controllers\Company\UpdatePhotoController as CompanyUpdatePhoto;
 use App\Http\Controllers\Company\ShowMyController as CompanyShowMy;
+use App\Http\Controllers\Company\ShowController as CompanyShow;
 // UserEmployer
 use App\Http\Controllers\UserEmployer\ShowMeController as EmployerShowMe;
 use App\Http\Controllers\UserEmployer\UpdateController as EmployerUpdate;
@@ -83,16 +84,20 @@ Route::prefix('v1')->group(function () {
         Route::get('/employer/verify/{token}', EmployerVerifyController::class);
     });
     // Company
-    Route::prefix('company')->middleware(['auth:sanctum', 'type.employer'])->group(function () {
-        Route::get('/my', CompanyShowMy::class);
-        Route::post('/', CompanyStore::class);
-        Route::put('/', CompanyUpdate::class);
-        Route::put('/photo', CompanyUpdatePhoto::class);
+    Route::prefix('company')->group(function () {
+        Route::get('/{id}', CompanyShow::class);
     });
     // User Employer
     Route::prefix('employer')->middleware(['auth:sanctum', 'type.employer'])->group(function () {
         Route::get('/me', EmployerShowMe::class);
         Route::put('/', EmployerUpdate::class);
+        // User Company
+        Route::prefix('company')->middleware(['auth:sanctum', 'type.employer'])->group(function () {
+            Route::get('/my', CompanyShowMy::class);
+            Route::post('/', CompanyStore::class);
+            Route::put('/', CompanyUpdate::class);
+            Route::put('/photo', CompanyUpdatePhoto::class);
+        });
     });
     // User
     Route::prefix('user')->middleware(['auth:sanctum', 'type.applicant'])->group(function () {
@@ -103,7 +108,7 @@ Route::prefix('v1')->group(function () {
         Route::put('/phone', UserPhoneUpdate::class);
 
         Route::delete('/', UserDelete::class);
-
+        // User Resume
         Route::prefix('resume')->group(function () {
             Route::post('/', ResumeStore::class);
             Route::delete('/{id}', ResumeDelete::class);

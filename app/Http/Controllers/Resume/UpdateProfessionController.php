@@ -9,14 +9,14 @@ use App\OpenApi\Responses\Public\ServiceUnavailableErrorResponse;
 use App\OpenApi\Responses\Resume\ResumeResponse;
 use App\OpenApi\SecuritySchemes\BearerToken;
 use App\Presenters\Resume\ResumePresenter;
-use App\Traits\Resume\ValidateTrait;
 use App\UseCases\Resume\UpdateProfessionUseCase;
 use Illuminate\Http\JsonResponse;
 use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
+
 #[OpenApi\PathItem]
 class UpdateProfessionController extends Controller
 {
-    use ValidateTrait;
+    use \App\Traits\ValidateTrait;
     public function __construct(
         private UpdateProfessionUseCase $useCase,
         private ResumePresenter $presenter,
@@ -34,7 +34,7 @@ class UpdateProfessionController extends Controller
     #[OpenApi\Response(ServiceUnavailableErrorResponse::class, 503)]
     public function __invoke(UpdateProfessionRequestInterface $request, string $id): JsonResponse
     {
-        $this->validateId($id);
+        $this->validateResumeId($id);
 
         $requestDTO = $request->getValidated();
 
