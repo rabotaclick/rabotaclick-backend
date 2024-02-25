@@ -20,7 +20,8 @@ class Resource extends JsonResource
             ResourceEnum::Description->value => $this->description,
             ResourceEnum::City->value => $this->city,
             ResourceEnum::Specialization->value => $this->specialization,
-            ResourceEnum::IsVerified->value => $this->is_verified
+            ResourceEnum::IsVerified->value => $this->is_verified,
+            ResourceEnum::Photo->value => $this->photo
         ];
     }
 }

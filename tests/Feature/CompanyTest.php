@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\City;
+use App\Models\Company;
 use App\Models\Specialization;
 use App\Models\UserEmployer;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -59,6 +60,22 @@ class CompanyTest extends TestCase
             "data" => [
                 "id",
                 "name"
+            ]
+        ]);
+    }
+
+    public function test_update_company_photo()
+    {
+        $this->test_company_create();
+        $resume = Company::first()->id;
+        $response = $this->put('/api/v1/company/photo', [
+            "url" => "https://cdn.rabotaclick.pro/photos/phpic5YTD.webp"
+        ], ['Authorization' => 'Bearer ' . $this->token]);
+        $response->assertStatus(200);
+        $response->assertJsonStructure([
+            "data" => [
+                "id",
+                "photo"
             ]
         ]);
     }

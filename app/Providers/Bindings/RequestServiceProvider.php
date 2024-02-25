@@ -26,6 +26,8 @@ use App\Http\Requests\Company\StoreRequest as CompanyStoreRequest;
 use App\Http\Requests\Company\Contracts\StoreRequestInterface as CompanyStoreRequestInterface;
 use App\Http\Requests\Company\UpdateRequest as CompanyUpdateRequest;
 use App\Http\Requests\Company\Contracts\UpdateRequestInterface as CompanyUpdateRequestInterface;
+use App\Http\Requests\Company\UpdatePhotoRequest as CompanyUpdatePhotoRequest;
+use App\Http\Requests\Company\Contracts\UpdatePhotoRequestInterface as CompanyUpdatePhotoRequestInterface;
 // City
 use App\Http\Requests\City\Contracts\IndexRequestInterface as CityIndexRequestInterface;
 use App\Http\Requests\City\IndexRequest as CityIndexRequest;
@@ -94,6 +96,7 @@ class RequestServiceProvider extends ServiceProvider
         // Company requests
         $this->app->bind(CompanyStoreRequestInterface::class, CompanyStoreRequest::class);
         $this->app->bind(CompanyUpdateRequestInterface::class, CompanyUpdateRequest::class);
+        $this->app->bind(CompanyUpdatePhotoRequestInterface::class, CompanyUpdatePhotoRequest::class);
         // Specialization requests
         $this->app->bind(SpecializationIndexRequestInterface::class, SpecializationIndexRequest::class);
         // SubSpecialization requests

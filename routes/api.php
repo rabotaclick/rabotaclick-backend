@@ -13,6 +13,7 @@ use App\Http\Controllers\Auth\Employer\LoginController as EmployerLogin;
 // Company
 use App\Http\Controllers\Company\StoreController as CompanyStore;
 use App\Http\Controllers\Company\UpdateController as CompanyUpdate;
+use App\Http\Controllers\Company\UpdatePhotoController as CompanyUpdatePhoto;
 // UserEmployer
 use App\Http\Controllers\UserEmployer\ShowMeController as EmployerShowMe;
 use App\Http\Controllers\UserEmployer\UpdateController as EmployerUpdate;
@@ -85,6 +86,7 @@ Route::prefix('v1')->group(function () {
     Route::prefix('company')->middleware(['auth:sanctum', 'type.employer'])->group(function () {
         Route::post('/', CompanyStore::class);
         Route::put('/', CompanyUpdate::class);
+        Route::put('/photo', CompanyUpdatePhoto::class);
     });
     // User Employer
     Route::prefix('employer')->middleware(['auth:sanctum', 'type.employer'])->group(function () {

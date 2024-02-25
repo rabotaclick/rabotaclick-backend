@@ -40,4 +40,9 @@ class Company extends Model
     {
         return $this->document->is_verfied ?? false;
     }
+
+    public function photo(): HasOne
+    {
+        return $this->hasOne(CompanyPhoto::class, 'company_id', 'id');
+    }
 }

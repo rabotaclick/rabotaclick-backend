@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Requests\Resume;
+namespace App\Http\Requests\Company;
 
-use App\DTO\Resume\UpdatePhotoRequestDTO;
+use App\DTO\Company\UpdatePhotoRequestDTO;
 use App\Helpers\Contracts\RequestFilterHelperInterface;
-use App\Http\Requests\Resume\Contracts\UpdatePhotoRequestInterface;
-use App\Http\Requests\Resume\Enums\UpdatePhotoRequestEnum;
+use App\Http\Requests\Company\Contracts\UpdatePhotoRequestInterface;
+use App\Http\Requests\Company\Enums\UpdatePhotoRequestEnum;
 use App\Providers\Bindings\HelperServiceProvider;
-use App\Rules\ImageUrlRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdatePhotoRequest extends FormRequest implements UpdatePhotoRequestInterface
