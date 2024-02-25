@@ -14,6 +14,7 @@ use App\Http\Controllers\Auth\Employer\LoginController as EmployerLogin;
 use App\Http\Controllers\Company\StoreController as CompanyStore;
 use App\Http\Controllers\Company\UpdateController as CompanyUpdate;
 use App\Http\Controllers\Company\UpdatePhotoController as CompanyUpdatePhoto;
+use App\Http\Controllers\Company\ShowMyController as CompanyShowMy;
 // UserEmployer
 use App\Http\Controllers\UserEmployer\ShowMeController as EmployerShowMe;
 use App\Http\Controllers\UserEmployer\UpdateController as EmployerUpdate;
@@ -64,7 +65,6 @@ Route::prefix('test')->group(function () {
 Route::prefix('v1')->group(function () {
     // Authorization and Verification
     Route::prefix('auth')->group(function () {
-
         Route::middleware(['throttle:one'])->post("/code", AuthController::class);
         Route::post("/", ApplicantLogin::class);
         Route::middleware(['auth:sanctum', 'type.applicant'])->post("/register", ApplicantRegister::class);
@@ -84,21 +84,18 @@ Route::prefix('v1')->group(function () {
     });
     // Company
     Route::prefix('company')->middleware(['auth:sanctum', 'type.employer'])->group(function () {
+        Route::get('/my', CompanyShowMy::class);
         Route::post('/', CompanyStore::class);
         Route::put('/', CompanyUpdate::class);
         Route::put('/photo', CompanyUpdatePhoto::class);
     });
     // User Employer
     Route::prefix('employer')->middleware(['auth:sanctum', 'type.employer'])->group(function () {
-
         Route::get('/me', EmployerShowMe::class);
-
         Route::put('/', EmployerUpdate::class);
-
     });
     // User
     Route::prefix('user')->middleware(['auth:sanctum', 'type.applicant'])->group(function () {
-
         Route::get('/me', UserShowMe::class);
         Route::get('/{id}', UserShow::class);
 

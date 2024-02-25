@@ -8,11 +8,13 @@ use App\Models\Company;
 use App\Models\CompanyPhoto;
 use App\Models\ResumePhoto;
 use App\Repositories\Company\Exceptions\CompanyNotCreatedException;
+use App\Traits\Company\UserCompanyTrait;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class UpdatePhotoRepository
 {
+    use UserCompanyTrait;
     public function __construct(
         private Company $company
     )
@@ -31,13 +33,6 @@ class UpdatePhotoRepository
         return new CompanyDTO(
             $this->company
         );
-    }
-
-    private function checkCompany()
-    {
-        if(is_null(Auth::user()->company)) {
-            throw new CompanyNotCreatedException();
-        }
     }
 
     private function manipulateCompanyPhoto(UpdatePhotoRequestDTO $requestDTO)

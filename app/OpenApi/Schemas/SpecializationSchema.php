@@ -21,6 +21,7 @@ class SpecializationSchema extends SchemaFactory implements Reusable
         return Schema::object('Specialization')
             ->properties(
                 Schema::object('data')->properties(
+                    Schema::string('id')->default(null),
                     Schema::string('title')->default(null),
                     Schema::integer('vacancies')->default(null)
                 ),

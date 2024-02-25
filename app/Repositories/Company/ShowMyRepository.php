@@ -3,13 +3,11 @@
 namespace App\Repositories\Company;
 
 use App\DTO\Company\CompanyDTO;
-use App\DTO\Company\UpdateRequestDTO;
 use App\Models\Company;
-use App\Repositories\Company\Exceptions\CompanyNotCreatedException;
 use App\Traits\Company\UserCompanyTrait;
 use Illuminate\Support\Facades\Auth;
 
-class UpdateRepository
+class ShowMyRepository
 {
     use UserCompanyTrait;
     public function __construct(
@@ -18,11 +16,10 @@ class UpdateRepository
     {
     }
 
-    public function make(UpdateRequestDTO $requestDTO): CompanyDTO
+    public function make(): CompanyDTO
     {
         $this->checkCompany();
         $this->company = Auth::user()->company;
-        $this->company->update($requestDTO->toArray());
 
         return new CompanyDTO(
             $this->company

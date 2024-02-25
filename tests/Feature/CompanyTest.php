@@ -67,10 +67,22 @@ class CompanyTest extends TestCase
     public function test_update_company_photo()
     {
         $this->test_company_create();
-        $resume = Company::first()->id;
         $response = $this->put('/api/v1/company/photo', [
             "url" => "https://cdn.rabotaclick.pro/photos/phpic5YTD.webp"
         ], ['Authorization' => 'Bearer ' . $this->token]);
+        $response->assertStatus(200);
+        $response->assertJsonStructure([
+            "data" => [
+                "id",
+                "photo"
+            ]
+        ]);
+    }
+
+    public function test_get_my_company()
+    {
+        $this->test_company_create();
+        $response = $this->get('/api/v1/company/my', ['Authorization' => 'Bearer ' . $this->token]);
         $response->assertStatus(200);
         $response->assertJsonStructure([
             "data" => [
