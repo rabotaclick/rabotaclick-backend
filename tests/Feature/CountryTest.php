@@ -14,12 +14,26 @@ class CountryTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        Country::factory()->create();
+        Country::factory(['name' => 'Россия'])->create();
     }
 
     public function test_index_countries()
     {
         $response = $this->get('/api/v1/countries');
+        $response->assertStatus(200);
+        $response->assertJsonStructure([
+            "data" => [
+                [
+                    "id",
+                    "name"
+                ]
+            ]
+        ]);
+    }
+
+    public function test_index_search_countries()
+    {
+        $response = $this->get('/api/v1/countries?search=Рос');
         $response->assertStatus(200);
         $response->assertJsonStructure([
             "data" => [

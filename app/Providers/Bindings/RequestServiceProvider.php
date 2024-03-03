@@ -77,6 +77,9 @@ use App\Http\Requests\Language\IndexRequest as LanguageIndexRequest;
 // Region
 use App\Http\Requests\Region\Contracts\IndexRequestInterface as RegionIndexRequestInterface;
 use App\Http\Requests\Region\IndexRequest as RegionIndexRequest;
+// Country
+use App\Http\Requests\Country\Contracts\IndexRequestInterface as CountryIndexRequestInterface;
+use App\Http\Requests\Country\IndexRequest as CountryIndexRequest;
 
 class RequestServiceProvider extends ServiceProvider
 {
@@ -126,5 +129,7 @@ class RequestServiceProvider extends ServiceProvider
         $this->app->bind(LanguageIndexRequestInterface::class, LanguageIndexRequest::class);
         // Region requests
         $this->app->bind(RegionIndexRequestInterface::class, RegionIndexRequest::class);
+        // Country requests
+        $this->app->bind(CountryIndexRequestInterface::class, CountryIndexRequest::class);
     }
 }

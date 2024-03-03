@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Country;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Country\Contracts\IndexRequestInterface;
+use App\OpenApi\Parameters\Country\IndexParameters;
 use App\OpenApi\Responses\Country\IndexResponse;
 use App\OpenApi\Responses\Public\ServiceUnavailableErrorResponse;
 use App\Presenters\Country\CountriesPresenter;
@@ -25,11 +27,14 @@ class IndexController extends Controller
      * Получение стран.
      */
     #[OpenApi\Operation(tags: ['Country'], method: 'GET')]
+    #[OpenApi\Parameters(IndexParameters::class)]
     #[OpenApi\Response(IndexResponse::class, 200)]
     #[OpenApi\Response(ServiceUnavailableErrorResponse::class, 503)]
-    public function __invoke(): JsonResponse
+    public function __invoke(IndexRequestInterface $request): JsonResponse
     {
-        $responseDTO = $this->useCase->execute();
+        $requestDTO = $request->getValidated();
+
+        $responseDTO = $this->useCase->execute($requestDTO);
 
         return $this->presenter->present($responseDTO);
     }
