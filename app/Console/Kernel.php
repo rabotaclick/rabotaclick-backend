@@ -24,6 +24,14 @@ class Kernel extends ConsoleKernel
             ->daily()
             ->withoutOverlapping()
             ->onOneServer();
+        $schedule->command('app:delete-vacancies')
+            ->daily()
+            ->withoutOverlapping()
+            ->onOneServer();
+        $schedule->command('app:disable-vacancies')
+            ->daily()
+            ->withoutOverlapping()
+            ->onOneServer();
     }
 
     /**
