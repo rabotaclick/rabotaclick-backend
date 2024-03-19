@@ -36,6 +36,5 @@ enum ResourceEnum: string
     case EducationPlaces = 'education_places';
     case Languages = 'languages';
     case Subspecializations = 'subspecializations';
-
     case Photo = 'photo';
 }

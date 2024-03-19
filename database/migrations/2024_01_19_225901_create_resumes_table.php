@@ -27,14 +27,14 @@ return new class extends Migration
 
             $table->string('phone');
             $table->string('email');
-            $table->enum('preferred_contact', ['phone','email']);
+            $table->enum('preferred_contact',   ['phone','email']);
 
-            $table->enum("gender", ["male", "female"]);
-            $table->enum('ready_to_move', ['no', 'yes', 'want']);
-            $table->enum('business_trips', ['never', 'ready', 'sometimes']);
-            $table->enum('occupation', ['full-time', 'part-time', 'project', 'volunteer', 'internship']);
-            $table->enum('schedule', ['full', 'shift', 'flexible', 'remote', 'rotation']);
-            $table->enum('travel_time', ['dontcare', 'hour', 'hourhalf']);
+            $table->enum("gender",              ["male", "female"]);
+            $table->enum('ready_to_move',       ['no', 'yes', 'want']);
+            $table->enum('business_trips',      ['never', 'ready', 'sometimes']);
+            $table->enum('occupation',          ['full-time', 'part-time', 'project', 'volunteer', 'internship']);
+            $table->enum('schedule',            ['full', 'shift', 'flexible', 'remote', 'rotation']);
+            $table->enum('travel_time',         ['dontcare', 'hour', 'hourhalf']);
 
             $table->foreignUuid('main_language_id')->constrained('languages')->noActionOnDelete();
             $table->foreignUuid("city_id")->constrained()->noActionOnDelete();

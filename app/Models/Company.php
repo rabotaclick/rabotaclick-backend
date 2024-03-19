@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Company extends Model
@@ -44,5 +45,10 @@ class Company extends Model
     public function photo(): HasOne
     {
         return $this->hasOne(CompanyPhoto::class, 'company_id', 'id');
+    }
+
+    public function vacancies(): HasMany
+    {
+        return $this->hasMany(Vacancy::class, 'company_id', 'id');
     }
 }

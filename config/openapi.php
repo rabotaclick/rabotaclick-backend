@@ -52,6 +52,10 @@ return [
                     'description' => 'Резюме'
                 ],
                 [
+                    'name' => 'Vacancy',
+                    'description' => 'Вакансия'
+                ],
+                [
                     'name' => 'City',
                     'description' => 'Города'
                 ],
