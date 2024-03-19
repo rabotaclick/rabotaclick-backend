@@ -9,9 +9,12 @@ use App\Models\Specialization;
 use App\Models\Subspecialization;
 use App\Models\UserEmployer;
 use App\Models\Vacancy;
+use App\Models\VacancyPayment;
+use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use function PHPUnit\Framework\assertCount;
 
 class VacancyTest extends TestCase
 {
@@ -95,7 +98,7 @@ class VacancyTest extends TestCase
     public function test_cloudpayments_pay()
     {
         $invoiceID = $this->test_cloudpayments_check();
-        $response = $this->post('/api/v1/webhooks/cloudpayments/check', [
+        $response = $this->post('/api/v1/webhooks/cloudpayments/pay', [
             "InvoiceId" => $invoiceID,
             "AccountId" => $this->userEmployer->id,
             "DateTime" => now()->format('Y-m-d H:i:s'),
@@ -119,5 +122,23 @@ class VacancyTest extends TestCase
                 'title'
             ]
         ]);
+    }
+
+    public function test_delete_vacancy_if_not_payed()
+    {
+        $this->test_create_vacancy();
+        $this->travelTo(now()->addDays(32));
+        $this->artisan('app:delete-vacancies');
+        $vacancies = Vacancy::all();
+        assertCount(0,$vacancies);
+    }
+
+    public function test_disable_vacancy_if_expired()
+    {
+        $this->test_cloudpayments_pay();
+        $this->travelTo(now()->addDays(32));
+        $this->artisan('app:disable-vacancies');
+        $vacancy = Vacancy::first()->toArray();
+        self::assertContainsEquals(['is_active' => false], $vacancy);
     }
 }
