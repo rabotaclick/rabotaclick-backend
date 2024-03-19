@@ -36,7 +36,7 @@ class Resource extends JsonResource
             ResourceEnum::ContactEmail->value => $this->contact_email,
             ResourceEnum::Letter->value => $this->letter,
             ResourceEnum::Type->value => $this->type,
-            ResourceEnum::Company->value => $this->company
+            ResourceEnum::Company->value => $this->company->makeHidden(['created_at','updated_at','type','is_verified','document'])
         ];
     }
 }

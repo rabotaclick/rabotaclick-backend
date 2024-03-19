@@ -21,7 +21,27 @@ class Resource extends JsonResource
             ResourceEnum::City->value => $this->city,
             ResourceEnum::Specialization->value => $this->specialization,
             ResourceEnum::IsVerified->value => $this->is_verified,
-            ResourceEnum::Photo->value => $this->photo
+            ResourceEnum::Photo->value => $this->photo,
+            ResourceEnum::Vacancies->value => $this->vacancies->makeHidden([
+                'salary_from',
+                'salary_to',
+                'gpc',
+                'responsibilities',
+                'requirements',
+                'conditions',
+                'salary_type',
+                'education',
+                'contact_name',
+                'contact_surname',
+                'contact_lastname',
+                'contact_phone',
+                'contact_email',
+                'letter',
+                'city_id',
+                'company_id',
+                'payments'
+            ])
+
         ];
     }
 }

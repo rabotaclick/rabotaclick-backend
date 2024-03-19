@@ -8,6 +8,7 @@ use App\Models\KeySkill;
 use App\Models\Specialization;
 use App\Models\Subspecialization;
 use App\Models\UserEmployer;
+use App\Models\Vacancy;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -104,6 +105,19 @@ class VacancyTest extends TestCase
         $response->assertStatus(200);
         $response->assertJson([
             "code" => 0
+        ]);
+    }
+
+    public function test_get_vacancy()
+    {
+        $this->test_create_vacancy();
+        $response = $this->get('/api/v1/vacancies/' . Vacancy::first()->id);
+        $response->assertStatus(200);
+        $response->assertJsonStructure([
+            'data' => [
+                'id',
+                'title'
+            ]
         ]);
     }
 }
