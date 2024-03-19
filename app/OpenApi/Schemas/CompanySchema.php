@@ -29,7 +29,8 @@ class CompanySchema extends SchemaFactory implements Reusable
                 Schema::string('phone')->default(null),
                 Schema::string('description')->default(null),
                 Schema::string('city_id')->default(null),
-                Schema::string('specialization_id')->default(null)
+                Schema::string('specialization_id')->default(null),
+                Schema::object('vacancies')
             );
     }
 }

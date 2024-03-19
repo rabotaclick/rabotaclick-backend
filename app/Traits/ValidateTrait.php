@@ -19,4 +19,11 @@ trait ValidateTrait
             'id' => 'required|uuid|exists:companies,id',
         ])->validate();
     }
+
+    public function validateVacancyId(string $id): void
+    {
+        Validator::make(['id' => $id], [
+            'id' => 'required|uuid|exists:vacancies,id',
+        ])->validate();
+    }
 }

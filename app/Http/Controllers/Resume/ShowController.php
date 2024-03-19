@@ -27,7 +27,7 @@ class ShowController extends Controller
      *
      * Получение резюме для пользователя.
      */
-    #[OpenApi\Operation(tags: ['Resume'], security: BearerToken::class, method: 'GET')]
+    #[OpenApi\Operation(tags: ['Resume'], method: 'GET')]
     #[OpenApi\Response(ResumeResponse::class, 200)]
     #[OpenApi\Response(ServiceUnavailableErrorResponse::class, 503)]
     public function __invoke(string $id): JsonResponse

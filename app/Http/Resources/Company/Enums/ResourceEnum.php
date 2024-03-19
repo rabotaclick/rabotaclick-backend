@@ -16,4 +16,6 @@ enum ResourceEnum: string
     case Specialization = 'specialization';
     case IsVerified = 'is_verified';
     case Photo = 'photo';
+
+    case Vacancies = 'vacancies';
 }

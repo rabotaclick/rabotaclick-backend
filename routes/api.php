@@ -49,6 +49,7 @@ use App\Http\Controllers\WebHook\CloudPayments\CheckController as CloudPaymentsC
 use App\Http\Controllers\WebHook\CloudPayments\PayController as CloudPaymentsPay;
 // Vacancy
 use App\Http\Controllers\Vacancy\StoreController as VacancyStore;
+use App\Http\Controllers\Vacancy\ShowController as VacancyShow;
 // City
 use App\Http\Controllers\City\IndexController as CityIndex;
 // Country
@@ -141,7 +142,7 @@ Route::prefix('v1')->group(function () {
     });
     // Vacancies
     Route::prefix('vacancies')->group(function () {
-        Route::get('/{id}', ); // TO:DO GET
+        Route::get('/{id}', VacancyShow::class);
         Route::post('/'); // TO:DO INDEX
     });
     Route::prefix('candidates')->group(function () {
