@@ -21,7 +21,7 @@ class RegisterUseCase
             $response = $this->repository->make($requestDTO);
             return $response;
         } catch (\Throwable $exception) {
-            throw new RegisterUseCasesException("Сервис временно недоступен", Response::HTTP_SERVICE_UNAVAILABLE, $exception);
+            throw new RegisterUseCasesException('Сервис временно недоступен', Response::HTTP_SERVICE_UNAVAILABLE, $exception);
         }
     }
 }

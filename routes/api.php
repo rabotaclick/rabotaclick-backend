@@ -44,6 +44,11 @@ use App\Http\Controllers\Resume\UpdateWorkingHistoryController as ResumeUpdateWo
 use App\Http\Controllers\Resume\UpdateEducationController as ResumeUpdateEducation;
 use App\Http\Controllers\Resume\UpdateLanguagesController as ResumeUpdateLanguages;
 use App\Http\Controllers\Resume\UpdatePhotoController as ResumeUpdatePhoto;
+// CloudPayments
+use App\Http\Controllers\WebHook\CloudPayments\CheckController as CloudPaymentsCheck;
+use App\Http\Controllers\WebHook\CloudPayments\PayController as CloudPaymentsPay;
+// Vacancy
+use App\Http\Controllers\Vacancy\StoreController as VacancyStore;
 // City
 use App\Http\Controllers\City\IndexController as CityIndex;
 // Country
@@ -77,6 +82,7 @@ Route::prefix('v1')->group(function () {
             Route::post('/', EmployerLogin::Class);
             Route::middleware(['throttle:one'])->post('/register', EmployerRegister::class);
             Route::middleware(['auth:sanctum', 'type.employer'])->post('/register/finish', EmployerFinishRegisterController::class);
+            Route::post('/forgot'); // TO:DO
         });
     });
     Route::prefix('email')->group(function () {
@@ -91,12 +97,18 @@ Route::prefix('v1')->group(function () {
     Route::prefix('employer')->middleware(['auth:sanctum', 'type.employer'])->group(function () {
         Route::get('/me', EmployerShowMe::class);
         Route::put('/', EmployerUpdate::class);
+        Route::put('/email'); // TO:DO
+        Route::delete('/'); // TO:DO
         // User Company
         Route::prefix('company')->group(function () {
-            Route::get('/my', CompanyShowMy::class);
+            Route::get('/my', CompanyShowMy::class); // TO:DO VACANCIES
             Route::post('/', CompanyStore::class);
             Route::put('/', CompanyUpdate::class);
             Route::put('/photo', CompanyUpdatePhoto::class);
+            // Company Vacancies
+            Route::prefix('vacancy')->group(function () {
+                Route::post('/', VacancyStore::class);
+            });
         });
     });
     // User
@@ -127,9 +139,25 @@ Route::prefix('v1')->group(function () {
         Route::get('/{id}', ResumeShow::class);
         Route::post('/', ResumeIndex::class);
     });
+    // Vacancies
+    Route::prefix('vacancies')->group(function () {
+        Route::get('/{id}', ); // TO:DO GET
+        Route::post('/'); // TO:DO INDEX
+    });
+    Route::prefix('candidates')->group(function () {
+        Route::post('/'); // TO:DO INDEX
+    });
     // Storage
     Route::prefix('storage')->group(function () {
         Route::post('/put', PutController::class);
+    });
+    // Webhooks
+    Route::prefix('webhooks')->group(function () {
+        // CloudPayments
+        Route::prefix('cloudpayments')->group(function () {
+            Route::post('check', CloudPaymentsCheck::class);
+            Route::post('pay', CloudPaymentsPay::class);
+        });
     });
     // Static Models
     Route::prefix('key_skills')->group(function () {

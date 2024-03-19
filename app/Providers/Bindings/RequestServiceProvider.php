@@ -50,6 +50,14 @@ use App\Http\Requests\Resume\Contracts\UpdatePhotoRequestInterface as ResumeUpda
 use App\Http\Requests\Resume\UpdatePhotoRequest as ResumeUpdatePhotoRequest;
 use App\Http\Requests\Resume\Contracts\IndexRequestInterface as ResumeIndexRequestInterface;
 use App\Http\Requests\Resume\IndexRequest as ResumeIndexRequest;
+// Vacancy
+use App\Http\Requests\Vacancy\Contracts\StoreRequestInterface as VacancyStoreRequestInterface;
+use App\Http\Requests\Vacancy\StoreRequest as VacancyStoreRequest;
+// CloudPayments
+use App\Http\Requests\WebHook\CloudPayments\Contracts\CheckRequestInterface as CloudPaymentsCheckRequestInterface;
+use App\Http\Requests\WebHook\CloudPayments\CheckRequest as CloudPaymentsCheckRequest;
+use App\Http\Requests\WebHook\CloudPayments\Contracts\PayRequestInterface as CloudPaymentsPayRequestInterface;
+use App\Http\Requests\WebHook\CloudPayments\PayRequest as CloudPaymentsPayRequest;
 // UserEmployer
 use App\Http\Requests\UserEmployer\UpdateRequest as UserEmployerUpdateRequest;
 use App\Http\Requests\UserEmployer\Contracts\UpdateRequestInterface as UserEmployerUpdateRequestInterface;
@@ -119,6 +127,11 @@ class RequestServiceProvider extends ServiceProvider
         $this->app->bind(ResumeUpdateLanguagesRequestInterface::class, ResumeUpdateLanguagesRequest::class);
         $this->app->bind(ResumeUpdatePhotoRequestInterface::class, ResumeUpdatePhotoRequest::class);
         $this->app->bind(ResumeIndexRequestInterface::class, ResumeIndexRequest::class);
+        // Vacancy requests
+        $this->app->bind(VacancyStoreRequestInterface::class, VacancyStoreRequest::class);
+        // CloudPayments requests
+        $this->app->bind(CloudPaymentsCheckRequestInterface::class, CloudPaymentsCheckRequest::class);
+        $this->app->bind(CloudPaymentsPayRequestInterface::class, CloudPaymentsPayRequest::class);
         // City requests
         $this->app->bind(CityIndexRequestInterface::class, CityIndexRequest::class);
         // Storage requests
