@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Resume;
+use App\Models\Vacancy;
 
 return [
 
@@ -154,6 +155,24 @@ return [
                      'salary',
                  ]
              ],
+             Vacancy::class => [
+                 'filterableAttributes'=> [
+                     'title',
+                     'responsibilities',
+                     'requirements',
+                     'conditions',
+                     'is_active',
+                     'salary_from',
+                     'city_id',
+                     'education',
+                     'schedule',
+                     'occupation'
+                 ],
+                 'sortableAttributes' => [
+                     'id',
+                     'salary_from',
+                 ]
+             ]
         ],
     ],
 

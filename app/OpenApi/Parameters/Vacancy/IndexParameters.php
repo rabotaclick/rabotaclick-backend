@@ -1,6 +1,6 @@
 <?php
 
-namespace App\OpenApi\Parameters\Resume;
+namespace App\OpenApi\Parameters\Vacancy;
 
 use GoldSpecDigital\ObjectOrientedOAS\Objects\Parameter;
 use GoldSpecDigital\ObjectOrientedOAS\Objects\Schema;
@@ -51,37 +51,6 @@ class IndexParameters extends ParametersFactory
                 ->required(false)
                 ->schema(Schema::string()),
             Parameter::query()
-                ->name('ready_to_move')
-                ->description('Готовы ли к переезду?, yes, no, want')
-                ->required(false)
-                ->schema(Schema::string()),
-            Parameter::query()
-                ->name('work_history_subspecializations')
-                ->description('Опыт работы в отрасли')
-                ->required(false)
-                ->schema(Schema::object()->properties(
-                    Schema::array('subspecializations')->items(Schema::string()),
-                    Schema::string('date')->description('all_time, year, three_years, six_years')
-                )),
-            Parameter::query()
-                ->name('user_status')
-                ->description('Статус пользователя active, considering, offered, already_got, not_looking')
-                ->required(false)
-                ->schema(Schema::string()),
-            Parameter::query()
-                ->name('age')
-                ->description('Возраст')
-                ->required(false)
-                ->schema(Schema::object()->properties(
-                    Schema::integer('from'),
-                    Schema::integer('to')
-                )),
-            Parameter::query()
-                ->name('isset_age')
-                ->description('Указан возраст')
-                ->required(false)
-                ->schema(Schema::boolean()),
-            Parameter::query()
                 ->name('occupation')
                 ->description("Занятость,'full-time', 'part-time', 'project', 'volunteer', 'internship' ")
                 ->required(false)
@@ -97,28 +66,10 @@ class IndexParameters extends ParametersFactory
                 ->required(false)
                 ->schema(Schema::string()),
             Parameter::query()
-                ->name('subspecializations')
-                ->description('Специализации')
-                ->required(false)
-                ->schema(Schema::array()->items(Schema::string())),
-            Parameter::query()
-                ->name('gender')
-                ->description('Пол male, female')
+                ->name('salary')
+                ->description('Зарплата в string 10000, 50000, 100000, 150000, 200000 ')
                 ->required(false)
                 ->schema(Schema::string()),
-            Parameter::query()
-                ->name('isset_gender')
-                ->description('Указан пол')
-                ->required(false)
-                ->schema(Schema::boolean()),
-            Parameter::query()
-                ->name('salary')
-                ->description('Зарплата')
-                ->required(false)
-                ->schema(Schema::object()->properties(
-                    Schema::integer('from'),
-                    Schema::integer('to')
-                )),
             Parameter::query()
                 ->name('isset_salary')
                 ->description('Указана зарплата')
@@ -126,9 +77,10 @@ class IndexParameters extends ParametersFactory
                 ->schema(Schema::boolean()),
             Parameter::query()
                 ->name('education')
-                ->description('Уровень учебы secondary, secondary_specialized, incomplete_higher, higher, bachelor, master, candidate, doctor')
+                ->description('Уровень учебы not_required, high, college')
                 ->required(false)
                 ->schema(Schema::string()),
+
         ];
     }
 }
