@@ -53,6 +53,8 @@ use App\Http\Requests\Resume\IndexRequest as ResumeIndexRequest;
 // Vacancy
 use App\Http\Requests\Vacancy\Contracts\StoreRequestInterface as VacancyStoreRequestInterface;
 use App\Http\Requests\Vacancy\StoreRequest as VacancyStoreRequest;
+use App\Http\Requests\Vacancy\Contracts\IndexRequestInterface as VacancyIndexRequestInterface;
+use App\Http\Requests\Vacancy\IndexRequest as VacancyIndexRequest;
 // CloudPayments
 use App\Http\Requests\WebHook\CloudPayments\Contracts\CheckRequestInterface as CloudPaymentsCheckRequestInterface;
 use App\Http\Requests\WebHook\CloudPayments\CheckRequest as CloudPaymentsCheckRequest;
@@ -129,6 +131,7 @@ class RequestServiceProvider extends ServiceProvider
         $this->app->bind(ResumeIndexRequestInterface::class, ResumeIndexRequest::class);
         // Vacancy requests
         $this->app->bind(VacancyStoreRequestInterface::class, VacancyStoreRequest::class);
+        $this->app->bind(VacancyIndexRequestInterface::class, VacancyIndexRequest::class);
         // CloudPayments requests
         $this->app->bind(CloudPaymentsCheckRequestInterface::class, CloudPaymentsCheckRequest::class);
         $this->app->bind(CloudPaymentsPayRequestInterface::class, CloudPaymentsPayRequest::class);

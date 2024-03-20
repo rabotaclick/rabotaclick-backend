@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Custom\Scout\ExtendedSearchable;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,7 +13,30 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Vacancy extends Model
 {
-    use HasFactory, HasUuids;
+    use HasFactory, HasUuids, ExtendedSearchable;
+
+    public function searchableAs(): string
+    {
+        return 'vacancies_index';
+    }
+
+    public function toSearchableArray(): array
+    {
+        $array = [
+            'title' => $this->title,
+            'requirements' => $this->requirements,
+            'responsibilities' => $this->responsibilities,
+            'conditions' => $this->conditions,
+            'education' => $this->education,
+            'occupation' => $this->occupation,
+            'schedule' => $this->schedule,
+            'work_experience' => $this->work_experience,
+            'is_active' => $this->is_active,
+            'city_id' => $this->city_id,
+            'type' => (string) $this->getTypeAttribute(),
+        ];
+        return $array;
+    }
 
     protected $table = 'vacancies';
 
