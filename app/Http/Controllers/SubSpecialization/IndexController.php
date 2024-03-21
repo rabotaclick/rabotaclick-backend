@@ -1,5 +1,4 @@
-<?php
-
+<?php declare(strict_types=1);
 namespace App\Http\Controllers\SubSpecialization;
 
 use App\Http\Controllers\Controller;

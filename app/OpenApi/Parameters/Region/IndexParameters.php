@@ -1,5 +1,4 @@
-<?php
-
+<?php declare(strict_types=1);
 namespace App\OpenApi\Parameters\Region;
 
 use GoldSpecDigital\ObjectOrientedOAS\Objects\Parameter;

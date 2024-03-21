@@ -1,5 +1,4 @@
-<?php
-
+<?php declare(strict_types=1);
 namespace App\Repositories\Admin;
 
 use App\DTO\Admin\AuthRequestDTO;

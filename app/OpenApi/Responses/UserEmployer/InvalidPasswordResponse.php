@@ -1,5 +1,4 @@
-<?php
-
+<?php declare(strict_types=1);
 namespace App\OpenApi\Responses\UserEmployer;
 
 use GoldSpecDigital\ObjectOrientedOAS\Objects\MediaType;

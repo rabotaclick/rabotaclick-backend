@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Traits;
 
@@ -11,6 +11,6 @@ trait GenerateCodeTrait
         } else {
             $code = 1111;
         }
-        return hash_hmac('sha256',$code, env('APP_KEY'));
+        return hash_hmac('sha256',strval($code), env('APP_KEY'));
     }
 }

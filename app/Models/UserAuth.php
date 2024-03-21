@@ -1,5 +1,4 @@
-<?php
-
+<?php declare(strict_types=1);
 namespace App\Models;
 
 use App\Models\Exceptions\UserAuthFindCodeException;
@@ -23,7 +22,7 @@ class UserAuth extends Model
 
     public static function findCode(string $phone, int $code): UserAuth
     {
-        $encryptedCode = hash_hmac('sha256',$code, env('APP_KEY'));
+        $encryptedCode = hash_hmac('sha256', strval($code), env('APP_KEY'));
         return UserAuth::where("code_crypt", "=", $encryptedCode)
             ->where("phone", "=", $phone)
             ->firstOrFail();

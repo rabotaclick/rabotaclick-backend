@@ -1,5 +1,4 @@
-<?php
-
+<?php declare(strict_types=1);
 namespace App\Http\Requests\Specialization;
 
 use App\DTO\Specialization\IndexRequestDTO;
@@ -18,8 +17,8 @@ class IndexRequest extends FormRequest implements IndexRequestInterface
     {
         $enumHelper = resolve(EnumHelperInterface::class);
         return [
-            PaginationRequestEnum::First->value => 'required|numeric|max:100',
-            PaginationRequestEnum::Page->value => 'numeric',
+            PaginationRequestEnum::First->value => 'required|integer|max:100',
+            PaginationRequestEnum::Page->value => 'integer',
             IndexRequestEnum::OrderBy->value => 'string|in:' . $enumHelper->serialize(OrderByEnum::class),
             IndexRequestEnum::Column->value => 'string',
             IndexRequestEnum::WithSubspecializations->value => 'boolean'
@@ -35,7 +34,7 @@ class IndexRequest extends FormRequest implements IndexRequestInterface
         ]);
 
         return new IndexRequestDTO(
-            $filter->checkRequestParam(PaginationRequestEnum::First),
+            intval($filter->checkRequestParam(PaginationRequestEnum::First)),
             $filter->checkRequestParam(PaginationRequestEnum::Page) ?? 1,
             $filter->checkRequestParam(IndexRequestEnum::OrderBy) ?? OrderByEnum::ASC,
             $filter->checkRequestParam(IndexRequestEnum::Column) ?? "id",

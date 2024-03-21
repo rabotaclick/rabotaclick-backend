@@ -1,5 +1,4 @@
-<?php
-
+<?php declare(strict_types=1);
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
@@ -24,7 +23,7 @@ class UserPhoneChange extends Model
 
     public static function findCode(string $user_id, int $code): UserPhoneChange
     {
-        $encryptedCode = hash_hmac('sha256',$code, env('APP_KEY'));
+        $encryptedCode = hash_hmac('sha256',strval($code), env('APP_KEY'));
         return UserPhoneChange::where("code_crypt", "=", $encryptedCode)
             ->where("user_id", "=", $user_id)
             ->firstOrFail();

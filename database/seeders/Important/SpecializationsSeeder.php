@@ -1,5 +1,4 @@
-<?php
-
+<?php declare(strict_types=1);
 namespace Database\Seeders\Important;
 
 use App\Models\Profession;

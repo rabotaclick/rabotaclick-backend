@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Http\Requests\City;
 
@@ -15,8 +15,8 @@ class IndexRequest extends FormRequest implements IndexRequestInterface
     public function rules(): array
     {
         return [
-            PaginationRequestEnum::First->value => 'required|numeric|max:100',
-            PaginationRequestEnum::Page->value => 'numeric',
+            PaginationRequestEnum::First->value => 'required|integer|max:100',
+            PaginationRequestEnum::Page->value => 'integer',
             IndexRequestEnum::Letter->value => 'string|min:1|max:1',
             IndexRequestEnum::Search->value => 'string|max:64'
         ];
@@ -31,7 +31,7 @@ class IndexRequest extends FormRequest implements IndexRequestInterface
         ]);
 
         return new IndexRequestDTO(
-            $filter->checkRequestParam(PaginationRequestEnum::First),
+            intval($filter->checkRequestParam(PaginationRequestEnum::First)),
             $filter->checkRequestParam(PaginationRequestEnum::Page) ?? 1,
             $filter->checkRequestParam(IndexRequestEnum::Search),
             $filter->checkRequestParam(IndexRequestEnum::Letter),

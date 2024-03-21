@@ -1,5 +1,4 @@
-<?php
-
+<?php declare(strict_types=1);
 namespace App\Http\Requests\Vacancy;
 
 use App\DTO\Vacancy\StoreRequestDTO;
@@ -65,8 +64,8 @@ class StoreRequest extends FormRequest implements StoreRequestInterface
         return new StoreRequestDTO(
             $filter->checkRequestParam(StoreRequestEnum::Title),
             $filter->checkRequestParam(StoreRequestEnum::SalaryType),
-            $filter->checkRequestParam(StoreRequestEnum::SalaryFrom),
-            $filter->checkRequestParam(StoreRequestEnum::SalaryTo),
+            intval($filter->checkRequestParam(StoreRequestEnum::SalaryFrom)),
+            intval($filter->checkRequestParam(StoreRequestEnum::SalaryTo)),
             $filter->checkRequestParam(StoreRequestEnum::WorkExperience),
             $filter->checkRequestParam(StoreRequestEnum::Occupation),
             $filter->checkRequestParam(StoreRequestEnum::GPC),

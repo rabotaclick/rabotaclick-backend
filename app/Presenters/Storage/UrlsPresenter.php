@@ -1,5 +1,4 @@
-<?php
-
+<?php declare(strict_types=1);
 namespace App\Presenters\Storage;
 
 use App\DTO\Storage\PutManyResponseDTO;
