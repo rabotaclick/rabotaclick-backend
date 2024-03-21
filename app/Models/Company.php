@@ -50,4 +50,9 @@ class Company extends Model
     {
         return $this->hasMany(Vacancy::class, 'company_id', 'id');
     }
+
+    public function user_employer(): HasOne
+    {
+        return $this->hasOne(UserEmployer::class, 'company_id', 'id');
+    }
 }

@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Resume\Contracts\UpdatePersonalRequestInterface;
 use App\OpenApi\Parameters\Resume\UpdatePersonalParameters;
 use App\OpenApi\Responses\Public\ServiceUnavailableErrorResponse;
+use App\OpenApi\Responses\Public\UnauthoraizedResponse;
 use App\OpenApi\Responses\Resume\ResumeResponse;
 use App\OpenApi\SecuritySchemes\BearerToken;
 use App\Presenters\Resume\ResumePresenter;
@@ -30,6 +31,7 @@ class UpdatePersonalController extends Controller
     #[OpenApi\Operation(tags: ['Resume'], security: BearerToken::class, method: 'PUT')]
     #[OpenApi\Parameters(UpdatePersonalParameters::class)]
     #[OpenApi\Response(ResumeResponse::class, 200)]
+    #[OpenApi\Response(UnauthoraizedResponse::class, 403)]
     #[OpenApi\Response(ServiceUnavailableErrorResponse::class, 503)]
     public function __invoke(UpdatePersonalRequestInterface $request, string $id): JsonResponse
     {

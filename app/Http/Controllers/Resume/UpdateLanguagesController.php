@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Resume\Contracts\UpdateLanguagesRequestInterface;
 use App\OpenApi\Parameters\Resume\UpdateLanguagesParameters;
 use App\OpenApi\Responses\Public\ServiceUnavailableErrorResponse;
+use App\OpenApi\Responses\Public\UnauthoraizedResponse;
 use App\OpenApi\Responses\Resume\ResumeResponse;
 use App\OpenApi\SecuritySchemes\BearerToken;
 use App\Presenters\Resume\ResumePresenter;
@@ -31,6 +32,7 @@ class UpdateLanguagesController extends Controller
     #[OpenApi\Operation(tags: ['Resume'], security: BearerToken::class, method: 'PUT')]
     #[OpenApi\Parameters(UpdateLanguagesParameters::class)]
     #[OpenApi\Response(ResumeResponse::class, 200)]
+    #[OpenApi\Response(UnauthoraizedResponse::class, 403)]
     #[OpenApi\Response(ServiceUnavailableErrorResponse::class, 503)]
     public function __invoke(UpdateLanguagesRequestInterface $request, string $id): JsonResponse
     {

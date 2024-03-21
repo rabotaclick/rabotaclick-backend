@@ -8,9 +8,7 @@ use App\OpenApi\Responses\Public\ServiceUnavailableErrorResponse;
 use App\OpenApi\Responses\Vacancy\StoreResponse;
 use App\OpenApi\SecuritySchemes\BearerToken;
 use App\Presenters\Vacancy\InvoicePresenter;
-use App\Presenters\Vacancy\VacancyPresenter;
 use App\UseCases\Vacancy\StoreUseCase;
-use Illuminate\Http\Request;
 use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
 #[OpenApi\PathItem]
 class StoreController extends Controller
