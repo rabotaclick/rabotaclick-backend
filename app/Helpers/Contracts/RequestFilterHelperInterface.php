@@ -1,5 +1,4 @@
-<?php
-
+<?php declare(strict_types=1);
 namespace App\Helpers\Contracts;
 
 use App\Http\Requests\Contracts\RequestParamEnumInterface;

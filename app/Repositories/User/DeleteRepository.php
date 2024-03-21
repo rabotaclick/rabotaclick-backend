@@ -1,5 +1,4 @@
-<?php
-
+<?php declare(strict_types=1);
 namespace App\Repositories\User;
 
 use App\Models\User;
@@ -17,6 +16,6 @@ class DeleteRepository
     {
         $this->user = Auth::user();
         $this->user->delete();
-        return $this->user->deleted_at;
+        return $this->user->deleted_at->format('Y-m-d H:i:s');
     }
 }

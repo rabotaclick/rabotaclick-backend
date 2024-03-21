@@ -1,5 +1,4 @@
-<?php
-
+<?php declare(strict_types=1);
 namespace App\UseCases\Email\Employer;
 
 use App\Repositories\Email\Employer\VerifyRepository;

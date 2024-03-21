@@ -1,5 +1,4 @@
-<?php
-
+<?php declare(strict_types=1);
 namespace App\Jobs\Email;
 
 use Illuminate\Bus\Queueable;

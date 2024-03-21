@@ -1,5 +1,4 @@
-<?php
-
+<?php declare(strict_types=1);
 namespace App\Presenters\Vacancy;
 
 use App\DTO\Vacancy\VacancyDTO;

@@ -1,5 +1,4 @@
-<?php
-
+<?php declare(strict_types=1);
 namespace App\Http\Resources\UserEmployer;
 
 use App\Http\Resources\UserEmployer\Enums\ResourceEnum;
