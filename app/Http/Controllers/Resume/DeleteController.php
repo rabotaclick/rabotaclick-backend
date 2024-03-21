@@ -30,7 +30,7 @@ class DeleteController extends Controller
     #[OpenApi\Operation(tags: ['Resume'], security: BearerToken::class, method: 'DELETE')]
     #[OpenApi\Parameters(DeleteParameters::class)]
     #[OpenApi\Response(DeleteResponse::class, 200)]
-    #[OpenApi\Response(UnauthoraizedResponse::class, 401)]
+    #[OpenApi\Response(UnauthoraizedResponse::class, 403)]
     #[OpenApi\Response(ServiceUnavailableErrorResponse::class, 503)]
     public function __invoke(string $id): JsonResponse
     {
